@@ -44,22 +44,23 @@ public class WebController extends BaseController{
     }
 
     /**
-     * 页面转发控制器
+     * 微信一级页面转发控制器
      * @param var1
      * @return
      */
-    @RequestMapping("/{var1}")
+    @RequestMapping("wechat/{var1}")
     public String sendMain(@PathVariable("var1") String var1){
         return var1;
     }
 
     /**
-     * 页面转发控制器
+     * 微信二级级页面转发控制器
      * @param dir
+     * @param file
      * @return
      */
-    @RequestMapping("/{dir}/{file}")
+    @RequestMapping("wechat/{dir}/{file}")
     public String sendMainDir(@PathVariable("dir") String dir,@PathVariable("file") String file){
-        return dir+"/"+file;
+        return wechatPath+dir+"/"+file;
     }
 }
