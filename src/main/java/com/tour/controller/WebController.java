@@ -43,14 +43,21 @@ public class WebController extends BaseController{
         return mainPath+var1+"/"+var2;
     }
 
+    //微信主页面
+    @RequestMapping(value = "/wechat")
+    public String wechatIndex(){
+        return wechatPath+"index";
+    }
+
+
     /**
      * 微信一级页面转发控制器
      * @param var1
      * @return
      */
-    @RequestMapping("wechat/{var1}")
+    @RequestMapping("/wechat/{var1}")
     public String sendMain(@PathVariable("var1") String var1){
-        return var1;
+        return wechatPath+var1;
     }
 
     /**
@@ -59,7 +66,7 @@ public class WebController extends BaseController{
      * @param file
      * @return
      */
-    @RequestMapping("wechat/{dir}/{file}")
+    @RequestMapping("/wechat/{dir}/{file}")
     public String sendMainDir(@PathVariable("dir") String dir,@PathVariable("file") String file){
         return wechatPath+dir+"/"+file;
     }

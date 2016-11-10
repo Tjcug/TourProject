@@ -4,7 +4,6 @@
 
     <title>Travel旅游助手</title>
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
-    <link rel="shortcut icon" href="/favicon.ico">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
@@ -31,7 +30,7 @@
                 <span class="tab-label">求助</span>
             </a>
             <a class="tab-item external" href="settings">
-                <span class="icon icon-settings"></span>
+                <i class="icon-set"></i>
                 <span class="tab-label">设置</span>
             </a>
         </nav>
@@ -132,7 +131,7 @@
             </div>
             <div class="weui-dialog">
                 <div class="weui-dialog__bd">
-                    主题和内容不能为空!
+                    请输入完整信息！
                 </div>
                 <div class="weui-dialog__ft">
                     <a href="" class="weui-dialog__btn weui-dialog__btn_primary" id="tipOk">确定</a>
