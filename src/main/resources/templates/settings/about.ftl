@@ -29,7 +29,7 @@
             <div class="card demo-card-header-pic logo">
                 <div valign="bottom"
                      class="card-header color-white no-border no-padding">
-                    <img src="images/logo_big.jpg" alt="logo">
+                    <img src="/static/images/logo_big.jpg" alt="logo">
                 </div>
                 <div class="card-content">
                     <div class="card-content-inner">

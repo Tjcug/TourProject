@@ -60,6 +60,6 @@ public class WebController extends BaseController{
      */
     @RequestMapping("/{dir}/{file}")
     public String sendMainDir(@PathVariable("dir") String dir,@PathVariable("file") String file){
-        return mainPath+dir+"/"+file;
+        return dir+"/"+file;
     }
 }

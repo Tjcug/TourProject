@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://res.wx.qq.com/open/libs/weui/1.0.2/weui.min.css"/>
     <script type="text/javascript" src="/static/js/weuizepto.min.js"></script>
 
-    //必须放在weuizepto.js后面
+    <!--必须放在weuizepto.js后面-->
 <#include "common/base.ftl">
 
 </head>

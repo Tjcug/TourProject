@@ -13,7 +13,7 @@
 
 <body>
 <div class="page-group">
-    <div class="page">
+    <div class="page" id="page-resolve">
         <!-- 工具栏 -->
         <nav class="bar bar-tab">
             <a class="tab-item external active" href="#">

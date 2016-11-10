@@ -11,7 +11,7 @@
 	<div class="panel panel-left panel-reveal theme-dark">
 		<div class="content">
 			<div class="content-block">
-				<img alt="头像" src="images/head.jpg">
+				<img alt="头像" src="../images/head.jpg">
 				<p>潘俊冰</p>
 			</div>
 			<div class="list-block theme-dark">
@@ -21,7 +21,7 @@
 								<div class="item-title label">我的账单</div>
 							</div>
 					</a></li>
-					<li><a class="item-content item-link" href="/explain">
+					<li><a class="item-content item-link" href="/settings/explain">
 
 							<div class="item-inner">
 								<div class="item-title label">使用说明</div>

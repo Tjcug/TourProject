@@ -35,7 +35,7 @@
         <div class="content">
             <div class="list-block">
                 <ul>
-                    <li><a class="item-content item-link" href="settings/user">
+                    <li><a class="item-content item-link" href="/settings/user">
                         <div class="item-inner">
                             <div class="item-after">账号管理</div>
                         </div>
@@ -44,12 +44,12 @@
             </div>
             <div class="list-block">
                 <ul>
-                    <li><a class="item-content item-link" href="/push">
+                    <li><a class="item-content item-link" href="/settings/push">
                         <div class="item-inner">
                             <div class="item-after">推送设置</div>
                         </div>
                     </a></li>
-                    <li><a class="item-content item-link" href="/language">
+                    <li><a class="item-content item-link" href="/settings/language">
                         <div class="item-inner">
                             <div class="item-after">语言选择</div>
                         </div>
@@ -58,17 +58,17 @@
             </div>
             <div class="list-block">
                 <ul>
-                    <li><a class="item-content item-link" href="/suggestion">
+                    <li><a class="item-content item-link" href="/settings/suggestion">
                         <div class="item-inner">
                             <div class="item-after">意见反馈</div>
                         </div>
                     </a></li>
-                    <li><a class="item-content item-link" href="/explain">
+                    <li><a class="item-content item-link" href="/settings/explain">
                         <div class="item-inner">
                             <div class="item-after">使用说明</div>
                         </div>
                     </a></li>
-                    <li><a class="item-content item-link" href="/about">
+                    <li><a class="item-content item-link" href="/settings/about">
                         <div class="item-inner">
                             <div class="item-after">关于我们</div>
                         </div>
