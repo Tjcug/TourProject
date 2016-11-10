@@ -68,7 +68,7 @@
             </label>
 
             <div class="weui-btn-area">
-                <a class="weui-btn weui-btn_primary" href="" id="showTooltips">确定</a>
+                <a class="weui-btn weui-btn_primary" href="/index" id="showTooltips">确定</a>
             </div>
         </div>
     </div>

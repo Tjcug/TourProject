@@ -36,7 +36,7 @@
                 </ul>
             </form>
             <div class="content-block">
-                <a href="#" class="button button-big button-fill button-success open-indicator">提交</a>
+                <a href="/index" class="button button-big button-fill button-success open-indicator">提交</a>
             </div>
         </div>
     </div>

@@ -5,9 +5,11 @@
 </head>
 
 <body>
+<div class="page-group">
+	<div class="page">
 	<!-- 标题栏 -->
 	<header class="bar bar-nav"> <a
-		class="button button-link button-nav pull-left back" href="/bill">
+		class="button button-link button-nav pull-left back" href="">
 		<span class="icon icon-left"></span> 返回
 	</a>
 	<h1 class="title">详细信息</h1>
@@ -58,5 +60,7 @@
 			<div class="card-footer">评价：5分</div>
 		</div>
 	</div>
+    </div>
+</div>
 </body>
 </html>

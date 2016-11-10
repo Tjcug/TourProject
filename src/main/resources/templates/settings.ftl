@@ -8,8 +8,9 @@
 <div class="page-group">
     <div class="page">
         <!-- 标题栏 -->
-        <header class="bar bar-nav"><a
-                class="icon icon-me pull-left open-panel"></a>
+
+        <header class="bar bar-nav">
+            <a class="icon icon-me pull-left open-panel"></a>
             <h1 class="title">设置</h1>
         </header>
 
@@ -34,7 +35,7 @@
         <div class="content">
             <div class="list-block">
                 <ul>
-                    <li><a class="item-content item-link" href="/user">
+                    <li><a class="item-content item-link" href="settings/user">
                         <div class="item-inner">
                             <div class="item-after">账号管理</div>
                         </div>

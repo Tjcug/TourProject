@@ -79,8 +79,8 @@
                         <li><a href="#" class="item-link item-content">
                             <div class="item-inner">
                                 <div class="item-title">选择定位</div>
-                                <div class="item-aftre">
-                                    <p name="location" class="color-gray">ABC大街256号</p>
+                                <div class="item-aftre" name="location">
+                                    ABC大街256号
                                 </div>
                             </div>
                         </a></li>

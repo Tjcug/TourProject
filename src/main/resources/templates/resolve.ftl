@@ -20,11 +20,11 @@
                 <span class="icon icon-home"></span>
                 <span class="tab-label">解答</span>
             </a>
-            <a class="tab-item external" href="index.ftl" external>
+            <a class="tab-item external" href="/index">
                 <span class="icon icon-edit"></span>
                 <span class="tab-label">求助</span>
             </a>
-            <a class="tab-item external" href="settings.ftl" external>
+            <a class="tab-item external" href="/settings">
                 <span class="icon icon-settings"></span>
                 <span class="tab-label">设置</span>
             </a>
