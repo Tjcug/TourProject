@@ -52,4 +52,14 @@ public class WebController extends BaseController{
     public String sendMain(@PathVariable("var1") String var1){
         return var1;
     }
+
+    /**
+     * 页面转发控制器
+     * @param dir
+     * @return
+     */
+    @RequestMapping("/{dir}/{file}")
+    public String sendMainDir(@PathVariable("dir") String dir,@PathVariable("file") String file){
+        return mainPath+dir+"/"+file;
+    }
 }
