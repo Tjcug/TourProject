@@ -16,7 +16,8 @@ public class TAssistantquestions implements java.io.Serializable {
 	private boolean state;
 	private double reward;
 	private Date time;
-
+	private double longitude;
+	private double latitude;
 	// Constructors
 
 	/** default constructor */
@@ -37,6 +38,17 @@ public class TAssistantquestions implements java.io.Serializable {
 		this.state = state;
 		this.reward = reward;
 		this.time = time;
+	}
+
+	public TAssistantquestions(long id, TUser TUser, String content, boolean state, double reward, Date time, double longitude, double latitude) {
+		this.id = id;
+		this.TUser = TUser;
+		this.content = content;
+		this.state = state;
+		this.reward = reward;
+		this.time = time;
+		this.longitude = longitude;
+		this.latitude = latitude;
 	}
 
 	// Property accessors
@@ -89,4 +101,23 @@ public class TAssistantquestions implements java.io.Serializable {
 		this.time = time;
 	}
 
+    public boolean isState() {
+        return state;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
 }

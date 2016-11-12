@@ -35,5 +35,17 @@
                 <comment>发布时间</comment>
             </column>
         </property>
+
+        <property name="longitude" type="double">
+            <column name="longitude">
+                <comment>经度</comment>
+            </column>
+        </property>
+
+        <property name="latitude" type="double">
+            <column name="latitude">
+                <comment>纬度</comment>
+            </column>
+        </property>
     </class>
 </hibernate-mapping>

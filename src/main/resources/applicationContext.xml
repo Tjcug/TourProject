@@ -35,6 +35,9 @@
                 <value>classpath:hibernateconf/TReplay.hbm.xml</value>
                 <value>classpath:hibernateconf/TUser.hbm.xml</value>
                 <value>classpath:hibernateconf/Administrator.hbm.xml</value>
+                <value>classpath:hibernateconf/TImagelibary.hbm.xml</value>
+                <value>classpath:hibernateconf/TImagetype.hbm.xml</value>
+                <value>classpath:hibernateconf/TUserlocation.hbm.xml</value>
             </list>
         </property>
 
