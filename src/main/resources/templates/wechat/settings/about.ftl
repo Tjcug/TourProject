@@ -2,15 +2,6 @@
 <html>
 <head>
 <#include "../common/base.ftl">
-    <style type="text/css">
-        .logo {
-            text-align: center;
-        }
-
-        img {
-            margin: 0 auto;
-        }
-    </style>
 </head>
 
 <body>
@@ -26,13 +17,10 @@
         </header>
 
         <div class="content">
-            <div class="card demo-card-header-pic logo">
-                <div valign="bottom"
-                     class="card-header color-white no-border no-padding">
-                    <img src="../../../static/images/logo_big.jpg" alt="logo">
-                </div>
+            <div class="card demo-card-header-pic logo" >
                 <div class="card-content">
-                    <div class="card-content-inner">
+                    <div class="card-content-inner" style="text-align: center;">
+                        <img src="/images/logo_big.jpg" alt="logo">
                         <p class="color-gray center">Travel版本 beta 0.1</p>
                         <p class="color-gray center">Copyright ©2016 ABC公司版权所有</p>
                     </div>

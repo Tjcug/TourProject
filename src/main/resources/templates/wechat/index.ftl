@@ -19,7 +19,7 @@
 
 <div class="page-gourp">
     <div class="page">
-        <!-- 工具栏 -->
+        <#--<!-- 工具栏 &ndash;&gt;
         <nav class="bar bar-tab">
             <a class="tab-item external" href="/wechat/resolve">
                 <span class="icon icon-home"></span>
@@ -33,13 +33,13 @@
                 <i class="icon icon-set"></i>
                 <span class="tab-label">设置</span>
             </a>
-        </nav>
+        </nav>-->
 
-        <!-- 标题栏 -->
+        <#--<!-- 标题栏 &ndash;&gt;
         <header class="bar bar-nav">
             <a class="icon icon-me pull-left open-panel"></a>
             <h1 class="title">Travel</h1>
-        </header>
+        </header>-->
 
         <div class="content">
             <!--查看照片gallery-->

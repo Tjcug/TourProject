@@ -1,25 +1,24 @@
 /*
-SQLyog Ultimate v11.27 (32 bit)
-MySQL - 5.5.25 : Database - tour
-*********************************************************************
-*/
+Navicat MySQL Data Transfer
 
-/*!40101 SET NAMES utf8 */;
+Source Server         : localhost_3306
+Source Server Version : 50617
+Source Host           : localhost:3306
+Source Database       : tour
 
-/*!40101 SET SQL_MODE=''*/;
+Target Server Type    : MYSQL
+Target Server Version : 50617
+File Encoding         : 65001
 
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-CREATE DATABASE /*!32312 IF NOT EXISTS*/`tour` /*!40100 DEFAULT CHARACTER SET utf8 */;
+Date: 2016-11-12 17:23:01
+*/
 
-USE `tour`;
+SET FOREIGN_KEY_CHECKS=0;
 
-/*Table structure for table `administrator` */
-
+-- ----------------------------
+-- Table structure for administrator
+-- ----------------------------
 DROP TABLE IF EXISTS `administrator`;
-
 CREATE TABLE `administrator` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(10) DEFAULT NULL,
@@ -28,14 +27,15 @@ CREATE TABLE `administrator` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
-/*Data for the table `administrator` */
+-- ----------------------------
+-- Records of administrator
+-- ----------------------------
+INSERT INTO `administrator` VALUES ('1', '谭杰', 'admin', 'admin');
 
-insert  into `administrator`(`id`,`name`,`username`,`password`) values (1,'谭杰','admin','admin');
-
-/*Table structure for table `t_assistantanswers` */
-
+-- ----------------------------
+-- Table structure for t_assistantanswers
+-- ----------------------------
 DROP TABLE IF EXISTS `t_assistantanswers`;
-
 CREATE TABLE `t_assistantanswers` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `question_id` bigint(20) NOT NULL COMMENT '回答的问题id',
@@ -50,12 +50,14 @@ CREATE TABLE `t_assistantanswers` (
   CONSTRAINT `t_assistantanswers_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `t_user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-/*Data for the table `t_assistantanswers` */
+-- ----------------------------
+-- Records of t_assistantanswers
+-- ----------------------------
 
-/*Table structure for table `t_assistantquestions` */
-
+-- ----------------------------
+-- Table structure for t_assistantquestions
+-- ----------------------------
 DROP TABLE IF EXISTS `t_assistantquestions`;
-
 CREATE TABLE `t_assistantquestions` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `content` varchar(100) NOT NULL COMMENT '内容',
@@ -68,12 +70,14 @@ CREATE TABLE `t_assistantquestions` (
   CONSTRAINT `t_assistantquestions_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `t_user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-/*Data for the table `t_assistantquestions` */
+-- ----------------------------
+-- Records of t_assistantquestions
+-- ----------------------------
 
-/*Table structure for table `t_discuss` */
-
+-- ----------------------------
+-- Table structure for t_discuss
+-- ----------------------------
 DROP TABLE IF EXISTS `t_discuss`;
-
 CREATE TABLE `t_discuss` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `user_id` bigint(20) DEFAULT NULL COMMENT '发布论坛的人',
@@ -89,12 +93,14 @@ CREATE TABLE `t_discuss` (
   CONSTRAINT `t_discuss_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `t_user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-/*Data for the table `t_discuss` */
+-- ----------------------------
+-- Records of t_discuss
+-- ----------------------------
 
-/*Table structure for table `t_discusslikes` */
-
+-- ----------------------------
+-- Table structure for t_discusslikes
+-- ----------------------------
 DROP TABLE IF EXISTS `t_discusslikes`;
-
 CREATE TABLE `t_discusslikes` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `user_id` bigint(20) DEFAULT NULL,
@@ -106,12 +112,47 @@ CREATE TABLE `t_discusslikes` (
   CONSTRAINT `t_discusslikes_ibfk_2` FOREIGN KEY (`disscuss_id`) REFERENCES `t_discuss` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-/*Data for the table `t_discusslikes` */
+-- ----------------------------
+-- Records of t_discusslikes
+-- ----------------------------
 
-/*Table structure for table `t_order` */
+-- ----------------------------
+-- Table structure for t_imagelibary
+-- ----------------------------
+DROP TABLE IF EXISTS `t_imagelibary`;
+CREATE TABLE `t_imagelibary` (
+  `image_id` bigint(20) NOT NULL,
+  `image_type_id` int(2) NOT NULL,
+  `business_tabel_id` bigint(20) NOT NULL,
+  `image_pack` varchar(50) DEFAULT NULL,
+  `create_time` datetime DEFAULT NULL,
+  PRIMARY KEY (`image_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+-- ----------------------------
+-- Records of t_imagelibary
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for t_imagetype
+-- ----------------------------
+DROP TABLE IF EXISTS `t_imagetype`;
+CREATE TABLE `t_imagetype` (
+  `image_type_id` bigint(22) NOT NULL,
+  `type_name` varchar(10) NOT NULL,
+  PRIMARY KEY (`image_type_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of t_imagetype
+-- ----------------------------
+INSERT INTO `t_imagetype` VALUES ('1', '求助');
+INSERT INTO `t_imagetype` VALUES ('2', '论坛');
+
+-- ----------------------------
+-- Table structure for t_order
+-- ----------------------------
 DROP TABLE IF EXISTS `t_order`;
-
 CREATE TABLE `t_order` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `type` int(11) DEFAULT NULL,
@@ -129,12 +170,14 @@ CREATE TABLE `t_order` (
   CONSTRAINT `t_order_ibfk_2` FOREIGN KEY (`order_touser`) REFERENCES `t_user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-/*Data for the table `t_order` */
+-- ----------------------------
+-- Records of t_order
+-- ----------------------------
 
-/*Table structure for table `t_replay` */
-
+-- ----------------------------
+-- Table structure for t_replay
+-- ----------------------------
 DROP TABLE IF EXISTS `t_replay`;
-
 CREATE TABLE `t_replay` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `discuss_id` bigint(20) NOT NULL COMMENT '讨论表的id',
@@ -152,12 +195,14 @@ CREATE TABLE `t_replay` (
   CONSTRAINT `t_replay_ibfk_3` FOREIGN KEY (`touser`) REFERENCES `t_user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-/*Data for the table `t_replay` */
+-- ----------------------------
+-- Records of t_replay
+-- ----------------------------
 
-/*Table structure for table `t_user` */
-
+-- ----------------------------
+-- Table structure for t_user
+-- ----------------------------
 DROP TABLE IF EXISTS `t_user`;
-
 CREATE TABLE `t_user` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `user_name` varchar(20) DEFAULT NULL COMMENT '用户名',
@@ -178,11 +223,7 @@ CREATE TABLE `t_user` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
 
-/*Data for the table `t_user` */
-
-insert  into `t_user`(`id`,`user_name`,`email`,`password`,`sex`,`birthday`,`picture`,`country`,`city`,`creditcard`,`telephone`,`score`,`time`,`pushnotifcation`,`longitude`,`latitude`) values (31,'谭杰','798750509@qq.com','woainixxx1314',0,'1995-10-02','123','中国','湖南',NULL,NULL,0,'2016-04-29 09:07:04',0,0,0);
-
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+-- ----------------------------
+-- Records of t_user
+-- ----------------------------
+INSERT INTO `t_user` VALUES ('31', '谭杰', '798750509@qq.com', 'woainixxx1314', '0', '1995-10-02', '123', '中国', '湖南', null, null, '0', '2016-04-29 09:07:04', '0', '0', '0');
