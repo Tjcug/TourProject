@@ -49,7 +49,6 @@ public class WebController extends BaseController{
         return wechatPath+"index";
     }
 
-
     /**
      * 微信一级页面转发控制器
      * @param var1
