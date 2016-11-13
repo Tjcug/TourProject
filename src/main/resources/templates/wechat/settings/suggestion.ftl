@@ -10,7 +10,7 @@
     <div class="page">
         <!-- 标题栏 -->
         <header class="bar bar-nav">
-            <a class="button button-link button-nav pull-left back" href="#">
+            <a class="button button-link button-nav pull-left back">
                 <span class="icon icon-left"></span> 返回
             </a>
             <h1 class="title">意见反馈</h1>
@@ -31,7 +31,7 @@
                     </li>
                 </ul>
             </div>
-            <a href="#" class="button button-big button-fill button-success">提交</a>
+            <a href="#" class="button button-fill button-success">提交</a>
         </div>
     </div>
 </div>

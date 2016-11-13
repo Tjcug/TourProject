@@ -10,8 +10,8 @@
     <div class="page">
         <!-- 标题栏 -->
         <header class="bar bar-nav">
-            <a class="button button-link button-nav pull-left back" href="#">
-                <span class="icon icon-left"></span>返回
+            <a class="button button-link button-nav pull-left back">
+               <span class="icon icon-left"></span>返回
             </a>
             <h1 class="title">关于我们</h1>
         </header>

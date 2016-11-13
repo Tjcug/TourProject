@@ -9,7 +9,7 @@
     <div class="page">
         <!-- 标题栏 -->
         <header class="bar bar-nav">
-            <a class="button button-link button-nav pull-left back" href="#">
+            <a class="button button-link button-nav pull-left back">
             <span class="icon icon-left"></span> 返回
         </a>
             <h1 class="title">账号管理</h1>

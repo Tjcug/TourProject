@@ -67,8 +67,8 @@
 			</span>
             </label>
 
-            <div class="weui-btn-area">
-                <a class="weui-btn weui-btn_primary" href="/index" id="showTooltips">确定</a>
+            <div class="content-block">
+                <a href="/wechat/index" class="button button-fill button-success open-indicator">提交</a>
             </div>
         </div>
     </div>

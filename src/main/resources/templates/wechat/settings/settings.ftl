@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<#include "common/base.ftl">
+<#include "../common/base.ftl">
 </head>
 <body>
 
@@ -10,13 +10,15 @@
         <!-- 标题栏 -->
 
         <header class="bar bar-nav">
-            <a class="icon icon-me pull-left open-panel"></a>
+            <a class="button button-link button-nav pull-left back">
+                <span class="icon icon-left"></span> 返回
+            </a>
             <h1 class="title">设置</h1>
         </header>
 
 
         <!-- 工具栏 -->
-        <nav class="bar bar-tab">
+       <#-- <nav class="bar bar-tab">
             <a class="tab-item external" href="/wechat/resolve">
                 <span class="icon icon-home"></span>
                 <span class="tab-label">解答</span>
@@ -29,7 +31,7 @@
                 <span class="icon icon-settings"> </span>
                 <span class="tab-label">设置</span>
             </a>
-        </nav>
+        </nav>-->
 
 
         <div class="content">
@@ -44,11 +46,6 @@
             </div>
             <div class="list-block">
                 <ul>
-                    <li><a class="item-content item-link" href="/wechat/settings/push">
-                        <div class="item-inner">
-                            <div class="item-after">推送设置</div>
-                        </div>
-                    </a></li>
                     <li><a class="item-content item-link" href="/wechat/settings/language">
                         <div class="item-inner">
                             <div class="item-after">语言选择</div>
@@ -63,25 +60,15 @@
                             <div class="item-after">意见反馈</div>
                         </div>
                     </a></li>
-                    <li><a class="item-content item-link" href="/wechat/settings/explain">
-                        <div class="item-inner">
-                            <div class="item-after">使用说明</div>
-                        </div>
-                    </a></li>
-                    <li><a class="item-content item-link" href="/wechat/settings/about">
-                        <div class="item-inner">
-                            <div class="item-after">关于我们</div>
-                        </div>
-                    </a></li>
                 </ul>
             </div>
             <p>
-                <a href="/login" class="button button-danger">退出登录</a>
+                <a href="#" id="exit" class="button button-fill button-danger">退出登录</a>
             </p>
         </div>
     </div>
 </div>
 <!-- popup, panel 等放在这里 -->
-<<#include "common/panel.ftl">
+<<#include "../common/panel.ftl">
 </body>
 </html>
