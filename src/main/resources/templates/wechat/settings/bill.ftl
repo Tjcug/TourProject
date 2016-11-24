@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<#include "../common/base.ftl">
+<#include "../common/head.ftl">
 </head>
 
 <body>
@@ -65,4 +65,5 @@
     </div>
 </div>
 </body>
+<#include "../common/js.ftl">
 </html>

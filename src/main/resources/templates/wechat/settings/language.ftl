@@ -1,13 +1,11 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<#include "../common/base.ftl">
+<#include "../common/head.ftl">
 </head>
 
 <body>
 
-
-<div class="page-group">
     <div class="page">
         <!-- 标题栏 -->
         <header class="bar bar-nav">
@@ -38,6 +36,6 @@
             </div>
         </div>
     </div>
-</div>
 </body>
+<#include "../common/js.ftl">
 </html>
