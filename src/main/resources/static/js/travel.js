@@ -36,12 +36,12 @@ $(function () {
             for (var i = lastIndex + 1; i <= lastIndex + itemsPerLoad; i++) {
                 //在这里插入数据(悬赏金额、内容、时间等等),最好用ajax更新，更新一次取出少量数据
                 html += '<div class="card facebook-card"><div class="card-header no-border"><div class="facebook-avatar">' +
-                    '<img src="/images/' + i + '.jpg" width="34" height="34"></div><div class="facebook-name">食长' +
+                    '<img class="img-head" src="/images/' + i + '.jpg" width="34" height="34"></div><div class="facebook-name">食长' +
                     '</div><div class="facebook-date">纽约ABC大街111号 1月15日 15:47</div></div><div class="card-content content-padded">' +
                     '<img src="/images/' + i + '.jpg" width="100%"></div><div class="card-content"><div class="card-content-inner">' +
                     '<p class="color-gray">悬赏20$</p><p>迷路了，求接送回凯宁宾馆（ACX大街666号）' +
                     '</p></div></div><div class="card-footer no-border"><a href="#" class="link confirm-ok">' +
-                    '解答</a> <a href="#" class="link">更多</a></div></div>';
+                    '解答</a> <a href="/wechat/jy_detail" class="link">更多</a></div></div>';
             }
             // 添加新条目
             $(".jy-list").append(html);
@@ -56,12 +56,12 @@ $(function () {
             var html = '';
             for (var i = lastIndex + 1; i <= lastIndex + itemsPerLoad; i++) {
                 html += '<div class="card facebook-card"><div class="card-header no-border"><div class="facebook-avatar">' +
-                    '<img src="/images/' + i + '.jpg" width="34" height="34"></div><div class="facebook-name">食长' +
+                    '<img class="img-head" src="/images/' + i + '.jpg" width="34" height="34"></div><div class="facebook-name">食长' +
                     '</div><div class="facebook-date">纽约ABC大街111号 1月15日 15:47</div></div><div class="card-content content-padded">' +
                     '<img src="/images/' + i + '.jpg"></div><div class="card-content"><div class="card-content-inner">' +
                     '<p class="color-gray">悬赏20$</p><p>迷路了，求接送回凯宁宾馆（ACX大街666号）' +
                     '</p></div></div><div class="card-footer no-border"><a href="#" class="link confirm-ok">' +
-                    '解答</a> <a href="#" class="link">更多</a></div></div>';
+                    '解答</a> <a href="/wechat/jy_detail" class="link">更多</a></div></div>';
             }
             // 添加新条目
             $(".jy-list").html(html);
@@ -70,7 +70,7 @@ $(function () {
         }
 
         //向下滚动时调用
-        $(document).on("infinite", ".infinite-scroll", function () {
+        $(document).on("infinite",".infinite-scroll", function () {
             // 如果正在加载，则退出
             if (loading) return;
             // 如果停止加载则退出
@@ -80,14 +80,18 @@ $(function () {
             //更新前最后加载符号
             lastIndex = $(".card").length;
             addItems(itemsPerLoad);
-        }, 1000);
-        //下拉刷新
+            setTimeout(function () {
+                addItems();
+                loading = false;
+            }, 1000);
+        });
+
+        //下拉刷新时调用
         $(document).on("refresh", ".pull-to-refresh-content", function () {
-            // 模拟2s的加载过程
             setTimeout(function () {
                 refreshItems(5);
                 $.pullToRefreshDone(".pull-to-refresh-content");
-            }, 2000);
+            }, 1000);
         });
         //预先加载5条
         addItems(5);
@@ -206,9 +210,26 @@ $(function () {
         });
     });
 
-    //
+    //我的账单page
+    $(document).on("pageInit", "#page-bill", function () {
+        //$.closePanel();
+    });
 
-    //
+    //使用说明page
+    $(document).on("pageInit", "#page-explain", function () {
+    });
+
+    //选择语言page
+    $(document).on("pageInit", "#page-language", function () {
+    });
+
+    //分享我们page
+    $(document).on("pageInit", "#page-share", function () {
+    });
+
+    //关于我们page
+    $(document).on("pageInit", "#page-about", function () {
+    });
 
     $.init();
 });

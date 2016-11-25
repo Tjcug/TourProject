@@ -67,7 +67,7 @@ a:active{color:#0a8ddf}
 .bar-tab~.content,.bar-tab~.page .content{bottom:2.5rem}
 .tabbar-hidden .bar-tab~.content,.tabbar-hidden .bar-tab~.page .content{bottom:0}
 .bar-footer-secondary-tab~.content{bottom:4.7rem}
-.content-padded{margin:.5rem}
+.content-padded{margin:.8rem}
 .text-center{text-align:center}
 .pull-left{float:left}
 .pull-right{float:right}
@@ -1000,3 +1000,6 @@ body.panel-closing .page{-webkit-transition:.4s;-o-transition:.4s;transition:.4s
 .theme-yellow .swiper-pagination .swiper-pagination-bullet-active{background-color:#efb51e}
 .theme-yellow .swiper-button-next,.theme-yellow .swiper-container-rtl .swiper-button-prev{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2027%2044'%3E%3Cpath%20d%3D'M27%2C22L27%2C22L5%2C44l-2.1-2.1L22.8%2C22L2.9%2C2.1L5%2C0L27%2C22L27%2C22z'%20fill%3D'%23efb51e'%2F%3E%3C%2Fsvg%3E")}
 .theme-yellow .swiper-button-prev,.theme-yellow .swiper-container-rtl .swiper-button-next{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2027%2044'%3E%3Cpath%20d%3D'M0%2C22L22%2C0l2.1%2C2.1L4.2%2C22l19.9%2C19.9L22%2C44L0%2C22L0%2C22L0%2C22z'%20fill%3D'%23efb51e'%2F%3E%3C%2Fsvg%3E")}
+
+/*自定义*/
+.img-head{border-radius: 3px}

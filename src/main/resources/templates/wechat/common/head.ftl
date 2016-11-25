@@ -1,14 +1,14 @@
-<meta http-equiv="pragma" content="no-cache">
-<meta http-equiv="cache-control" content="no-cache">
-<meta http-equiv="expires" content="0">
-<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-<meta http-equiv="description" content="This is my page">
 <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="及应">
+<meta name="author" content="panpan">
+<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
 
 <#assign tour="${BasePath}">
 <#--light7样式-->
 <link rel="stylesheet" href="${tour}/css/light7.min.css">
-<#--jquery-->
-<script type="text/javascript" src="${tour}/js/jquery-2.1.4.js"　charset="utf-8"></script>
+
 
 <title>及应</title>

@@ -5,8 +5,7 @@
 </head>
 
 <body>
-<div class="page-group">
-    <div class="page">
+    <div class="page" id="page-bill">
         <!-- 标题栏 -->
         <header class="bar bar-nav">
             <a class="button button-link button-nav pull-left back">
@@ -63,7 +62,6 @@
             </div>
         </div>
     </div>
-</div>
 </body>
 <#include "../common/js.ftl">
 </html>

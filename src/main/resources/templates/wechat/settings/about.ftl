@@ -20,7 +20,7 @@
                 <div class="card-content">
                     <div class="card-content-inner" style="text-align: center;">
                         <img src="/images/logo_big.jpg" alt="logo">
-                        <p class="color-gray center">Travel版本 beta 0.1</p>
+                        <p class="color-gray center">及应版本 beta 0.1</p>
                         <p class="color-gray center">Copyright ©2016 ABC公司版权所有</p>
                     </div>
                 </div>
