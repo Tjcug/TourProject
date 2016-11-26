@@ -28,48 +28,32 @@
             <div class="card-content">
                 <div class="card-content-inner">
                     <div class="weui-grids">
-                        <a href="javascript:;" class="weui-grid">
-                                <img width="100%" src="/images/1.jpg" alt="及应图片">
+                        <a href="javascript:;" class="weui-grid weui-grid-img">
+                            <img width="100%" src="/images/1.jpg" alt="及应图片">
                         </a>
-                        <a href="javascript:;" class="weui-grid">
-                            <div class="weui-grid__icon">
-                                <img src="/images/2.jpg" alt="及应图片">
-                            </div>
+                        <a href="javascript:;" class="weui-grid weui-grid-img">
+                            <img width="100%" src="/images/2.jpg" alt="及应图片">
                         </a>
-                        <a href="javascript:;" class="weui-grid">
-                            <div class="weui-grid__icon">
-                                <img src="/images/3.jpg" alt="及应图片">
-                            </div>
+                        <a href="javascript:;" class="weui-grid weui-grid-img">
+                            <img width="100%" src="/images/3.jpg" alt="及应图片">
                         </a>
-                        <a href="javascript:;" class="weui-grid">
-                            <div class="weui-grid__icon">
-                                <img src="/images/4.jpg" alt="及应图片">
-                            </div>
+                        <a href="javascript:;" class="weui-grid weui-grid-img">
+                            <img width="100%" src="/images/4.jpg" alt="及应图片">
                         </a>
-                        <a href="javascript:;" class="weui-grid">
-                            <div class="weui-grid__icon">
-                                <img width="100%" src="/images/5.jpg" alt="及应图片">
-                            </div>
+                        <a href="javascript:;" class="weui-grid weui-grid-img">
+                            <img width="100%" src="/images/5.jpg" alt="及应图片">
                         </a>
-                        <a href="javascript:;" class="weui-grid">
-                            <div class="weui-grid__icon">
-                                <img src="/images/6.jpg" alt="及应图片">
-                            </div>
+                        <a href="javascript:;" class="weui-grid weui-grid-img">
+                            <img width="100%" src="/images/6.jpg" alt="及应图片">
                         </a>
-                        <a href="javascript:;" class="weui-grid">
-                            <div class="weui-grid__icon">
-                                <img src="/images/7.jpg" alt="及应图片">
-                            </div>
+                        <a href="javascript:;" class="weui-grid weui-grid-img">
+                            <img width="100%" src="/images/7.jpg" alt="及应图片">
                         </a>
-                        <a href="javascript:;" class="weui-grid">
-                            <div class="weui-grid__icon">
-                                <img width="100%" src="/images/8.jpg" alt="及应图片">
-                            </div>
+                        <a href="javascript:;" class="weui-grid weui-grid-img">
+                            <img width="100%" src="/images/8.jpg" alt="及应图片">
                         </a>
-                        <a href="javascript:;" class="weui-grid">
-                            <div class="weui-grid__icon">
-                                <img src="/images/9.jpg" alt="及应图片">
-                            </div>
+                        <a href="javascript:;" class="weui-grid weui-grid-img">
+                            <img width="100%" src="/images/9.jpg" alt="及应图片">
                         </a>
                     </div>
                     <p class="color-gray">悬赏20$</p>

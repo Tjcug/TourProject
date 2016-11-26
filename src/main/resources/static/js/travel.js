@@ -37,7 +37,7 @@ $(function () {
                 //在这里插入数据(悬赏金额、内容、时间等等),最好用ajax更新，更新一次取出少量数据
                 html += '<div class="card facebook-card"><div class="card-header no-border"><div class="facebook-avatar">' +
                     '<img class="img-head" src="/images/' + i + '.jpg" width="34" height="34"></div><div class="facebook-name">食长' +
-                    '</div><div class="facebook-date">纽约ABC大街111号 1月15日 15:47</div></div><div class="card-content content-padded">' +
+                    '</div><div class="facebook-date">纽约ABC大街111号 1月15日 15:47</div></div><div class="card-content img-padded">' +
                     '<img src="/images/' + i + '.jpg" width="100%"></div><div class="card-content"><div class="card-content-inner">' +
                     '<p class="color-gray">悬赏20$</p><p>迷路了，求接送回凯宁宾馆（ACX大街666号）' +
                     '</p></div></div><div class="card-footer no-border"><a href="#" class="link confirm-ok">' +
@@ -57,7 +57,7 @@ $(function () {
             for (var i = lastIndex + 1; i <= lastIndex + itemsPerLoad; i++) {
                 html += '<div class="card facebook-card"><div class="card-header no-border"><div class="facebook-avatar">' +
                     '<img class="img-head" src="/images/' + i + '.jpg" width="34" height="34"></div><div class="facebook-name">食长' +
-                    '</div><div class="facebook-date">纽约ABC大街111号 1月15日 15:47</div></div><div class="card-content content-padded">' +
+                    '</div><div class="facebook-date">纽约ABC大街111号 1月15日 15:47</div></div><div class="card-content img-padded">' +
                     '<img src="/images/' + i + '.jpg"></div><div class="card-content"><div class="card-content-inner">' +
                     '<p class="color-gray">悬赏20$</p><p>迷路了，求接送回凯宁宾馆（ACX大街666号）' +
                     '</p></div></div><div class="card-footer no-border"><a href="#" class="link confirm-ok">' +

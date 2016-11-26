@@ -67,7 +67,7 @@ a:active{color:#0a8ddf}
 .bar-tab~.content,.bar-tab~.page .content{bottom:2.5rem}
 .tabbar-hidden .bar-tab~.content,.tabbar-hidden .bar-tab~.page .content{bottom:0}
 .bar-footer-secondary-tab~.content{bottom:4.7rem}
-.content-padded{margin:.8rem}
+.content-padded{margin:.5rem}
 .text-center{text-align:center}
 .pull-left{float:left}
 .pull-right{float:right}
@@ -1003,3 +1003,4 @@ body.panel-closing .page{-webkit-transition:.4s;-o-transition:.4s;transition:.4s
 
 /*自定义*/
 .img-head{border-radius: 3px}
+.img-padded{margin: .8rem}
