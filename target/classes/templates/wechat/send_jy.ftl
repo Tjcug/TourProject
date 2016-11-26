@@ -22,8 +22,9 @@
             <span class="weui-gallery__img" id="galleryImg"></span>
             <div class="weui-gallery__opr">
                 <!--删除照片-->
-                <a href="javascript:" id="galleryDel" class="weui-gallery__del"><i
-                        class="weui-icon-delete weui-icon_gallery-delete"> </i></a>
+                <a href="javascript:" id="galleryDel" class="weui-gallery__del">
+                    <i class="weui-icon-delete weui-icon_gallery-delete"></i>
+                </a>
             </div>
         </div>
         <form id="form">

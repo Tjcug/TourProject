@@ -69,4 +69,25 @@ public class WebController extends BaseController{
     public String sendMainDir(@PathVariable("dir") String dir,@PathVariable("file") String file){
         return wechatPath+dir+"/"+file;
     }
+
+    /**
+     * appweb一级页面转发控制器
+     * @param var1
+     * @return
+     */
+    @RequestMapping("/appweb/{var1}")
+    public String sendAppwebMain(@PathVariable("var1") String var1){
+        return appwebPath+var1;
+    }
+
+    /**
+     * appweb二级级页面转发控制器
+     * @param dir
+     * @param file
+     * @return
+     */
+    @RequestMapping("/appweb/{dir}/{file}")
+    public String sendAppwebMainDir(@PathVariable("dir") String dir,@PathVariable("file") String file){
+        return appwebPath+dir+"/"+file;
+    }
 }

@@ -24,6 +24,8 @@ public class BaseController {
     protected String mainPath="manage/";
     //微信项目基础url
     protected String wechatPath= "wechat/";
+    //appweb页面基础url
+    protected String appwebPath= "appweb/";
 
     @ModelAttribute("BasePath")
     public String getBasePath(HttpServletRequest httpServletRequest){
