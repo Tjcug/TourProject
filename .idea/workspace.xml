@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c2f77c0e-8d11-4beb-b014-055f6f34e19b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/templates/appweb/common/head.ftl" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/templates/appweb/common/js.ftl" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/templates/appweb/common/panel.ftl" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/templates/appweb/index.ftl" />
+    <list default="true" id="c2f77c0e-8d11-4beb-b014-055f6f34e19b" name="Default" comment="添加了appweb的页面和转发器；&#10;appweb用于在Android、IOS端的部分页面展示。">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/tour/controller/BaseController.java" afterPath="$PROJECT_DIR$/src/main/java/com/tour/controller/BaseController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/tour/controller/WebController.java" afterPath="$PROJECT_DIR$/src/main/java/com/tour/controller/WebController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/templates/wechat/send_jy.ftl" afterPath="$PROJECT_DIR$/target/classes/templates/wechat/send_jy.ftl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/wechat/send_jy.ftl" afterPath="$PROJECT_DIR$/src/main/resources/templates/wechat/send_jy.ftl" />
     </list>
     <ignored path="TourProject.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -41,21 +35,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="jy_detail.ftl" pinned="false" current-in-tab="false">
+      <file leaf-file-name="jy_detail.ftl" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/templates/wechat/jy_detail.ftl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="182">
+            <state relative-caret-position="-241">
               <caret line="62" column="66" selection-start-line="62" selection-start-column="66" selection-end-line="62" selection-end-column="66" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.ftl" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.ftl" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/templates/appweb/index.ftl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="17" column="14" selection-start-line="17" selection-start-column="14" selection-end-line="17" selection-end-column="14" />
+            <state relative-caret-position="95">
+              <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="send_jy.ftl" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/wechat/send_jy.ftl">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="291">
+              <caret line="88" column="60" selection-start-line="88" selection-start-column="60" selection-end-line="88" selection-end-column="60" />
               <folding />
             </state>
           </provider>
@@ -74,8 +78,8 @@
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
       <list>
-        <option value="panpan &lt;531826568@qq.com&gt;t" />
         <option value="panpan &lt;531826568@qq.com&gt;" />
+        <option value="panpan &lt;531826568@qq.com&gt;t" />
       </list>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -136,12 +140,12 @@
         <option value="$PROJECT_DIR$/src/main/resources/templates/wechat/common/panel.ftl" />
         <option value="$PROJECT_DIR$/src/main/resources/static/css/light7.min.css" />
         <option value="$PROJECT_DIR$/src/main/resources/static/css/weui.min.css" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/wechat/send_jy.ftl" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/wechat/jy_detail.ftl" />
         <option value="$PROJECT_DIR$/src/main/resources/static/js/travel.js" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/appweb/index.ftl" />
         <option value="$PROJECT_DIR$/src/main/java/com/tour/controller/BaseController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/tour/controller/WebController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/wechat/send_jy.ftl" />
       </list>
     </option>
   </component>
@@ -1055,7 +1059,7 @@
       <workItem from="1479694216451" duration="6710000" />
       <workItem from="1479948816720" duration="18977000" />
       <workItem from="1480038501825" duration="7137000" />
-      <workItem from="1480152302719" duration="9235000" />
+      <workItem from="1480152302719" duration="9565000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit&#10;修改了index，resolve，settings三个界面">
       <created>1478743696573</created>
@@ -1169,7 +1173,14 @@
       <option name="project" value="LOCAL" />
       <updated>1480162679164</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="添加了appweb的页面和转发器；&#10;appweb用于在Android、IOS端的部分页面展示。">
+      <created>1480163062173</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1480163062173</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1181,7 +1192,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="87965000" />
+    <option name="totallyTimeSpent" value="88295000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -1195,8 +1206,8 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3522907" sideWeight="0.5065886" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1420205" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.08530806" sideWeight="0.49341142" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14691943" sideWeight="0.4956076" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.72511846" sideWeight="0.49341142" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.7677725" sideWeight="0.4956076" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1291,7 +1302,8 @@
     <MESSAGE value="修改部分样式" />
     <MESSAGE value="解决了九宫格图片高度问题" />
     <MESSAGE value="添加了九宫格照片的点击查看事件" />
-    <option name="LAST_COMMIT_MESSAGE" value="添加了九宫格照片的点击查看事件" />
+    <MESSAGE value="添加了appweb的页面和转发器；&#10;appweb用于在Android、IOS端的部分页面展示。" />
+    <option name="LAST_COMMIT_MESSAGE" value="添加了appweb的页面和转发器；&#10;appweb用于在Android、IOS端的部分页面展示。" />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.8279221" />
   </component>
   <component name="XDebuggerManager">
@@ -1553,22 +1565,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/wechat/send_jy.ftl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="21" column="59" selection-start-line="21" selection-start-column="59" selection-end-line="21" selection-end-column="59" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/wechat/common/panel.ftl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-203">
-          <caret line="18" column="48" selection-start-line="18" selection-start-column="48" selection-end-line="18" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/appweb/common/js.ftl">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1584,14 +1580,6 @@
           <folding>
             <marker date="1480162473800" expanded="true" signature="5043:5070" ph="..." />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/wechat/jy_detail.ftl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="62" column="66" selection-start-line="62" selection-start-column="66" selection-end-line="62" selection-end-column="66" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1613,8 +1601,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/appweb/index.ftl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="17" column="14" selection-start-line="17" selection-start-column="14" selection-end-line="17" selection-end-column="14" />
+        <state relative-caret-position="95">
+          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/wechat/common/panel.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-203">
+          <caret line="18" column="48" selection-start-line="18" selection-start-column="48" selection-end-line="18" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/wechat/send_jy.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="291">
+          <caret line="88" column="60" selection-start-line="88" selection-start-column="60" selection-end-line="88" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/wechat/jy_detail.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-241">
+          <caret line="62" column="66" selection-start-line="62" selection-start-column="66" selection-end-line="62" selection-end-column="66" />
           <folding />
         </state>
       </provider>

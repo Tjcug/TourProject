@@ -86,7 +86,7 @@
             </div>
         </form>
         <div class="content-block">
-            <a href="" id="submit" class="button button-fill button-success">提交</a>
+            <a href="" id="submit" class="button button-fill">提交</a>
         </div>
     </div>
 </div>
