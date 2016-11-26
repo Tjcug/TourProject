@@ -211,8 +211,24 @@ $(function () {
     });
 
     //我的账单page
+    $(document).on("pageInit", "#page-jy-detail", function () {
+        //图片高度自适应
+        $('.img').css('height',$('.img').css('width'));
+
+        var $gallery = $("#gallery");
+        //点击图片时，进入gallery显示图片
+        $(".img").on("click", function () {
+            $("#galleryImg").attr("style", "background-image:url("+this.getAttribute("src")+")");
+            $gallery.fadeIn(100);
+        });
+        //点击gallery时返回选择图片界面
+        $gallery.on("click", function () {
+            $gallery.fadeOut(100);
+        });
+    });
+
+    //我的账单page
     $(document).on("pageInit", "#page-bill", function () {
-        //$.closePanel();
     });
 
     //使用说明page

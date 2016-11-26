@@ -6,7 +6,7 @@
 
 <body>
 
-<div class="page">
+<div class="page" id="page-jy-detail">
     <link rel="stylesheet" href="/css/weui.min.css"/>
     <!-- 标题栏 -->
     <header class="bar bar-nav">
@@ -17,6 +17,13 @@
     </header>
 
     <div class="content">
+        <!--查看照片gallery-->
+        <div class="weui-gallery" id="gallery">
+            <span class="weui-gallery__img" id="galleryImg"></span>
+            <div class="weui-gallery__opr">
+            </div>
+        </div>
+
         <div class="card facebook-card">
             <div class="card-header no-border">
                 <div class="facebook-avatar">
@@ -29,31 +36,31 @@
                 <div class="card-content-inner">
                     <div class="weui-grids">
                         <a href="javascript:;" class="weui-grid weui-grid-img">
-                            <img class="weui-grid-img-content" src="/images/1.jpg" alt="及应图片">
+                            <img width="100%" class="img" id="img1" src="/images/1.jpg" alt="及应图片">
                         </a>
                         <a href="javascript:;" class="weui-grid weui-grid-img">
-                            <img class="weui-grid-img-content" src="/images/2.jpg" alt="及应图片">
+                            <img width="100%" class="img" id="img2"src="/images/2.jpg" alt="及应图片">
                         </a>
                         <a href="javascript:;" class="weui-grid weui-grid-img">
-                            <img class="weui-grid-img-content" src="/images/3.jpg" alt="及应图片">
+                            <img width="100%" class="img" id="img3" src="/images/3.jpg" alt="及应图片">
                         </a>
                         <a href="javascript:;" class="weui-grid weui-grid-img">
-                            <img class="weui-grid-img-content" src="/images/4.jpg" alt="及应图片">
+                            <img width="100%" class="img" id="img4" src="/images/4.jpg" alt="及应图片">
                         </a>
                         <a href="javascript:;" class="weui-grid weui-grid-img">
-                            <img class="weui-grid-img-content" src="/images/5.jpg" alt="及应图片">
+                            <img width="100%" class="img" id="img5" src="/images/5.jpg" alt="及应图片">
                         </a>
                         <a href="javascript:;" class="weui-grid weui-grid-img">
-                            <img class="weui-grid-img-content" src="/images/6.jpg" alt="及应图片">
+                            <img width="100%" class="img" id="img6" src="/images/6.jpg" alt="及应图片">
                         </a>
                         <a href="javascript:;" class="weui-grid weui-grid-img">
-                            <img class="weui-grid-img-content" src="/images/7.jpg" alt="及应图片">
+                            <img width="100%" class="img" id="img7" src="/images/7.jpg" alt="及应图片">
                         </a>
                         <a href="javascript:;" class="weui-grid weui-grid-img">
-                            <img class="weui-grid-img-content" src="/images/8.jpg" alt="及应图片">
+                            <img width="100%" class="img" id="img8" src="/images/8.jpg" alt="及应图片">
                         </a>
                         <a href="javascript:;" class="weui-grid weui-grid-img">
-                            <img class="weui-grid-img-content" src="/images/9.jpg" alt="及应图片">
+                            <img width="100%" class="img" id="img9" src="/images/9.jpg" alt="及应图片">
                         </a>
                     </div>
                     <p class="color-gray">悬赏20$</p>
@@ -84,7 +91,7 @@
                 </li>
             </ul>
         </div>
-        <p><a href="#" class="button button-fill">及应</a></p>
+        <p><a href="javascript:;" class="button button-fill">及应</a></p>
     </div>
 </div>
 </body>

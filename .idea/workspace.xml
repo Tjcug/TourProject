@@ -3,9 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="c2f77c0e-8d11-4beb-b014-055f6f34e19b" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/css/weui.min.css" afterPath="$PROJECT_DIR$/src/main/resources/static/css/weui.min.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/js/travel.js" afterPath="$PROJECT_DIR$/src/main/resources/static/js/travel.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/wechat/jy_detail.ftl" afterPath="$PROJECT_DIR$/src/main/resources/templates/wechat/jy_detail.ftl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/wechat/send_jy.ftl" afterPath="$PROJECT_DIR$/src/main/resources/templates/wechat/send_jy.ftl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/css/weui.min.css" afterPath="$PROJECT_DIR$/target/classes/static/css/weui.min.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/js/travel.js" afterPath="$PROJECT_DIR$/target/classes/static/js/travel.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/templates/wechat/jy_detail.ftl" afterPath="$PROJECT_DIR$/target/classes/templates/wechat/jy_detail.ftl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/templates/wechat/map.ftl" afterPath="$PROJECT_DIR$/target/classes/templates/wechat/map.ftl" />
     </list>
     <ignored path="TourProject.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -27,22 +31,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="travel.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/travel.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="261">
-              <caret line="214" column="17" selection-start-line="214" selection-start-column="17" selection-end-line="214" selection-end-column="17" />
-              <folding>
-                <marker date="1480160042862" expanded="true" signature="5043:5070" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="panel.ftl" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/templates/wechat/common/panel.ftl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-71">
+            <state relative-caret-position="-203">
               <caret line="18" column="48" selection-start-line="18" selection-start-column="48" selection-end-line="18" selection-end-column="48" />
               <folding />
             </state>
@@ -52,9 +44,21 @@
       <file leaf-file-name="jy_detail.ftl" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/templates/wechat/jy_detail.ftl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1596">
-              <caret line="84" column="17" selection-start-line="84" selection-start-column="17" selection-end-line="84" selection-end-column="17" />
+            <state relative-caret-position="182">
+              <caret line="62" column="66" selection-start-line="62" selection-start-column="66" selection-end-line="62" selection-end-column="66" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="travel.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/travel.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="234">
+              <caret line="221" column="33" selection-start-line="221" selection-start-column="33" selection-end-line="221" selection-end-column="33" />
+              <folding>
+                <marker date="1480162473800" expanded="true" signature="5043:5070" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -119,7 +123,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/tour/controller/BaseController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/tour/controller/WebController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/wechat/common/css.ftl" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/wechat/send_jy.ftl" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/wechat/settings/bill_detail.ftl" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/wechat/settings/explain.ftl" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/wechat/settings/language.ftl" />
@@ -137,8 +140,9 @@
         <option value="$PROJECT_DIR$/src/main/resources/templates/wechat/common/panel.ftl" />
         <option value="$PROJECT_DIR$/src/main/resources/static/css/light7.min.css" />
         <option value="$PROJECT_DIR$/src/main/resources/static/css/weui.min.css" />
-        <option value="$PROJECT_DIR$/src/main/resources/static/js/travel.js" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/wechat/send_jy.ftl" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/wechat/jy_detail.ftl" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/js/travel.js" />
       </list>
     </option>
   </component>
@@ -425,36 +429,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TourProject" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TourProject" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="images" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1146,7 +1120,7 @@
       <workItem from="1479694216451" duration="6710000" />
       <workItem from="1479948816720" duration="18977000" />
       <workItem from="1480038501825" duration="7137000" />
-      <workItem from="1480152302719" duration="6342000" />
+      <workItem from="1480152302719" duration="8907000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit&#10;修改了index，resolve，settings三个界面">
       <created>1478743696573</created>
@@ -1246,7 +1220,14 @@
       <option name="project" value="LOCAL" />
       <updated>1480155279461</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="解决了九宫格图片高度问题">
+      <created>1480160114617</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1480160114617</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1258,7 +1239,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="85072000" />
+    <option name="totallyTimeSpent" value="87637000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -1272,8 +1253,8 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.7377567" sideWeight="0.5043924" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1420205" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21169037" sideWeight="0.49707174" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.07109005" sideWeight="0.4956076" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3522907" sideWeight="0.49707174" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14691943" sideWeight="0.4956076" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1366,7 +1347,8 @@
     <MESSAGE value="Initial commit&#10;更改了部分样式 添加了及应的详细页面&#10;" />
     <MESSAGE value="&#10;" />
     <MESSAGE value="修改部分样式" />
-    <option name="LAST_COMMIT_MESSAGE" value="修改部分样式" />
+    <MESSAGE value="解决了九宫格图片高度问题" />
+    <option name="LAST_COMMIT_MESSAGE" value="解决了九宫格图片高度问题" />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.8279221" />
   </component>
   <component name="XDebuggerManager">
@@ -1634,14 +1616,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/wechat/send_jy.ftl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="7" column="7" selection-start-line="7" selection-start-column="7" selection-end-line="7" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/static/css/weui.min.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
@@ -1650,28 +1624,36 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/wechat/jy_detail.ftl">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/wechat/send_jy.ftl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1596">
-          <caret line="84" column="17" selection-start-line="84" selection-start-column="17" selection-end-line="84" selection-end-column="17" />
+        <state relative-caret-position="133">
+          <caret line="21" column="59" selection-start-line="21" selection-start-column="59" selection-end-line="21" selection-end-column="59" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/wechat/common/panel.ftl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-71">
+        <state relative-caret-position="-203">
           <caret line="18" column="48" selection-start-line="18" selection-start-column="48" selection-end-line="18" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/wechat/jy_detail.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="62" column="66" selection-start-line="62" selection-start-column="66" selection-end-line="62" selection-end-column="66" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/travel.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="261">
-          <caret line="214" column="17" selection-start-line="214" selection-start-column="17" selection-end-line="214" selection-end-column="17" />
+        <state relative-caret-position="234">
+          <caret line="221" column="33" selection-start-line="221" selection-start-column="33" selection-end-line="221" selection-end-column="33" />
           <folding>
-            <marker date="1480160042862" expanded="true" signature="5043:5070" ph="..." />
+            <marker date="1480162473800" expanded="true" signature="5043:5070" ph="..." />
           </folding>
         </state>
       </provider>
