@@ -211,8 +211,14 @@ $(function () {
     });
 
     //我的账单page
+    $(document).on("pageInit", "#page-jy-detail", function () {
+        //图片高度自适应
+        $('.img').css('height',$('.img').css('width'));
+
+    });
+
+    //我的账单page
     $(document).on("pageInit", "#page-bill", function () {
-        //$.closePanel();
     });
 
     //使用说明page
