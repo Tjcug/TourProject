@@ -210,10 +210,14 @@ $(function () {
         });
     });
 
-    //我的账单page
+    //及应详细page
     $(document).on("pageInit", "#page-jy-detail", function () {
+
+
         //图片高度自适应
+        $('.img').css('width','100%');
         $('.img').css('height',$('.img').css('width'));
+
 
         var $gallery = $("#gallery");
         //点击图片时，进入gallery显示图片
@@ -228,7 +232,80 @@ $(function () {
     });
 
     //我的账单page
-    $(document).on("pageInit", "#page-bill", function () {
+    $(document).on("pageInit", "#page-bill", function (e, id, page) {
+
+        // 每次加载添加多少条账单
+        var itemsPerLoad = 5;
+        // 最多可加载的账单数量
+        var maxItems = 30;
+        //tab页数
+        var tab = "1";
+        //上次加载的数量
+        var lastIndex = $("#tab"+tab).find(".card").length;
+
+
+        // 判断是否停止加载事件
+        function del() {
+            if (lastIndex >= maxItems) {
+                // 加载完毕，则注销无限加载事件，以防不必要的加载
+                //$.detachInfiniteScroll($('#infinite-scroll'));
+                //隐藏加载提示符
+                $('.infinite-scroll-preloader').hide();
+                return true;
+            }
+            else {
+                $('.infinite-scroll-preloader').show();
+            }
+            return false;
+        }
+
+        $('#tab-link1').on('click', function() {
+            tab = "1";
+        });
+        $('#tab-link2').on('click', function() {
+            tab = "2";
+        });
+
+
+        //添加新的及应,tab为当前tab数
+        function addItems(itemsPerLoad,tab) {
+            var html = '';
+            for (var i = lastIndex + 1; i <= lastIndex + itemsPerLoad; i++) {
+                //在这里插入数据(悬赏金额、内容、时间等等),最好用ajax更新，更新一次取出少量数据
+                html += '<div class="card"><div class="card-header"><div class="item-title">';
+                if(tab == 1){html += '支出'}
+                else{html += '收入'}
+                html += '</div><div class="item-after">5$</div></div><div class="card-content">' +
+                    '<div class="list-block media-list"><ul><li class="item-content"><div class="item-inner">'+
+                    '<div class="item-title-row"><div class="item-title">潘俊冰</div></div>'+
+                    '<div class="item-subtitle">迷路了，求接送回凯宁宾馆（ACX大街666号）</div></div></li></ul></div></div>'+
+                    '<div class="card-footer"><span>2015/01/15</span> <a href="/wechat/settings/bill_detail">' +
+                    '查看更多信息</a></div></div>';
+            }
+            // 添加新条目
+            $("#tab"+tab).find(".list-bill").append(html);
+            lastIndex = $("#tab"+tab).find(".card").length;
+            if (del()) {
+                $.toast("加载完毕！");
+            }
+        }
+
+        //滚动事件
+        $(document).on("infinite",".infinite-scroll", function () {
+            // 1s timeout
+            var $this = $(this);
+            if($this.data("loading")) return;
+            if(del())return;
+            $this.data("loading", 1);
+            setTimeout(function() {
+                addItems(itemsPerLoad,tab);
+                $this.data("loading", 0);
+            }, 1000);
+        });
+
+        //初始化时给每个tab加载10条
+        addItems(10,"1");
+        addItems(10,"2");
     });
 
     //使用说明page

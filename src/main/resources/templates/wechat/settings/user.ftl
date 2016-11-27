@@ -22,17 +22,6 @@
                             <div class="item-after">15337197800</div>
                         </div>
                     </li>
-                    <li class="item-content item-link">
-                        <div class="item-inner">
-                            <div class="item-title">邮箱</div>
-                            <div class="item-after">531826568@qq.com</div>
-                        </div>
-                    </li>
-                    <li class="item-content item-link">
-                        <div class="item-inner">
-                            <div class="item-title">修改密码</div>
-                        </div>
-                    </li>
                 </ul>
             </div>
         </div>

@@ -29,7 +29,7 @@
                     </li>
                 </ul>
             </div>
-            <a href="#" class="button button-fill button-success">提交</a>
+            <a href="#" class="button button-fill">提交</a>
         </div>
     </div>
 </body>

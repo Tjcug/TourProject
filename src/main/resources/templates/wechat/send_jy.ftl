@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <!--weui-->
-    <link rel="stylesheet" href="https://res.wx.qq.com/open/libs/weui/1.0.2/weui.min.css"/>
 <#include "common/head.ftl">
 
 </head>
 <body>
 <div class="page" id="page-send-jy">
+    <!--weui-->
+    <link rel="stylesheet" href="/css/weui.min.css"/>
     <!-- 标题栏 -->
     <header class="bar bar-nav">
         <a class="button button-link button-nav pull-left back">
-            <span class="icon icon-left"></span> 查看及应
+            <span class="icon icon-left"></span> 返回
         </a>
         <h1 class="title">发布及应</h1>
     </header>
