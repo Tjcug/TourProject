@@ -90,8 +90,6 @@
         </div>
     </div>
 </div>
-<!-- popup, panel 等放在这里 -->
-<<#include "common/panel.ftl">
 </body>
 <#include "common/js.ftl">
 </html>

@@ -23,6 +23,9 @@
                         </div>
                     </li>
                 </ul>
+                <p>
+                    <a href="#" id="exit" class="button button-fill button-danger">退出登录</a>
+                </p>
             </div>
         </div>
     </div>
