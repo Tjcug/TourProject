@@ -8,7 +8,7 @@ public class Administrator implements java.io.Serializable {
 
 	// Fields
 
-	private Long id;
+	private long id;
 	private String name;
 	private String username;
 	private String password;
@@ -34,11 +34,11 @@ public class Administrator implements java.io.Serializable {
 
 	// Property accessors
 
-	public Long getId() {
+	public long getId() {
 		return this.id;
 	}
 
-	public void setId(Long id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

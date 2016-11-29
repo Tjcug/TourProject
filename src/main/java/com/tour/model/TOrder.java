@@ -12,12 +12,12 @@ public class TOrder implements java.io.Serializable {
 
 	private long id;
 	private TUser TUserByOrderFromuser;
+	private TJyquestions TJyquestions;
 	private TUser TUserByOrderTouser;
 	private Integer type;
-	private long assistantId;
 	private double price;
 	private boolean state;
-	private Date time;
+	private Date createTime;
 	private Date paytime;
 
 	// Constructors
@@ -27,22 +27,23 @@ public class TOrder implements java.io.Serializable {
 	}
 
 	/** minimal constructor */
-	public TOrder(Date time, Date paytime) {
-		this.time = time;
+	public TOrder(TJyquestions TJyquestions, Date createTime, Date paytime) {
+		this.TJyquestions = TJyquestions;
+		this.createTime = createTime;
 		this.paytime = paytime;
 	}
 
 	/** full constructor */
-	public TOrder(TUser TUserByOrderFromuser, TUser TUserByOrderTouser,
-			Integer type, long assistantId, double price, boolean state,
-			Date time, Date paytime) {
+	public TOrder(TUser TUserByOrderFromuser, TJyquestions TJyquestions,
+			TUser TUserByOrderTouser, Integer type, double price,
+			boolean state, Date createTime, Date paytime) {
 		this.TUserByOrderFromuser = TUserByOrderFromuser;
+		this.TJyquestions = TJyquestions;
 		this.TUserByOrderTouser = TUserByOrderTouser;
 		this.type = type;
-		this.assistantId = assistantId;
 		this.price = price;
 		this.state = state;
-		this.time = time;
+		this.createTime = createTime;
 		this.paytime = paytime;
 	}
 
@@ -64,6 +65,14 @@ public class TOrder implements java.io.Serializable {
 		this.TUserByOrderFromuser = TUserByOrderFromuser;
 	}
 
+	public TJyquestions getTJyquestions() {
+		return this.TJyquestions;
+	}
+
+	public void setTJyquestions(TJyquestions TJyquestions) {
+		this.TJyquestions = TJyquestions;
+	}
+
 	public TUser getTUserByOrderTouser() {
 		return this.TUserByOrderTouser;
 	}
@@ -78,14 +87,6 @@ public class TOrder implements java.io.Serializable {
 
 	public void setType(Integer type) {
 		this.type = type;
-	}
-
-	public long getAssistantId() {
-		return this.assistantId;
-	}
-
-	public void setAssistantId(long assistantId) {
-		this.assistantId = assistantId;
 	}
 
 	public double getPrice() {
@@ -104,12 +105,12 @@ public class TOrder implements java.io.Serializable {
 		this.state = state;
 	}
 
-	public Date getTime() {
-		return this.time;
+	public Date getCreateTime() {
+		return this.createTime;
 	}
 
-	public void setTime(Date time) {
-		this.time = time;
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
 	}
 
 	public Date getPaytime() {

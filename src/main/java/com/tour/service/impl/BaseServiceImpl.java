@@ -7,15 +7,9 @@ import javax.annotation.Resource;
 
 @Service("baseService")
 public class BaseServiceImpl {
-	
-	@Resource
-	protected TAssistantanswersDAO tAssistantanswersDAO;
 
 	@Resource
-	protected AdministratorDAO tAdministratorDAO;
-
-	@Resource
-	protected TAssistantquestionsDAO tAssistantquestionsDAO;
+	protected AdministratorDAO administratorDAO;
 	
 	@Resource
 	protected TDiscussDAO tDiscussDAO;

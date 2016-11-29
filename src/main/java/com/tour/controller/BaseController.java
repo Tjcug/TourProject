@@ -38,10 +38,6 @@ public class BaseController {
     protected static final Logger log = LoggerFactory.getLogger(BaseController.class);
 
     @Autowired
-    protected TAssistantanswersService assistantanswersService;
-    @Autowired
-    protected TAssistantquestionsService assistantquestionsService;
-    @Autowired
     protected TDiscusslikesService discusslikesService;
     @Autowired
     protected TDiscussService discussService;

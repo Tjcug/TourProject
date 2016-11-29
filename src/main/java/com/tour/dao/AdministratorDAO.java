@@ -18,18 +18,13 @@ import java.util.List;
  * transactions. Each of these methods provides additional information for how
  * to configure it for the desired type of transaction control.
  * 
- * @see com.bus.model.Administrator
+ * @see Administrator
  * @author MyEclipse Persistence Tools
  */
-
-@Repository("tAdministratorDAO")
+@Repository
 public class AdministratorDAO extends BaseHibernateDAOImpl<Administrator> {
 	private static final Logger log = LoggerFactory
 			.getLogger(AdministratorDAO.class);
-	// property constants
-	public static final String NAME = "name";
-	public static final String USERNAME = "username";
-	public static final String PASSWORD = "password";
 
 	public void save(Administrator transientInstance) {
 		log.debug("saving Administrator instance");
@@ -57,7 +52,7 @@ public class AdministratorDAO extends BaseHibernateDAOImpl<Administrator> {
 		log.debug("getting Administrator instance with id: " + id);
 		try {
 			Administrator instance = (Administrator) getSession().get(
-					"com.bus.model.Administrator", id);
+					"com.tour.model.Administrator", id);
 			return instance;
 		} catch (RuntimeException re) {
 			log.error("get failed", re);
@@ -69,7 +64,7 @@ public class AdministratorDAO extends BaseHibernateDAOImpl<Administrator> {
 		log.debug("finding Administrator instance by example");
 		try {
 			List results = getSession()
-					.createCriteria("com.bus.model.Administrator")
+					.createCriteria("com.tour.model.Administrator")
 					.add(Example.create(instance)).list();
 			log.debug("find by example successful, result size: "
 					+ results.size());
@@ -93,18 +88,6 @@ public class AdministratorDAO extends BaseHibernateDAOImpl<Administrator> {
 			log.error("find by property name failed", re);
 			throw re;
 		}
-	}
-
-	public List findByName(Object name) {
-		return findByProperty(NAME, name);
-	}
-
-	public List findByUsername(Object username) {
-		return findByProperty(USERNAME, username);
-	}
-
-	public List findByPassword(Object password) {
-		return findByProperty(PASSWORD, password);
 	}
 
 	public List findAll() {
@@ -162,6 +145,6 @@ public class AdministratorDAO extends BaseHibernateDAOImpl<Administrator> {
 		if(list.size()==0)
 			return null;
 		else
-		return (Administrator)list.get(0);
+			return (Administrator)list.get(0);
 	}
 }

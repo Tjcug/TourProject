@@ -18,15 +18,12 @@ import java.util.List;
  * methods provides additional information for how to configure it for the
  * desired type of transaction control.
  * 
- * @see com.tour.model.TReplay
+ * @see TReplay
  * @author MyEclipse Persistence Tools
  */
-@Repository("tReplayDAO")
+@Repository
 public class TReplayDAO extends BaseHibernateDAOImpl<TReplay> {
 	private static final Logger log = LoggerFactory.getLogger(TReplayDAO.class);
-	// property constants
-	public static final String CONTENT = "content";
-	public static final String PICTURES = "pictures";
 
 	public void save(TReplay transientInstance) {
 		log.debug("saving TReplay instance");
@@ -90,14 +87,6 @@ public class TReplayDAO extends BaseHibernateDAOImpl<TReplay> {
 			log.error("find by property name failed", re);
 			throw re;
 		}
-	}
-
-	public List findByContent(Object content) {
-		return findByProperty(CONTENT, content);
-	}
-
-	public List findByPictures(Object pictures) {
-		return findByProperty(PICTURES, pictures);
 	}
 
 	public List findAll() {

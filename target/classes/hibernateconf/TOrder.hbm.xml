@@ -13,14 +13,14 @@
         <many-to-one name="TUserByOrderFromuser" class="com.tour.model.TUser" fetch="select">
             <column name="order_fromuser" />
         </many-to-one>
+        <many-to-one name="TJyquestions" class="com.tour.model.TJyquestions" fetch="select">
+            <column name="question_id" not-null="true" />
+        </many-to-one>
         <many-to-one name="TUserByOrderTouser" class="com.tour.model.TUser" fetch="select">
             <column name="order_touser" />
         </many-to-one>
         <property name="type" type="integer">
             <column name="type" />
-        </property>
-        <property name="assistantId" type="long">
-            <column name="assistant_id" />
         </property>
         <property name="price" type="double">
             <column name="price" precision="22" scale="0" />
@@ -28,8 +28,8 @@
         <property name="state" type="boolean">
             <column name="state" />
         </property>
-        <property name="time" type="timestamp">
-            <column name="time" length="19" not-null="true" />
+        <property name="createTime" type="timestamp">
+            <column name="create_time" length="19" not-null="true" />
         </property>
         <property name="paytime" type="timestamp">
             <column name="paytime" length="19" not-null="true" />

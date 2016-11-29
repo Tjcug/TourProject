@@ -16,7 +16,7 @@ public class TReplay implements java.io.Serializable {
 	private TUser TUserByFromuser;
 	private String content;
 	private String pictures;
-	private Date time;
+	private Date createTime;
 
 	// Constructors
 
@@ -25,21 +25,22 @@ public class TReplay implements java.io.Serializable {
 	}
 
 	/** minimal constructor */
-	public TReplay(TDiscuss TDiscuss, TUser TUserByFromuser, Date time) {
+	public TReplay(TDiscuss TDiscuss, TUser TUserByFromuser, Date createTime) {
 		this.TDiscuss = TDiscuss;
 		this.TUserByFromuser = TUserByFromuser;
-		this.time = time;
+		this.createTime = createTime;
 	}
 
 	/** full constructor */
 	public TReplay(TUser TUserByTouser, TDiscuss TDiscuss,
-			TUser TUserByFromuser, String content, String pictures, Date time) {
+			TUser TUserByFromuser, String content, String pictures,
+			Date createTime) {
 		this.TUserByTouser = TUserByTouser;
 		this.TDiscuss = TDiscuss;
 		this.TUserByFromuser = TUserByFromuser;
 		this.content = content;
 		this.pictures = pictures;
-		this.time = time;
+		this.createTime = createTime;
 	}
 
 	// Property accessors
@@ -92,12 +93,12 @@ public class TReplay implements java.io.Serializable {
 		this.pictures = pictures;
 	}
 
-	public Date getTime() {
-		return this.time;
+	public Date getCreateTime() {
+		return this.createTime;
 	}
 
-	public void setTime(Date time) {
-		this.time = time;
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
 	}
 
 }

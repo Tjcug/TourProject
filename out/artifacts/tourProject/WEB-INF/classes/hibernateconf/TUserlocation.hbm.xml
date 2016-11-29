@@ -19,13 +19,16 @@
         </many-to-one>
         <property name="longitude" type="double">
             <column name="longitude" precision="22" scale="0">
-                <comment>纬度()用户登录过的位置</comment>
+                <comment>维度</comment>
             </column>
         </property>
         <property name="latitude" type="double">
             <column name="latitude" precision="22" scale="0">
-                <comment>经度()用户登录过的位置</comment>
+                <comment>经度</comment>
             </column>
+        </property>
+        <property name="createTime" type="timestamp">
+            <column name="create_time" length="19" />
         </property>
     </class>
 </hibernate-mapping>

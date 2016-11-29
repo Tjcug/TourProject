@@ -18,7 +18,7 @@ public class TDiscuss implements java.io.Serializable {
 	private String category;
 	private String pictures;
 	private String area;
-	private Date time;
+	private Date createTime;
 	private boolean hot;
 	private long likesnumber;
 	private Set TReplaies = new HashSet(0);
@@ -31,20 +31,20 @@ public class TDiscuss implements java.io.Serializable {
 	}
 
 	/** minimal constructor */
-	public TDiscuss(Date time) {
-		this.time = time;
+	public TDiscuss(Date createTime) {
+		this.createTime = createTime;
 	}
 
 	/** full constructor */
 	public TDiscuss(TUser TUser, String content, String category,
-			String pictures, String area, Date time, boolean hot,
+			String pictures, String area, Date createTime, boolean hot,
 			long likesnumber, Set TReplaies, Set TDiscusslikeses) {
 		this.TUser = TUser;
 		this.content = content;
 		this.category = category;
 		this.pictures = pictures;
 		this.area = area;
-		this.time = time;
+		this.createTime = createTime;
 		this.hot = hot;
 		this.likesnumber = likesnumber;
 		this.TReplaies = TReplaies;
@@ -101,12 +101,12 @@ public class TDiscuss implements java.io.Serializable {
 		this.area = area;
 	}
 
-	public Date getTime() {
-		return this.time;
+	public Date getCreateTime() {
+		return this.createTime;
 	}
 
-	public void setTime(Date time) {
-		this.time = time;
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
 	}
 
 	public boolean getHot() {

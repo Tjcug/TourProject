@@ -18,17 +18,12 @@ import java.util.List;
  * methods provides additional information for how to configure it for the
  * desired type of transaction control.
  * 
- * @see com.tour.model.TOrder
+ * @see TOrder
  * @author MyEclipse Persistence Tools
  */
-@Repository("tOrderDAO")
+@Repository
 public class TOrderDAO extends BaseHibernateDAOImpl<TOrder> {
 	private static final Logger log = LoggerFactory.getLogger(TOrderDAO.class);
-	// property constants
-	public static final String TYPE = "type";
-	public static final String ASSISTANT_ID = "assistantId";
-	public static final String PRICE = "price";
-	public static final String STATE = "state";
 
 	public void save(TOrder transientInstance) {
 		log.debug("saving TOrder instance");
@@ -91,22 +86,6 @@ public class TOrderDAO extends BaseHibernateDAOImpl<TOrder> {
 			log.error("find by property name failed", re);
 			throw re;
 		}
-	}
-
-	public List findByType(Object type) {
-		return findByProperty(TYPE, type);
-	}
-
-	public List findByAssistantId(Object assistantId) {
-		return findByProperty(ASSISTANT_ID, assistantId);
-	}
-
-	public List findByPrice(Object price) {
-		return findByProperty(PRICE, price);
-	}
-
-	public List findByState(Object state) {
-		return findByProperty(STATE, state);
 	}
 
 	public List findAll() {

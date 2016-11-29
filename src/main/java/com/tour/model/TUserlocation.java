@@ -1,5 +1,7 @@
 package com.tour.model;
 
+import java.util.Date;
+
 /**
  * TUserlocation entity. @author MyEclipse Persistence Tools
  */
@@ -12,6 +14,7 @@ public class TUserlocation implements java.io.Serializable {
 	private TUser TUser;
 	private double longitude;
 	private double latitude;
+	private Date createTime;
 
 	// Constructors
 
@@ -27,11 +30,12 @@ public class TUserlocation implements java.io.Serializable {
 
 	/** full constructor */
 	public TUserlocation(TUserlocationId id, TUser TUser, double longitude,
-			double latitude) {
+			double latitude, Date createTime) {
 		this.id = id;
 		this.TUser = TUser;
 		this.longitude = longitude;
 		this.latitude = latitude;
+		this.createTime = createTime;
 	}
 
 	// Property accessors
@@ -66,6 +70,14 @@ public class TUserlocation implements java.io.Serializable {
 
 	public void setLatitude(double latitude) {
 		this.latitude = latitude;
+	}
+
+	public Date getCreateTime() {
+		return this.createTime;
+	}
+
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
 	}
 
 }

@@ -1,6 +1,7 @@
 package com.tour.dao;
 
 import com.tour.model.TUserlocation;
+import com.tour.model.TUserlocationId;
 import org.hibernate.LockOptions;
 import org.hibernate.Query;
 import org.hibernate.criterion.Example;
@@ -21,7 +22,7 @@ import java.util.List;
  * @see TUserlocation
  * @author MyEclipse Persistence Tools
  */
-@Repository("tUserlocationDAO")
+@Repository
 public class TUserlocationDAO extends BaseHibernateDAOImpl<TUserlocation> {
 	private static final Logger log = LoggerFactory
 			.getLogger(TUserlocationDAO.class);
@@ -48,7 +49,7 @@ public class TUserlocationDAO extends BaseHibernateDAOImpl<TUserlocation> {
 		}
 	}
 
-	public TUserlocation findById(com.tour.model.TUserlocationId id) {
+	public TUserlocation findById(TUserlocationId id) {
 		log.debug("getting TUserlocation instance with id: " + id);
 		try {
 			TUserlocation instance = (TUserlocation) getSession().get(

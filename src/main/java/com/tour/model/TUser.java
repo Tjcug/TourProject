@@ -15,6 +15,7 @@ public class TUser implements java.io.Serializable {
 	private long id;
 	private String userName;
 	private String email;
+	private long wechatId;
 	private String password;
 	private short sex;
 	private Date birthday;
@@ -24,18 +25,20 @@ public class TUser implements java.io.Serializable {
 	private String creditcard;
 	private String telephone;
 	private double score;
-	private Date time;
+	private Date createTime;
 	private boolean pushnotifcation;
 	private double longitude;
 	private double latitude;
-	transient private Set TReplaiesForTouser = new HashSet(0);
-	transient private Set TReplaiesForFromuser = new HashSet(0);
-	transient private Set TDiscusslikeses = new HashSet(0);
-	transient private Set TAssistantquestionses = new HashSet(0);
-	transient private Set TDiscusses = new HashSet(0);
-	transient private Set TAssistantanswerses = new HashSet(0);
-	transient private Set TOrdersForOrderTouser = new HashSet(0);
-	transient private Set TOrdersForOrderFromuser = new HashSet(0);
+	private Set TReplaiesForTouser = new HashSet(0);
+	private Set TReplaiesForFromuser = new HashSet(0);
+	private Set TJyquestionses = new HashSet(0);
+	private Set TJyanswerses = new HashSet(0);
+	private Set TDiscusslikeses = new HashSet(0);
+	private Set TUserlocations = new HashSet(0);
+	private Set TDiscusses = new HashSet(0);
+	private Set TJyanswerscontents = new HashSet(0);
+	private Set TOrdersForOrderTouser = new HashSet(0);
+	private Set TOrdersForOrderFromuser = new HashSet(0);
 
 	// Constructors
 
@@ -43,16 +46,24 @@ public class TUser implements java.io.Serializable {
 	public TUser() {
 	}
 
+	/** minimal constructor */
+	public TUser(String telephone, Date createTime) {
+		this.telephone = telephone;
+		this.createTime = createTime;
+	}
+
 	/** full constructor */
-	public TUser(String userName, String email, String password, short sex,
-			Date birthday, String picture, String country, String city,
-			String creditcard, String telephone, double score, Date time,
-			Set TReplaiesForTouser, Set TReplaiesForFromuser,
-			Set TDiscusslikeses, Set TAssistantquestionses, Set TDiscusses,
-			Set TAssistantanswerses, Set TOrdersForOrderTouser,
-			Set TOrdersForOrderFromuser) {
+	public TUser(String userName, String email, long wechatId, String password,
+			short sex, Date birthday, String picture, String country,
+			String city, String creditcard, String telephone, double score,
+			Date createTime, boolean pushnotifcation, double longitude,
+			double latitude, Set TReplaiesForTouser, Set TReplaiesForFromuser,
+			Set TJyquestionses, Set TJyanswerses, Set TDiscusslikeses,
+			Set TUserlocations, Set TDiscusses, Set TJyanswerscontents,
+			Set TOrdersForOrderTouser, Set TOrdersForOrderFromuser) {
 		this.userName = userName;
 		this.email = email;
+		this.wechatId = wechatId;
 		this.password = password;
 		this.sex = sex;
 		this.birthday = birthday;
@@ -62,26 +73,23 @@ public class TUser implements java.io.Serializable {
 		this.creditcard = creditcard;
 		this.telephone = telephone;
 		this.score = score;
-		this.time = time;
+		this.createTime = createTime;
+		this.pushnotifcation = pushnotifcation;
+		this.longitude = longitude;
+		this.latitude = latitude;
 		this.TReplaiesForTouser = TReplaiesForTouser;
 		this.TReplaiesForFromuser = TReplaiesForFromuser;
+		this.TJyquestionses = TJyquestionses;
+		this.TJyanswerses = TJyanswerses;
 		this.TDiscusslikeses = TDiscusslikeses;
-		this.TAssistantquestionses = TAssistantquestionses;
+		this.TUserlocations = TUserlocations;
 		this.TDiscusses = TDiscusses;
-		this.TAssistantanswerses = TAssistantanswerses;
+		this.TJyanswerscontents = TJyanswerscontents;
 		this.TOrdersForOrderTouser = TOrdersForOrderTouser;
 		this.TOrdersForOrderFromuser = TOrdersForOrderFromuser;
 	}
 
 	// Property accessors
-
-    public boolean isPushnotifcation() {
-		return pushnotifcation;
-	}
-
-	public void setPushnotifcation(boolean pushnotifcation) {
-		this.pushnotifcation = pushnotifcation;
-	}
 
 	public long getId() {
 		return this.id;
@@ -105,6 +113,14 @@ public class TUser implements java.io.Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public long getWechatId() {
+		return this.wechatId;
+	}
+
+	public void setWechatId(long wechatId) {
+		this.wechatId = wechatId;
 	}
 
 	public String getPassword() {
@@ -179,12 +195,36 @@ public class TUser implements java.io.Serializable {
 		this.score = score;
 	}
 
-	public Date getTime() {
-		return this.time;
+	public Date getCreateTime() {
+		return this.createTime;
 	}
 
-	public void setTime(Date time) {
-		this.time = time;
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+
+	public boolean getPushnotifcation() {
+		return this.pushnotifcation;
+	}
+
+	public void setPushnotifcation(boolean pushnotifcation) {
+		this.pushnotifcation = pushnotifcation;
+	}
+
+	public double getLongitude() {
+		return this.longitude;
+	}
+
+	public void setLongitude(double longitude) {
+		this.longitude = longitude;
+	}
+
+	public double getLatitude() {
+		return this.latitude;
+	}
+
+	public void setLatitude(double latitude) {
+		this.latitude = latitude;
 	}
 
 	public Set getTReplaiesForTouser() {
@@ -203,6 +243,22 @@ public class TUser implements java.io.Serializable {
 		this.TReplaiesForFromuser = TReplaiesForFromuser;
 	}
 
+	public Set getTJyquestionses() {
+		return this.TJyquestionses;
+	}
+
+	public void setTJyquestionses(Set TJyquestionses) {
+		this.TJyquestionses = TJyquestionses;
+	}
+
+	public Set getTJyanswerses() {
+		return this.TJyanswerses;
+	}
+
+	public void setTJyanswerses(Set TJyanswerses) {
+		this.TJyanswerses = TJyanswerses;
+	}
+
 	public Set getTDiscusslikeses() {
 		return this.TDiscusslikeses;
 	}
@@ -211,12 +267,12 @@ public class TUser implements java.io.Serializable {
 		this.TDiscusslikeses = TDiscusslikeses;
 	}
 
-	public Set getTAssistantquestionses() {
-		return this.TAssistantquestionses;
+	public Set getTUserlocations() {
+		return this.TUserlocations;
 	}
 
-	public void setTAssistantquestionses(Set TAssistantquestionses) {
-		this.TAssistantquestionses = TAssistantquestionses;
+	public void setTUserlocations(Set TUserlocations) {
+		this.TUserlocations = TUserlocations;
 	}
 
 	public Set getTDiscusses() {
@@ -227,12 +283,12 @@ public class TUser implements java.io.Serializable {
 		this.TDiscusses = TDiscusses;
 	}
 
-	public Set getTAssistantanswerses() {
-		return this.TAssistantanswerses;
+	public Set getTJyanswerscontents() {
+		return this.TJyanswerscontents;
 	}
 
-	public void setTAssistantanswerses(Set TAssistantanswerses) {
-		this.TAssistantanswerses = TAssistantanswerses;
+	public void setTJyanswerscontents(Set TJyanswerscontents) {
+		this.TJyanswerscontents = TJyanswerscontents;
 	}
 
 	public Set getTOrdersForOrderTouser() {
@@ -251,19 +307,4 @@ public class TUser implements java.io.Serializable {
 		this.TOrdersForOrderFromuser = TOrdersForOrderFromuser;
 	}
 
-    public double getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(double longitude) {
-        this.longitude = longitude;
-    }
-
-    public double getLatitude() {
-        return latitude;
-    }
-
-    public void setLatitude(double latitude) {
-        this.latitude = latitude;
-    }
 }

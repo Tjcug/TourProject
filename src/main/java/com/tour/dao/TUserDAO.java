@@ -21,22 +21,9 @@ import java.util.List;
  * @see com.tour.model.TUser
  * @author MyEclipse Persistence Tools
  */
-@Repository("tUserDAO")
+@Repository
 public class TUserDAO extends BaseHibernateDAOImpl<TUser> {
 	private static final Logger log = LoggerFactory.getLogger(TUserDAO.class);
-	// property constants
-	public static final String USER_NAME = "userName";
-	public static final String EMAIL = "email";
-	public static final String PASSWORD = "password";
-	public static final String SEX = "sex";
-	public static final String PICTURE = "picture";
-	public static final String COUNTRY = "country";
-	public static final String CITY = "city";
-	public static final String CREDITCARD = "creditcard";
-	public static final String TELEPHONE = "telephone";
-	public static final String SCORE = "score";
-	public static final String LONGITUDE = "longitude";
-	public static final String LATITUDE = "latitude";
 
 	public void save(TUser transientInstance) {
 		log.debug("saving TUser instance");
@@ -99,54 +86,6 @@ public class TUserDAO extends BaseHibernateDAOImpl<TUser> {
 			log.error("find by property name failed", re);
 			throw re;
 		}
-	}
-
-	public List findByUserName(Object userName) {
-		return findByProperty(USER_NAME, userName);
-	}
-
-	public List findByEmail(Object email) {
-		return findByProperty(EMAIL, email);
-	}
-
-	public List findByPassword(Object password) {
-		return findByProperty(PASSWORD, password);
-	}
-
-	public List findBySex(Object sex) {
-		return findByProperty(SEX, sex);
-	}
-
-	public List findByPicture(Object picture) {
-		return findByProperty(PICTURE, picture);
-	}
-
-	public List findByCountry(Object country) {
-		return findByProperty(COUNTRY, country);
-	}
-
-	public List findByCity(Object city) {
-		return findByProperty(CITY, city);
-	}
-
-	public List findByCreditcard(Object creditcard) {
-		return findByProperty(CREDITCARD, creditcard);
-	}
-
-	public List findByTelephone(Object telephone) {
-		return findByProperty(TELEPHONE, telephone);
-	}
-
-	public List findByScore(Object score) {
-		return findByProperty(SCORE, score);
-	}
-
-	public List findByLongitude(Object longitude) {
-		return findByProperty(LONGITUDE, longitude);
-	}
-
-	public List findByLatitude(Object latitude) {
-		return findByProperty(LATITUDE, latitude);
 	}
 
 	public List findAll() {

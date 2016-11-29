@@ -35,8 +35,8 @@
                 <comment>众多照片</comment>
             </column>
         </property>
-        <property name="time" type="timestamp">
-            <column name="time" length="19" not-null="true">
+        <property name="createTime" type="timestamp">
+            <column name="create_time" length="19" not-null="true">
                 <comment>回复时间</comment>
             </column>
         </property>

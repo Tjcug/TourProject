@@ -21,17 +21,10 @@ import java.util.List;
  * @see com.tour.model.TDiscuss
  * @author MyEclipse Persistence Tools
  */
-@Repository("tDiscussDAO")
+@Repository
 public class TDiscussDAO extends BaseHibernateDAOImpl<TDiscuss> {
 	private static final Logger log = LoggerFactory
 			.getLogger(TDiscussDAO.class);
-	// property constants
-	public static final String CONTENT = "content";
-	public static final String CATEGORY = "category";
-	public static final String PICTURES = "pictures";
-	public static final String AREA = "area";
-	public static final String HOT = "hot";
-	public static final String LIKESNUMBER = "likesnumber";
 
 	public void save(TDiscuss transientInstance) {
 		log.debug("saving TDiscuss instance");
@@ -95,30 +88,6 @@ public class TDiscussDAO extends BaseHibernateDAOImpl<TDiscuss> {
 			log.error("find by property name failed", re);
 			throw re;
 		}
-	}
-
-	public List findByContent(Object content) {
-		return findByProperty(CONTENT, content);
-	}
-
-	public List findByCategory(Object category) {
-		return findByProperty(CATEGORY, category);
-	}
-
-	public List findByPictures(Object pictures) {
-		return findByProperty(PICTURES, pictures);
-	}
-
-	public List findByArea(Object area) {
-		return findByProperty(AREA, area);
-	}
-
-	public List findByHot(Object hot) {
-		return findByProperty(HOT, hot);
-	}
-
-	public List findByLikesnumber(Object likesnumber) {
-		return findByProperty(LIKESNUMBER, likesnumber);
 	}
 
 	public List findAll() {

@@ -18,36 +18,36 @@ public class TAdministratorServiceImpl extends BaseServiceImpl implements TAdmin
 
     @Override
     public void save(Administrator administrator) {
-         tAdministratorDAO.save(administrator);
+        administratorDAO.save(administrator);
     }
 
     @Override
     public void update(Administrator administrator) {
-        tAdministratorDAO.getSession().update(administrator);
+        administratorDAO.getSession().update(administrator);
     }
 
     @Override
     public void merge(Administrator administrator) {
-        tAdministratorDAO.merge(administrator);
+        administratorDAO.merge(administrator);
     }
 
     @Override
     public void delete(int id) {
-        tAdministratorDAO.delete(get(id));
+        administratorDAO.delete(get(id));
     }
 
     @Override
     public Administrator get(int id) {
-        return tAdministratorDAO.findById(Long.valueOf(id));
+        return administratorDAO.findById(Long.valueOf(id));
     }
 
     @Override
     public List<Administrator> queryALL() {
-        return tAdministratorDAO.findAll();
+        return administratorDAO.findAll();
     }
 
     @Override
     public Administrator findadminByusernameAndPass(String username, String password) {
-        return tAdministratorDAO.findadminByusernameAndPass(username, password);
+        return administratorDAO.findadminByusernameAndPass(username, password);
     }
 }

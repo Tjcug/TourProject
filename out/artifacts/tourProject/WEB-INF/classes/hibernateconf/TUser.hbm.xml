@@ -20,10 +20,13 @@
                 <comment>email</comment>
             </column>
         </property>
-        <property name="password" type="string">
-            <column name="password" length="30">
-                <comment>密码</comment>
+        <property name="wechatId" type="long">
+            <column name="wechat_id">
+                <comment>用户微信号</comment>
             </column>
+        </property>
+        <property name="password" type="string">
+            <column name="password" length="30" />
         </property>
         <property name="sex" type="short">
             <column name="sex">
@@ -56,7 +59,7 @@
             </column>
         </property>
         <property name="telephone" type="string">
-            <column name="telephone" length="20">
+            <column name="telephone" length="20" not-null="true">
                 <comment>电话号码</comment>
             </column>
         </property>
@@ -65,29 +68,26 @@
                 <comment>评分星级</comment>
             </column>
         </property>
-        <property name="time" type="timestamp">
-            <column name="time" length="19">
+        <property name="createTime" type="timestamp">
+            <column name="create_time" length="19" not-null="true">
                 <comment>新建用户的时间</comment>
             </column>
         </property>
         <property name="pushnotifcation" type="boolean">
             <column name="pushnotifcation">
-                <comment>是否接受推送功能</comment>
+                <comment>是否接受推送</comment>
             </column>
         </property>
-
         <property name="longitude" type="double">
-            <column name="longitude">
-                <comment>经度</comment>
-            </column>
-        </property>
-
-        <property name="latitude" type="double">
-            <column name="latitude">
+            <column name="longitude" precision="22" scale="0">
                 <comment>纬度</comment>
             </column>
         </property>
-
+        <property name="latitude" type="double">
+            <column name="latitude" precision="22" scale="0">
+                <comment>经度</comment>
+            </column>
+        </property>
         <set name="TReplaiesForTouser" inverse="true">
             <key>
                 <column name="touser">
@@ -104,19 +104,33 @@
             </key>
             <one-to-many class="com.tour.model.TReplay" />
         </set>
+        <set name="TJyquestionses" inverse="true">
+            <key>
+                <column name="user_id" not-null="true">
+                    <comment>发布用户id</comment>
+                </column>
+            </key>
+            <one-to-many class="com.tour.model.TJyquestions" />
+        </set>
+        <set name="TJyanswerses" inverse="true">
+            <key>
+                <column name="user_id">
+                    <comment>回答的人id</comment>
+                </column>
+            </key>
+            <one-to-many class="com.tour.model.TJyanswers" />
+        </set>
         <set name="TDiscusslikeses" inverse="true">
             <key>
                 <column name="user_id" />
             </key>
-            <one-to-many class="com.tour.model.TDiscusslikes"  />
+            <one-to-many class="com.tour.model.TDiscusslikes" />
         </set>
-        <set name="TAssistantquestionses" inverse="true">
+        <set name="TUserlocations" inverse="true">
             <key>
-                <column name="user_id">
-                    <comment>发布用户id</comment>
-                </column>
+                <column name="user_id" not-null="true" />
             </key>
-            <one-to-many class="com.tour.model.TAssistantquestions" />
+            <one-to-many class="com.tour.model.TUserlocation" />
         </set>
         <set name="TDiscusses" inverse="true">
             <key>
@@ -126,13 +140,13 @@
             </key>
             <one-to-many class="com.tour.model.TDiscuss" />
         </set>
-        <set name="TAssistantanswerses" inverse="true">
+        <set name="TJyanswerscontents" inverse="true">
             <key>
-                <column name="user_id">
-                    <comment>回答的人id</comment>
+                <column name="user_id" not-null="true">
+                    <comment>回答人的id或追问人（提问者）的id</comment>
                 </column>
             </key>
-            <one-to-many class="com.tour.model.TAssistantanswers" />
+            <one-to-many class="com.tour.model.TJyanswerscontent" />
         </set>
         <set name="TOrdersForOrderTouser" inverse="true">
             <key>
