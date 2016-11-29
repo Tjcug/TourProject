@@ -91,7 +91,7 @@
                 </li>
             </ul>
         </div>
-        <p><a href="javascript:;" class="button button-fill">及应</a></p>
+        <p><a href="/wechat/jy_reply" class="button button-big button-fill">及应</a></p>
     </div>
 </div>
 </body>

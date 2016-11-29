@@ -16,6 +16,11 @@
                         <div class="item-title">我的账单</div>
                     </div>
                 </a></li>
+                <li><a class="item-content item-link close-panel" href="/wechat/jy_wait">
+                    <div class="item-inner">
+                        <div class="item-title">我的及应</div>
+                    </div>
+                </a></li>
                 <li><a class="item-content item-link close-panel" href="/wechat/settings/explain">
                     <div class="item-inner">
                         <div class="item-title">使用说明</div>

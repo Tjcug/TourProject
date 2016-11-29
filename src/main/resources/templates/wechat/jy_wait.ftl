@@ -6,14 +6,14 @@
 
 <body>
 
-<div class="page" id="page-jy-detail">
+<div class="page" id="page-jy-wait">
     <link rel="stylesheet" href="/css/weui.min.css"/>
     <!-- 标题栏 -->
     <header class="bar bar-nav">
         <a class="button button-link button-nav pull-left back">
             <span class="icon icon-left"></span>返回
         </a>
-    <#--<h1 class="title">关于我们</h1>-->
+        <h1 class="title">正在解答...</h1>
     </header>
 
     <div class="content">
@@ -23,13 +23,13 @@
             <div class="weui-gallery__opr">
             </div>
         </div>
-
+        <div class="content-block-title">求助信息</div>
         <div class="card facebook-card">
             <div class="card-header no-border">
                 <div class="facebook-avatar">
                     <img class="img-head" src="/images/1.jpg" width="34" height="34">
                 </div>
-                <div class="facebook-name">食长</div>
+                <div class="facebook-name">阿莉</div>
                 <div class="facebook-date">纽约ABC大街111号 1月15日 15:47</div>
             </div>
             <div class="card-content">
@@ -68,30 +68,29 @@
                 </div>
             </div>
         </div>
-        <div class="content-block-title">用户信息</div>
+        <div class="content-block-title">解答者信息</div>
         <div class="list-block">
             <ul>
                 <li class="item-content">
                     <div class="item-inner">
                         <div class="item-title">名称</div>
-                        <div class="item-after">食长</div>
+                        <div class="item-after">潘俊冰</div>
                     </div>
                 </li>
-                <li class="item-content">
+                <li><a class="item-content item-link external" href="tel:15337197800">
                     <div class="item-inner">
-                        <div class="item-title">手机号</div>
-                        <div class="item-after">15312349876</div>
+                        <div class="item-title">电话</div>
+                        <div class="item-after">15337197800</div>
                     </div>
-                </li>
-                <li class="item-content">
+                </a></li>
+                <li><a class="item-content item-link" href="/wechat/jy_reply_chat">
                     <div class="item-inner">
-                        <div class="item-title">好评</div>
-                        <div class="item-after">100%</div>
+                        <div class="item-title">图文信息</div>
                     </div>
-                </li>
+                </a></li>
             </ul>
         </div>
-        <p><a href="/wechat/jy_reply" class="button button-big button-fill">及应</a></p>
+        <p><a href="/wechat/payment" class="button button-big button-fill">支付</a></p>
     </div>
 </div>
 </body>

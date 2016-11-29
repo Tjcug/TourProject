@@ -40,7 +40,7 @@ $(function () {
                     '</div><div class="facebook-date">纽约ABC大街111号 1月15日 15:47</div></div><div class="card-content img-padded">' +
                     '<img src="/images/' + i + '.jpg" width="100%"></div><div class="card-content"><div class="card-content-inner">' +
                     '<p class="color-gray">悬赏20$</p><p>迷路了，求接送回凯宁宾馆（ACX大街666号）' +
-                    '</p></div></div><div class="card-footer no-border"><a href="#" class="link confirm-ok">' +
+                    '</p></div></div><div class="card-footer no-border"><a href="/wechat/jy_reply" class="link confirm-ok">' +
                     '解答</a> <a href="/wechat/jy_detail" class="link">更多</a></div></div>';
             }
             // 添加新条目
@@ -60,7 +60,7 @@ $(function () {
                     '</div><div class="facebook-date">纽约ABC大街111号 1月15日 15:47</div></div><div class="card-content img-padded">' +
                     '<img src="/images/' + i + '.jpg"></div><div class="card-content"><div class="card-content-inner">' +
                     '<p class="color-gray">悬赏20$</p><p>迷路了，求接送回凯宁宾馆（ACX大街666号）' +
-                    '</p></div></div><div class="card-footer no-border"><a href="#" class="link confirm-ok">' +
+                    '</p></div></div><div class="card-footer no-border"><a href="/wechat/jy_reply" class="link confirm-ok">' +
                     '解答</a> <a href="/wechat/jy_detail" class="link">更多</a></div></div>';
             }
             // 添加新条目
@@ -212,13 +212,8 @@ $(function () {
 
     //及应详细page
     $(document).on("pageInit", "#page-jy-detail", function () {
-
-
         //图片高度自适应
-        $('.img').css('width','100%');
         $('.img').css('height',$('.img').css('width'));
-
-
         var $gallery = $("#gallery");
         //点击图片时，进入gallery显示图片
         $(".img").on("click", function () {
@@ -230,6 +225,19 @@ $(function () {
             $gallery.fadeOut(100);
         });
     });
+
+    //及应解答page
+    $(document).on("pageInit", "#page-jy-reply", function () {
+        //图片高度自适应
+        $('.img').css('height',$('.img').css('width'));
+    });
+
+    //及应等待解答page
+    $(document).on("pageInit", "#page-jy-wait", function () {
+        //图片高度自适应
+        $('.img').css('height',$('.img').css('width'));
+    });
+
 
     //我的账单page
     $(document).on("pageInit", "#page-bill", function (e, id, page) {

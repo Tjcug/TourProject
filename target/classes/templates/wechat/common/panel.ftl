@@ -3,7 +3,7 @@
 <!-- Left Panel with Reveal effect -->
 <div class="panel panel-left panel-reveal theme-dark">
     <div class="content">
-        <a class="close-panel" href="/wechat/settings/settings">
+        <a class="close-panel" href="/wechat/settings/user">
             <div class="content-block">
                 <img alt="头像" src="/images/head.jpg">
                 <p>潘俊冰</p>
@@ -14,6 +14,11 @@
                 <li><a class="item-content item-link close-panel" href="/wechat/settings/bill">
                     <div class="item-inner">
                         <div class="item-title">我的账单</div>
+                    </div>
+                </a></li>
+                <li><a class="item-content item-link close-panel" href="/wechat/jy_wait">
+                    <div class="item-inner">
+                        <div class="item-title">我的及应</div>
                     </div>
                 </a></li>
                 <li><a class="item-content item-link close-panel" href="/wechat/settings/explain">
@@ -34,6 +39,11 @@
                 <li><a class="item-content item-link close-panel" href="/wechat/settings/language">
                     <div class="item-inner">
                         <div class="item-title">语言选择</div>
+                    </div>
+                </a></li>
+                <li><a class="item-content item-link close-panel" href="/wechat/settings/suggestion">
+                    <div class="item-inner">
+                        <div class="item-title">意见反馈</div>
                     </div>
                 </a></li>
                 <li><a class="item-content item-link close-panel" href="/wechat/settings/share">
