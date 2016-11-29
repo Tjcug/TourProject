@@ -7,12 +7,29 @@
 
 <body>
 <div class="page" id="page-jy-chat">
+    <link rel="stylesheet" href="/css/style.css"/>
     <header class="bar bar-nav">
         <a class="button button-link button-nav pull-left back">
             <span class="icon icon-left"></span>返回
         </a>
-        <h1 class='title'></h1>
+        <h1 class='title'>阿莉</h1>
     </header>
+    <div class="content">
+        <div class="content-block">
+            <div class="chat__messages">
+                <div class="chat__msgRow">
+                    <div class="chat__message mine">我在XXX大街，马上过去接你</div>
+                </div>
+                <div class="chat__msgRow">
+                    <div class="chat__message notMine">好</div>
+                </div>
+                <div class="chat__msgRow">
+                    <div class="chat__message mine">等下电话联系</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <input type="text" class="chat__input" placeholder="Your message">
 
 </div>
 

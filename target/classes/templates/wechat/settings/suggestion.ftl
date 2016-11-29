@@ -11,7 +11,6 @@
             <a class="button button-link button-nav pull-left back">
                 <span class="icon icon-left"></span> 返回
             </a>
-            <h1 class="title">意见反馈</h1>
         </header>
 
         <div class="content">
@@ -29,7 +28,7 @@
                     </li>
                 </ul>
             </div>
-            <a href="#" class="button button-fill">提交</a>
+            <a href="/wechat/index" class="button button-fill">提交</a>
         </div>
     </div>
 </body>

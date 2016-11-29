@@ -90,7 +90,7 @@
                 </a></li>
             </ul>
         </div>
-        <p><a href="/wechat/index" class="button button-big button-fill">放弃解答</a></p>
+        <p><a href="javascript:history.back()" class="button button-big button-fill">放弃解答</a></p>
     </div>
 </div>
 </body>

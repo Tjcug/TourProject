@@ -83,7 +83,7 @@
                         <div class="item-after">15337197800</div>
                     </div>
                 </a></li>
-                <li><a class="item-content item-link" href="/wechat/jy_reply_chat">
+                <li><a class="item-content item-link" href="/wechat/jy_chat">
                     <div class="item-inner">
                         <div class="item-title">图文信息</div>
                     </div>

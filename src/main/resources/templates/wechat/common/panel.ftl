@@ -9,7 +9,7 @@
                 <p>潘俊冰</p>
             </div>
         </a>
-        <div class="list-block theme-dark">
+        <div class="list-block">
             <ul>
                 <li><a class="item-content item-link close-panel" href="/wechat/settings/bill">
                     <div class="item-inner">
@@ -18,13 +18,13 @@
                 </a></li>
                 <li><a class="item-content item-link close-panel" href="/wechat/jy_wait">
                     <div class="item-inner">
-                        <div class="item-title">我的及应</div>
+                        <div class="item-title">
+                            我的及应<span class="badge" style="color: white;background-color: red;">1</span></div>
                     </div>
                 </a></li>
                 <li><a class="item-content item-link close-panel" href="/wechat/settings/explain">
                     <div class="item-inner">
-                        <div class="item-title">使用说明</div>
-                    </div>
+                        <div class="item-title">使用说明</div></div>
                 </a></li>
                 <li class="item-content">
                     <div class="item-inner">

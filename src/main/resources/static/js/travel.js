@@ -213,10 +213,11 @@ $(function () {
     //及应详细page
     $(document).on("pageInit", "#page-jy-detail", function () {
         //图片高度自适应
-        $('.img').css('height',$('.img').css('width'));
+        var $img = $('.img');
+        $img.css('height',$img.css('width'));
         var $gallery = $("#gallery");
         //点击图片时，进入gallery显示图片
-        $(".img").on("click", function () {
+        $img.on("click", function () {
             $("#galleryImg").attr("style", "background-image:url("+this.getAttribute("src")+")");
             $gallery.fadeIn(100);
         });
@@ -229,13 +230,15 @@ $(function () {
     //及应解答page
     $(document).on("pageInit", "#page-jy-reply", function () {
         //图片高度自适应
-        $('.img').css('height',$('.img').css('width'));
+        var $img = $('.img');
+        $img.css('height',$img.css('width'));
     });
 
     //及应等待解答page
     $(document).on("pageInit", "#page-jy-wait", function () {
         //图片高度自适应
-        $('.img').css('height',$('.img').css('width'));
+        var $img = $('.img');
+        $img.css('height',$img.css('width'));
     });
 
 
@@ -291,8 +294,9 @@ $(function () {
                     '查看更多信息</a></div></div>';
             }
             // 添加新条目
-            $("#tab"+tab).find(".list-bill").append(html);
-            lastIndex = $("#tab"+tab).find(".card").length;
+            var $tab = $('#tab'+tab);
+            $tab.find(".list-bill").append(html);
+            lastIndex = $tab.find(".card").length;
             if (del()) {
                 $.toast("加载完毕！");
             }
