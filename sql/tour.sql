@@ -234,11 +234,11 @@ CREATE TABLE `t_user` (
   `longitude` double DEFAULT NULL COMMENT '纬度',
   `latitude` double DEFAULT NULL COMMENT '经度',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8;
 
 /*Data for the table `t_user` */
 
-insert  into `t_user`(`id`,`user_name`,`email`,`wechat_id`,`password`,`sex`,`birthday`,`picture`,`country`,`city`,`creditcard`,`telephone`,`score`,`create_time`,`pushnotifcation`,`longitude`,`latitude`) values (31,'谭杰','798750509@qq.com',NULL,'woainixxx1314',0,'1995-10-02','123','中国','湖南',NULL,'13873650653',0,'2016-04-29 09:07:04',0,0,0);
+insert  into `t_user`(`id`,`user_name`,`email`,`wechat_id`,`password`,`sex`,`birthday`,`picture`,`country`,`city`,`creditcard`,`telephone`,`score`,`create_time`,`pushnotifcation`,`longitude`,`latitude`) values (31,'谭杰','798750509@qq.com',NULL,'woainixxx1314',0,'1995-10-02','123','中国','湖南',NULL,'13873650653',0,'2016-04-29 09:07:04',0,0,0),(58,'test5',NULL,0,'123456',0,NULL,NULL,NULL,NULL,NULL,'13072783289',0,'2016-11-30 20:06:34',0,0,0);
 
 /*Table structure for table `t_userlocation` */
 
