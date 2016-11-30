@@ -52,9 +52,9 @@ public class MessageUtil {
         return str;
     }
 
-    public static void main(String[] args) throws ClientException {
-        String checkNum=generateCheckNum();
-        log.info(checkNum);
-        new MessageUtil().sendMessage("及应","SMS_31795073","{'check':'"+checkNum+"'}","13072783289");
-    }
+//    public static void main(String[] args) throws ClientException {
+//        String checkNum=generateCheckNum();
+//        log.info(checkNum);
+//        new MessageUtil().sendMessage("及应","SMS_31795073","{'check':'"+checkNum+"'}","13072783289");
+//    }
 }
