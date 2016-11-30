@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" build-on-make="true" name="tourProject archive">
-    <output-path>$PROJECT_DIR$/out/artifacts/tourProject_archive</output-path>
-    <root id="archive" name="tourProject archive.war">
-      <element id="artifact" artifact-name="tourProject" />
-    </root>
-  </artifact>
-</component>
