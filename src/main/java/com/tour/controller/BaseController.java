@@ -2,10 +2,7 @@ package com.tour.controller;
 
 import com.google.gson.Gson;
 import com.tour.service.*;
-import com.tour.util.FreeMarkerUtil;
-import com.tour.util.GeomUtil;
-import com.tour.util.GsonUtil;
-import com.tour.util.JsonUtil;
+import com.tour.util.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,4 +55,6 @@ public class BaseController {
     protected FreeMarkerUtil freeMarkerUtil;
     @Autowired
     protected GsonUtil gsonUtil;
+    @Autowired
+    protected MessageUtil messageUtil;
 }

@@ -112,5 +112,7 @@
     <orderEntry type="library" name="Maven: com.vividsolutions:jts:1.13" level="project" />
     <orderEntry type="library" name="Maven: org.hibernate:hibernate-ehcache:4.0.1.Final" level="project" />
     <orderEntry type="library" name="Maven: net.sf.ehcache:ehcache-core:2.4.3" level="project" />
+    <orderEntry type="library" name="Maven: com.aliyun:aliyun-java-sdk-core:2.4.2" level="project" />
+    <orderEntry type="library" name="Maven: com.aliyun:aliyun-java-sdk-sms:3.0.0-rc1" level="project" />
   </component>
 </module>

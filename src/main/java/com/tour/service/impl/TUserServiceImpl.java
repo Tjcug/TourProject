@@ -69,4 +69,27 @@ public class TUserServiceImpl extends BaseServiceImpl implements TUserService{
 		//map.put("rows",userList);
 		return gson.toJson(map);
 	}
+
+	/**
+	 *  是否被注册过了
+	 * @param username
+	 * @return
+     */
+	@Override
+	public boolean isLoginByUserName(String username) {
+		final List userList = tUserDAO.findByProperty("userName", username);
+        if(userList.size()!=0)
+			return true;
+		else
+		return false;
+	}
+
+    @Override
+    public boolean isLoginByUserTelehoneNumber(String telephpneNumber) {
+        final List userList = tUserDAO.findByProperty("telephone", telephpneNumber);
+        if(userList.size()!=0)
+            return true;
+        else
+            return false;
+    }
 }
