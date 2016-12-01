@@ -5,6 +5,59 @@
 $(function () {
     "use strict";
 
+    //注册页的page
+    $(document).on("pageInit", "#page-register", function () {
+
+        var $getCheckNum = $('#getCheckNum');
+        var countdown = 60;
+
+        function settime() {
+            if (countdown == 0) {
+                $getCheckNum.html("获取验证码");
+                countdown = 60;
+                return;
+            } else {
+                $getCheckNum.html("重新发送(" + countdown + ")");
+                countdown--;
+            }
+            setTimeout(function() {
+                settime();
+            },1000)
+        }
+
+        $getCheckNum.on('click', function () {
+            //倒计时
+            settime();
+            $.ajax({
+                    url: "http://localhost:8080/tuser/getCheckNum/"+$('#telephoneNumber').val()+"/register",
+                    type: "get",
+                    data: "json",
+                    error: function (data) {
+                        $.toast("请重新获取验证码");
+                    }
+                }
+            );
+        });
+
+        //登录按钮
+        $('#login').on('click', function () {
+            $.ajax({
+                    url: "http://localhost:8080/tuser/registerUserByCheckNum?telephoneNumber=" +
+                    $('#telephoneNumber').val() + "&checknum=" + $('#checknum').val(),
+                    type: "get",
+                    data: "json",
+                    success: function (data) {
+                        var result = eval(data);
+                        if(result.success == true)
+                            $.router.loadPage("/wechat/index");
+                        else
+                            $.toast(alert(result,'errorMsg'));
+                    }
+                }
+            )
+        });
+    });
+
     //在主页的page（及应列表）
     $(document).on("pageInit", "#page-jy", function () {
         //是否正在加载
@@ -33,7 +86,7 @@ $(function () {
         }
 
         //添加新的及应,type为true则覆盖原数据，false则在原数据添加新数据
-        function addItems(tempLastIndex,itemsPerLoad,type) {
+        function addItems(tempLastIndex, itemsPerLoad, type) {
             var html = '';
             for (var i = tempLastIndex + 1; i <= tempLastIndex + itemsPerLoad; i++) {
                 //在这里插入数据(悬赏金额、内容、时间等等),最好用ajax更新，更新一次取出少量数据
@@ -46,7 +99,7 @@ $(function () {
                     '解答</a> <a href="/wechat/jy_detail" class="link">更多</a></div></div>';
             }
             // 添加新条目
-            if(type)
+            if (type)
                 $(".jy-list").html(html);
             else
                 $(".jy-list").append(html);
@@ -57,7 +110,7 @@ $(function () {
         }
 
         //向下滚动时调用
-        $(document).on("infinite",".infinite-scroll", function () {
+        $(document).on("infinite", ".infinite-scroll", function () {
             // 如果正在加载，则退出
             if (loading) return;
             // 如果停止加载则退出
@@ -67,7 +120,7 @@ $(function () {
             //更新前最后加载符号
             lastIndex = $(".card").length;
             setTimeout(function () {
-                addItems(lastIndex,itemsPerLoad,false);
+                addItems(lastIndex, itemsPerLoad, false);
                 loading = false;
             }, 1000);
         });
@@ -75,12 +128,12 @@ $(function () {
         //下拉刷新时调用
         $(document).on("refresh", ".pull-to-refresh-content", function () {
             setTimeout(function () {
-                addItems(0,firstItems,true);
+                addItems(0, firstItems, true);
                 $.pullToRefreshDone(".pull-to-refresh-content");
             }, 1000);
         });
         //预先加载5条
-        addItems(0,firstItems,true);
+        addItems(0, firstItems, true);
     });
 
 
@@ -200,11 +253,11 @@ $(function () {
     $(document).on("pageInit", "#page-jy-detail", function () {
         //图片高度自适应
         var $img = $('.img');
-        $img.css('height',$img.css('width'));
+        $img.css('height', $img.css('width'));
         var $gallery = $("#gallery");
         //点击图片时，进入gallery显示图片
         $img.on("click", function () {
-            $("#galleryImg").attr("style", "background-image:url("+this.getAttribute("src")+")");
+            $("#galleryImg").attr("style", "background-image:url(" + this.getAttribute("src") + ")");
             $gallery.fadeIn(100);
         });
         //点击gallery时返回选择图片界面
@@ -217,14 +270,14 @@ $(function () {
     $(document).on("pageInit", "#page-jy-reply", function () {
         //图片高度自适应
         var $img = $('.img');
-        $img.css('height',$img.css('width'));
+        $img.css('height', $img.css('width'));
     });
 
     //及应等待解答page
     $(document).on("pageInit", "#page-jy-wait", function () {
         //图片高度自适应
         var $img = $('.img');
-        $img.css('height',$img.css('width'));
+        $img.css('height', $img.css('width'));
     });
 
 
@@ -238,7 +291,7 @@ $(function () {
         //tab页数
         var tab = "1";
         //上次加载的数量
-        var lastIndex = $("#tab"+tab).find(".card").length;
+        var lastIndex = $("#tab" + tab).find(".card").length;
 
 
         // 判断是否停止加载事件
@@ -256,31 +309,35 @@ $(function () {
             return false;
         }
 
-        $('#tab-link1').on('click', function() {
+        $('#tab-link1').on('click', function () {
             tab = "1";
         });
-        $('#tab-link2').on('click', function() {
+        $('#tab-link2').on('click', function () {
             tab = "2";
         });
 
 
         //添加新的及应,tab为当前tab数
-        function addItems(itemsPerLoad,tab) {
+        function addItems(itemsPerLoad, tab) {
             var html = '';
             for (var i = lastIndex + 1; i <= lastIndex + itemsPerLoad; i++) {
                 //在这里插入数据(悬赏金额、内容、时间等等),最好用ajax更新，更新一次取出少量数据
                 html += '<div class="card"><div class="card-header"><div class="item-title">';
-                if(tab == 1){html += '支出'}
-                else{html += '收入'}
+                if (tab == 1) {
+                    html += '支出'
+                }
+                else {
+                    html += '收入'
+                }
                 html += '</div><div class="item-after">5$</div></div><div class="card-content">' +
-                    '<div class="list-block media-list"><ul><li class="item-content"><div class="item-inner">'+
-                    '<div class="item-title-row"><div class="item-title">潘俊冰</div></div>'+
-                    '<div class="item-subtitle">迷路了，求接送回凯宁宾馆（ACX大街666号）</div></div></li></ul></div></div>'+
+                    '<div class="list-block media-list"><ul><li class="item-content"><div class="item-inner">' +
+                    '<div class="item-title-row"><div class="item-title">潘俊冰</div></div>' +
+                    '<div class="item-subtitle">迷路了，求接送回凯宁宾馆（ACX大街666号）</div></div></li></ul></div></div>' +
                     '<div class="card-footer"><span>2015/01/15</span> <a href="/wechat/settings/bill_detail">' +
                     '查看更多信息</a></div></div>';
             }
             // 添加新条目
-            var $tab = $('#tab'+tab);
+            var $tab = $('#tab' + tab);
             $tab.find(".list-bill").append(html);
             lastIndex = $tab.find(".card").length;
             if (del()) {
@@ -289,21 +346,21 @@ $(function () {
         }
 
         //滚动事件
-        $(document).on("infinite",".infinite-scroll", function () {
+        $(document).on("infinite", ".infinite-scroll", function () {
             // 1s timeout
             var $this = $(this);
-            if($this.data("loading")) return;
-            if(del())return;
+            if ($this.data("loading")) return;
+            if (del())return;
             $this.data("loading", 1);
-            setTimeout(function() {
-                addItems(itemsPerLoad,tab);
+            setTimeout(function () {
+                addItems(itemsPerLoad, tab);
                 $this.data("loading", 0);
             }, 1000);
         });
 
         //初始化时给每个tab加载10条
-        addItems(10,"1");
-        addItems(10,"2");
+        addItems(10, "1");
+        addItems(10, "2");
     });
 
     //使用说明page

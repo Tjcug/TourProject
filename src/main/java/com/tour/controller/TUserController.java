@@ -111,9 +111,10 @@ public class TUserController extends BaseController{
         try {
             if(type.equals("register")){
                 //注册获取校验码
-                registerCheck.put(telephoneNumber,messageUtil.generateCheckNum());
+                //registerCheck.put(telephoneNumber,messageUtil.generateCheckNum());
+                registerCheck.put(telephoneNumber,"1234");
                 log.info("checkNum："+registerCheck.get(telephoneNumber));
-                messageUtil.sendMessage("及应","SMS_31795073","{'check':'"+registerCheck.get(telephoneNumber)+"'}",telephoneNumber);
+                //messageUtil.sendMessage("及应","SMS_31795073","{'check':'"+registerCheck.get(telephoneNumber)+"'}",telephoneNumber);
             }else if(type.equals("login")){
                 //登陆获取校验码
                 loginCheck.put(telephoneNumber,messageUtil.generateCheckNum());
@@ -209,5 +210,47 @@ public class TUserController extends BaseController{
             map.put("errorMsg","校验码验证失败，请重新验证");
         }
         return gson.toJson(map);
+    }
+
+
+    /**
+     * 注册账号通过手机校验码
+     * http://localhost:8080/tuser/registerUserByCheckNum?telephoneNumber=13072783289&checknum=4035
+     * @param telephoneNumber 手机号码
+     * @param checknum 校验码
+     * @return 返回json对象
+     */
+    @RequestMapping(value = "/registerUserByCheckNum",
+            produces = "application/json;charset=UTF-8")
+    @ResponseBody public String registerUserByCheckNum(@RequestParam("telephoneNumber") String telephoneNumber,
+                                                    @RequestParam("checknum") String checknum){
+        log.info(telephoneNumber+" "+checknum);
+        Map map=new HashMap<>();
+        if(userService.isLoginByUserTelehoneNumber(telephoneNumber)){
+            //
+            map.put("errorMsg","该手机号已注册");
+            return gson.toJson(map);
+        }
+        if(checknum.equals(registerCheck.get(telephoneNumber))){
+            //校验码成功
+            try {
+                TUser user=new TUser();
+                user.setWechatId(1);
+                user.setUserName("新用户默认名称");
+                user.setTelephone(telephoneNumber);
+                userService.save(user);
+                map.put("success",true);
+                registerCheck.remove(telephoneNumber);
+            }catch (Exception e) {
+                map.put("errorMsg", e.getMessage());
+                e.printStackTrace();
+            }
+
+        }else{
+            //校验码失败
+            map.put("errorMsg","校验码验证失败，请重新验证");
+        }
+        return gson.toJson(map);
+
     }
 }
