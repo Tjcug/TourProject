@@ -10,55 +10,75 @@ $(function () {
 
         var $getCheckNum = $('#getCheckNum');
         var countdown = 60;
+        //是否能获取验证码
+        var getCheckNumState = true;
 
         function settime() {
             if (countdown == 0) {
                 $getCheckNum.html("获取验证码");
                 countdown = 60;
+                getCheckNumState = true;
                 return;
             } else {
                 $getCheckNum.html("重新发送(" + countdown + ")");
                 countdown--;
+                getCheckNumState = false;
             }
-            setTimeout(function() {
+            setTimeout(function () {
                 settime();
-            },1000)
+            }, 1000)
         }
 
         $getCheckNum.on('click', function () {
-            //倒计时
-            settime();
+            if(!getCheckNumState)
+                return;
+            var telephoneNumber = $('#telephoneNumber').val();
+            if (telephoneNumber == "") {
+                $.toast("请输入正确的手机号！");
+                return;
+            }
             $.ajax({
-                    url: "http://localhost:8080/tuser/getCheckNum/"+$('#telephoneNumber').val()+"/register",
-                    type: "get",
-                    data: "json",
-                    error: function (data) {
-                        $.toast("请重新获取验证码");
+                url: "/tuser/getCheckNum/" + telephoneNumber + "/register",
+                type: "get",
+                data: "json",
+                success: function (data) {
+                    var result = eval(data);
+                    if (result.success == true){
+                        //倒计时
+                        settime();
                     }
+                    else {
+                        $.toast(result.errorMsg);
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert(XMLHttpRequest.status);
+                    alert(XMLHttpRequest.readyState);
+                    alert(textStatus);
                 }
-            );
+            });
         });
 
         //登录按钮
         $('#login').on('click', function () {
             $.ajax({
-                    url: "http://localhost:8080/tuser/registerUserByCheckNum?telephoneNumber=" +
-                    $('#telephoneNumber').val() + "&checknum=" + $('#checknum').val(),
-                    type: "get",
-                    data: "json",
+                    url: "/tuser/registerUserByCheckNum",
+                    type: "post",
+                    data: $('#form').serialize(),
+                    async:false,
                     success: function (data) {
                         var result = eval(data);
-                        if(result.success == true)
+                        if (result.success == true)
                             $.router.loadPage("/wechat/index");
                         else
-                            $.toast(alert(result,'errorMsg'));
+                            $.toast(result.errorMsg);
                     }
                 }
             )
         });
     });
 
-    //在主页的page（及应列表）
+//在主页的page（及应列表）
     $(document).on("pageInit", "#page-jy", function () {
         //是否正在加载
         var loading = false;
@@ -137,7 +157,7 @@ $(function () {
     });
 
 
-    //发送及应page
+//发送及应page
     $(document).on("pageInit", "#page-send-jy", function () {
         var $gallery = $("#gallery");
         var $galleryImg = $("#galleryImg");
@@ -249,7 +269,7 @@ $(function () {
         });
     });
 
-    //及应详细page
+//及应详细page
     $(document).on("pageInit", "#page-jy-detail", function () {
         //图片高度自适应
         var $img = $('.img');
@@ -266,14 +286,14 @@ $(function () {
         });
     });
 
-    //及应解答page
+//及应解答page
     $(document).on("pageInit", "#page-jy-reply", function () {
         //图片高度自适应
         var $img = $('.img');
         $img.css('height', $img.css('width'));
     });
 
-    //及应等待解答page
+//及应等待解答page
     $(document).on("pageInit", "#page-jy-wait", function () {
         //图片高度自适应
         var $img = $('.img');
@@ -281,7 +301,7 @@ $(function () {
     });
 
 
-    //我的账单page
+//我的账单page
     $(document).on("pageInit", "#page-bill", function (e, id, page) {
 
         // 每次加载添加多少条账单
@@ -363,21 +383,22 @@ $(function () {
         addItems(10, "2");
     });
 
-    //使用说明page
+//使用说明page
     $(document).on("pageInit", "#page-explain", function () {
     });
 
-    //选择语言page
+//选择语言page
     $(document).on("pageInit", "#page-language", function () {
     });
 
-    //分享我们page
+//分享我们page
     $(document).on("pageInit", "#page-share", function () {
     });
 
-    //关于我们page
+//关于我们page
     $(document).on("pageInit", "#page-about", function () {
     });
 
     $.init();
-});
+})
+;

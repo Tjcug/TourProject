@@ -110,11 +110,17 @@ public class TUserController extends BaseController{
 
         try {
             if(type.equals("register")){
+                if(userService.isLoginByUserTelehoneNumber(telephoneNumber)){
+                    //
+                    map.put("errorMsg","该手机号已注册");
+                    return gson.toJson(map);
+                }
+                //测试数据
+                //registerCheck.put(telephoneNumber,"1234");
                 //注册获取校验码
-                //registerCheck.put(telephoneNumber,messageUtil.generateCheckNum());
-                registerCheck.put(telephoneNumber,"1234");
+                registerCheck.put(telephoneNumber,messageUtil.generateCheckNum());
                 log.info("checkNum："+registerCheck.get(telephoneNumber));
-                //messageUtil.sendMessage("及应","SMS_31795073","{'check':'"+registerCheck.get(telephoneNumber)+"'}",telephoneNumber);
+                messageUtil.sendMessage("及应","SMS_31795073","{'check':'"+registerCheck.get(telephoneNumber)+"'}",telephoneNumber);
             }else if(type.equals("login")){
                 //登陆获取校验码
                 loginCheck.put(telephoneNumber,messageUtil.generateCheckNum());
@@ -236,7 +242,7 @@ public class TUserController extends BaseController{
             try {
                 TUser user=new TUser();
                 user.setWechatId(1);
-                user.setUserName("新用户默认名称");
+                user.setUserName("newUser");
                 user.setTelephone(telephoneNumber);
                 userService.save(user);
                 map.put("success",true);
