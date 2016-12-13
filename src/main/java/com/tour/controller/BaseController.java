@@ -47,9 +47,9 @@ public class BaseController {
     @Autowired
     protected TAdministratorService tAdministratorService;
     @Autowired
-    protected TJyQuestionsService tJyQuestionsService;
+    protected TJyQuestionsService jyQuestionsService;
     @Autowired
-    protected TJyQuestionsImageService tJyQuestionsImageService;
+    protected TJyQuestionsImageService jyQuestionsImageService;
 
 
     @Autowired

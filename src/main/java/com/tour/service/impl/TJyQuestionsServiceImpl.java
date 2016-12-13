@@ -3,6 +3,7 @@ package com.tour.service.impl;
 import com.tour.model.TJyquestions;
 import com.tour.service.TJyQuestionsService;
 import com.tour.util.JsonUtil;
+import org.hibernate.metamodel.relational.Size;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -55,25 +56,50 @@ public class TJyQuestionsServiceImpl extends BaseServiceImpl implements TJyQuest
 	}
 
 	/**
-	 *  获取从lastID后一个ID开始后面count个及应提问（按创建时间排序）
+	 * 获取从lastID后一个ID开始后面count个及应提问（按创建时间排序）
 	 * @param lastID 上一次获取的最后一个及应提问id（本次从lastID后一个开始）
 	 * @param count 获取的数量
 	 * @return 返回json对象
 	 */
 	@Override
-	public List<TJyquestions> queryCount(int lastID,int count) {
+	public List<TJyquestions> getCountJy(int lastID,int count) {
 		//查出所有未解决的及应按时间倒序排序
 		final List<TJyquestions> jyQuestionList = tJyquestionsDAO.findList("select * from t_jyquestions where state=0 order by create_time desc");
 		final List<TJyquestions> jyQuestionList2 = null;
 		//取出id为lastID的及应的后面count个及应
 		for (int i = 0; i < count; i++){
 			if(jyQuestionList.get(i).getId() == lastID) {
-				for (int j = 0;j<count;j++)
-					jyQuestionList2.add(jyQuestionList.get(i+1+j));
+				for (int j = 0;j<count;j++) {
+					if(i + 1 + j == jyQuestionList.size())
+						break;
+					jyQuestionList2.add(jyQuestionList.get(i + 1 + j));
+				}
 				break;
 			}
 		}
 		return jyQuestionList2;
+	}
+
+	/**
+	 * 获取指定用户的已解决的提问及应或者回答及应
+	 * @param userID 用户id
+	 * @param type 1为回答的及应，0为提问的及应
+	 * @return 返回json对象
+	 */
+	@Override
+	public List<TJyquestions> getUserJy(int userID,int type,int index,int count){
+		//查出所有未解决的及应按时间倒序排序
+		final List<TJyquestions> jyQuestionList = tJyquestionsDAO.findList("select * from t_jyquestions where state="+type+" and user_id="+userID+" order by create_time desc");
+		final List<TJyquestions> jyQuestionList2 = null;
+		//判断是否取了过多的数据
+		int size = jyQuestionList.size();
+		count = index+count<size?count:size-index;
+		//取出id为lastID的及应的后面count个及应
+		for (int i = 0; i < count; i++){
+			jyQuestionList2.add(jyQuestionList.get(index+1+i));
+		}
+		return jyQuestionList2;
+
 	}
 
 

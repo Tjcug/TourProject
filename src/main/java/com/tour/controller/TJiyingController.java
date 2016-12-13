@@ -2,16 +2,19 @@ package com.tour.controller;
 
 import com.tour.model.TJyquestions;
 import com.tour.model.TJyquestionsimage;
-import com.tour.service.impl.TJyQuestionsServiceImpl;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -38,7 +41,7 @@ public class TJiyingController extends BaseController {
     public String getJyQuestions(@RequestParam("lastID") int lastID,
                             @RequestParam("count") int count){
         Map map=new HashMap<>();
-        List<TJyquestions> jyQuestionList = tJyQuestionsService.queryCount(lastID,count);
+        List<TJyquestions> jyQuestionList = jyQuestionsService.getCountJy(lastID,count);
 
         if (jyQuestionList.size() != 0) {
             for (TJyquestions jyQuestion : jyQuestionList) {
@@ -52,7 +55,7 @@ public class TJiyingController extends BaseController {
                     map.put("place","纽约ABC大街123号");
                 }
                 //如果有图片
-                TJyquestionsimage jyquestionsimage = tJyQuestionsImageService.getByQuestionID((int) jyQuestion.getId());
+                TJyquestionsimage jyquestionsimage = jyQuestionsImageService.getByQuestionID((int) jyQuestion.getId());
                 if(jyquestionsimage != null)
                     map.put("imagePack", jyquestionsimage.getImagePack());
                 //基本信息
@@ -79,27 +82,27 @@ public class TJiyingController extends BaseController {
     @ResponseBody
     public String getJyQuestion(@RequestParam("id") int id){
         Map map=new HashMap<>();
-        TJyquestions jyquestions = tJyQuestionsService.get(id);
-        if(jyquestions != null){
+        TJyquestions jyQuestion = jyQuestionsService.get(id);
+        if(jyQuestion != null){
             //用户信息
-            map.put("userName",jyquestions.getTUser().getUserName());
-            map.put("headImage",jyquestions.getTUser().getPicture());
-            map.put("phone",jyquestions.getTUser().getTelephone());
-            map.put("praise",jyquestions.getTUser().getScore());
+            map.put("userName",jyQuestion.getTUser().getUserName());
+            map.put("headImage",jyQuestion.getTUser().getPicture());
+            map.put("phone",jyQuestion.getTUser().getTelephone());
+            map.put("praise",jyQuestion.getTUser().getScore());
             //如果有地理位置
-            if(jyquestions.getLatitude() != 0.0 && jyquestions.getLongitude() != 0.0){
+            if(jyQuestion.getLatitude() != 0.0 && jyQuestion.getLongitude() != 0.0){
                 //在这里把坐标转化为地点
                 //
                 map.put("place","纽约ABC大街123号");
             }
             //如果有图片
-            List<TJyquestionsimage> listJyquestionsimage = tJyQuestionsImageService.getAllByQuestionID((int) jyquestions.getId());
+            List<TJyquestionsimage> listJyquestionsimage = jyQuestionsImageService.getAllByQuestionID((int) jyQuestion.getId());
             if(listJyquestionsimage.size() != 0)
                 map.put("imagePack", listJyquestionsimage.toArray());
             //基本信息
-            map.put("creatTime", jyquestions.getCreateTime());
-            map.put("reward", jyquestions.getReward());
-            map.put("content", jyquestions.getContent());
+            map.put("creatTime", jyQuestion.getCreateTime());
+            map.put("reward", jyQuestion.getReward());
+            map.put("content", jyQuestion.getContent());
             map.put("return","success");
         }
         else
@@ -108,7 +111,7 @@ public class TJiyingController extends BaseController {
     }
 
     /**
-     * 发布及应问题
+     * 发布及应问题,图片地址储存为uploads/images/type/yyyyMMdd/HHmmss.后缀名
      * http://localhost:8080/tjiying/addJyQuestion?content="求帮点菜，两人份不吃辣，附上菜单"&images=xxxxx
      * @param content 提问内容
      * @param reward 赏金
@@ -120,28 +123,54 @@ public class TJiyingController extends BaseController {
     @RequestMapping(value = "/addJyQuestion",
             produces = "application/json;charset=UTF-8")
     @ResponseBody
-    public String addJyQuestion(@RequestParam("content") int content,
+    public boolean addJyQuestion(@RequestParam("content") String content,
                                 @RequestParam("reward") int reward,
-                                @RequestParam("latitude") String latitude,
-                                @RequestParam("longitude") String longitude,
+                                @RequestParam("latitude") double latitude,
+                                @RequestParam("longitude") double longitude,
                                 @RequestParam("images")MultipartFile images[]){
-        Map map=new HashMap<>();
 
+        TJyquestions jyquestions = new TJyquestions();
+        //从cookie中获取用户信息
+        jyquestions.setTUser(userService.get(31));
+        //基本信息
+        jyquestions.setContent(content);
+        jyquestions.setReward(reward);
+        jyquestions.setCreateTime(new Date());
+        jyquestions.setState(false);
+        jyquestions.setLatitude(0.0);
+        jyquestions.setLongitude(0.0);
+        //如果上传了位置
+        if(latitude != 0.0 && longitude != 0.0){
+            jyquestions.setLatitude(latitude);
+            jyquestions.setLongitude(longitude);
+        }
+        jyQuestionsService.save(jyquestions);
         //如果上传了图片
         if(images.length != 0){
-
+            String data1 = (new SimpleDateFormat("yyyyMMdd")).format(new Date());
+            String data2 = (new SimpleDateFormat("HHmmss")).format(new Date());
+            String imagePack = "/uploads/images/1/"+data1+'/'+data2;
+            for (int i = 0;i<images.length;i++) {
+                //储存图片
+                //获取图片名称的后缀
+                String imageName = images[i].getName();
+                String imageFix = imageName.substring(imageName.lastIndexOf('.')+1);
+                try {
+                    images[i].transferTo(new File(imagePack+"-"+i+imageFix));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                //数据储存图片的记录
+                TJyquestionsimage jyquestionsimage = new TJyquestionsimage();
+                jyquestionsimage.setTJyquestions(jyquestions);
+                jyquestionsimage.setImagePack(imagePack+"-"+i);
+                jyquestionsimage.setCreateTime(new Date());
+                jyQuestionsImageService.save(jyquestionsimage);
+            }
+            return true;
         }
-
-        //如果上传了位置
-        if(latitude != null && longitude != null ){
-
-        }
-
-
-        return null;
+        return false;
     }
-
-
 
     /**
      * 回答指定id的及应问题
@@ -172,13 +201,14 @@ public class TJiyingController extends BaseController {
                                     @RequestParam("type") int type,
                                     @RequestParam("content") String content){
         Map map=new HashMap<>();
-        return null;
+        return gson.toJson(map);
     }
 
     /**
      * 获取已解决的及应
      * http://localhost:8080/tjiying/getSettlementJyQuestions
-     * @param type 0为自己解决别人的及应，1为自己发布的及应（已解决的）
+     * @param type   1为自己解决别人的及应，0为自己发布的及应（已解决的）
+     * @param index 需要跳过的及应数
      * @param count 获取的数量
      * @return 返回json对象
      */
@@ -186,10 +216,36 @@ public class TJiyingController extends BaseController {
             produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String getSettlementJyQuestions(@RequestParam("type") int type,
-                                 @RequestParam("count") int count){
+                                           @RequestParam("index") int index,
+                                           @RequestParam("count") int count){
         Map map=new HashMap<>();
-        return null;
+        //获取当前用户的id
+        int userID = 31;
+        List<TJyquestions> jyQuestionList = jyQuestionsService.getUserJy(userID,type,index,count);
+        if(jyQuestionList.size() != 0) {
+            for (TJyquestions jyQuestion:jyQuestionList) {
+                //用户信息
+                map.put("userName",jyQuestion.getTUser().getUserName());
+                map.put("headImage",jyQuestion.getTUser().getPicture());
+                //如果有地理位置
+                if(jyQuestion.getLatitude() != 0.0 && jyQuestion.getLongitude() != 0.0){
+                    //在这里把坐标转化为地点
+                    //
+                    map.put("place","纽约ABC大街123号");
+                }
+                //如果有图片
+                List<TJyquestionsimage> listJyquestionsimage = jyQuestionsImageService.getAllByQuestionID((int) jyQuestion.getId());
+                if(listJyquestionsimage.size() != 0)
+                    map.put("imagePack", listJyquestionsimage.toArray());
+                //基本信息
+                map.put("creatTime", jyQuestion.getCreateTime());
+                map.put("reward", jyQuestion.getReward());
+                map.put("content", jyQuestion.getContent());
+            }
+            map.put("return","success");
+        }
+        else
+            map.put("return","error");
+        return gson.toJson(map);
     }
-
-
 }
