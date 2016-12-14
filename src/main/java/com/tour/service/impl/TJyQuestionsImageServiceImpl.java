@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Transactional(propagation=Propagation.REQUIRED)
@@ -59,21 +60,18 @@ public class TJyQuestionsImageServiceImpl extends BaseServiceImpl implements TJy
 	/**
 	 * 根据提问及应的id获取照片(第一张)
 	 * @param id 提问及应的id
+	 * @param type 0为取出第一张，1为取出所有照片
 	 * @return 返回json对象
 	 */
 	@Override
-	public TJyquestionsimage getByQuestionID(int id){
-		return (TJyquestionsimage) tJyquestionsimageDAO.findByProperty("question_id",id).get(0);
+	public List<TJyquestionsimage> getByQuestionID(long id,int type){
+		List<TJyquestionsimage> listJyquestionsimages = tJyquestionsimageDAO.findByProperty("TJyquestions",tUserDAO.getById(id));
+		if(type == 0 && listJyquestionsimages.size()>0) {
+			List<TJyquestionsimage> jyquestionsimages = new ArrayList<>();
+			jyquestionsimages.add(listJyquestionsimages.get(0));
+			return jyquestionsimages;
+		}
+		else
+			return listJyquestionsimages;
 	}
-
-	/**
-	 * 根据提问及应的id获取照片(所有照片)
-	 * @param id 提问及应的id
-	 * @return 返回json对象
-	 */
-	@Override
-	public List<TJyquestionsimage> getAllByQuestionID(int id){
-		return tJyquestionsimageDAO.findByProperty("question_id",id);
-	}
-
 }

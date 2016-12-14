@@ -1,6 +1,8 @@
 package com.tour.service.impl;
 
+import com.tour.dao.TJyquestionsDAO;
 import com.tour.model.TJyquestions;
+import com.tour.model.TUser;
 import com.tour.service.TJyQuestionsService;
 import com.tour.util.JsonUtil;
 import org.hibernate.metamodel.relational.Size;
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Transactional(propagation=Propagation.REQUIRED)
@@ -54,6 +57,16 @@ public class TJyQuestionsServiceImpl extends BaseServiceImpl implements TJyQuest
 		// TODO 自动生成的方法存根
 		return tJyquestionsDAO.findAll();
 	}
+	/**
+	 * 获取从lastID后一个ID开始后面count个及应提问（按创建时间排序）
+	 */
+	@Override
+	public int getCount() {
+		//String hql = "select count(j) from TJyquestions j";
+		return tJyquestionsDAO.findAll().size();
+	}
+
+
 
 	/**
 	 * 获取从lastID后一个ID开始后面count个及应提问（按创建时间排序）
@@ -63,18 +76,26 @@ public class TJyQuestionsServiceImpl extends BaseServiceImpl implements TJyQuest
 	 */
 	@Override
 	public List<TJyquestions> getCountJy(int lastID,int count) {
+		String hql = "select j from TJyquestions j inner join fetch j.TUser u where j.state=0 order by j.createTime desc";
 		//查出所有未解决的及应按时间倒序排序
-		final List<TJyquestions> jyQuestionList = tJyquestionsDAO.findList("select * from t_jyquestions where state=0 order by create_time desc");
-		final List<TJyquestions> jyQuestionList2 = null;
-		//取出id为lastID的及应的后面count个及应
-		for (int i = 0; i < count; i++){
-			if(jyQuestionList.get(i).getId() == lastID) {
-				for (int j = 0;j<count;j++) {
-					if(i + 1 + j == jyQuestionList.size())
-						break;
-					jyQuestionList2.add(jyQuestionList.get(i + 1 + j));
+		List<TJyquestions> jyQuestionList = tJyquestionsDAO.findList(hql);
+		List<TJyquestions> jyQuestionList2 = new ArrayList<>();
+		//获取最新时
+		if(lastID == 0) {
+			for (int i = 0; i < count; i++)
+				jyQuestionList2.add(jyQuestionList.get(i));
+		}
+		else {
+			//取出id为lastID的及应的后面count个及应
+			for (int i = 0; i < jyQuestionList.size(); i++) {
+				if (jyQuestionList.get(i).getId() == lastID) {
+					for (int j = 0; j < count; j++) {
+						if (i + 1 + j == jyQuestionList.size())
+							break;
+						jyQuestionList2.add(jyQuestionList.get(i + 1 + j));
+					}
+					break;
 				}
-				break;
 			}
 		}
 		return jyQuestionList2;

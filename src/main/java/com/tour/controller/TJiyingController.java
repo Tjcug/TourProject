@@ -3,6 +3,7 @@ package com.tour.controller;
 import com.tour.model.TJyquestions;
 import com.tour.model.TJyquestionsimage;
 
+import com.tour.model.TUser;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,6 +29,19 @@ import java.util.Map;
 @Transactional(propagation= Propagation.REQUIRED)
 @RequestMapping("/tjiying")
 public class TJiyingController extends BaseController {
+
+    /**
+     * 获取及应的数量
+     * http://localhost:8080/tjiying/getJyQuestionsCount
+     * @return 返回json对象
+     */
+    @RequestMapping(value = "/getJyQuestionsCount",
+            produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public int getJyQuestionsCount() {
+        return  jyQuestionsService.getCount();
+    }
+
     /**
      * 获取从lastID后一个ID开始后面count个及应提问（按创建时间排序）
      * http://localhost:8080/tjiying/getJyQuestions?lastID=3&count=3    (如果id按时间排序，那么应该获取到id为4,5,6的提问及应)
@@ -42,26 +56,32 @@ public class TJiyingController extends BaseController {
                             @RequestParam("count") int count){
         Map map=new HashMap<>();
         List<TJyquestions> jyQuestionList = jyQuestionsService.getCountJy(lastID,count);
-
-        if (jyQuestionList.size() != 0) {
-            for (TJyquestions jyQuestion : jyQuestionList) {
+        int size = jyQuestionList.size();
+        Map rows[]= new Map[size];
+        if (size != 0) {
+            for (int i = 0;i<size;i++) {
+                TJyquestions jyQuestion = jyQuestionList.get(i);
+                rows[i] = new HashMap<>();
                 //用户信息
-                map.put("userName",jyQuestion.getTUser().getUserName());
-                map.put("headImage",jyQuestion.getTUser().getPicture());
+                rows[i].put("userName",jyQuestion.getTUser().getUserName());
+                String headImage = jyQuestion.getTUser().getPicture() == null?null:jyQuestion.getTUser().getPicture();
+                rows[i].put("headImage",headImage);
                 //如果有地理位置
                 if(jyQuestion.getLatitude() != 0.0 && jyQuestion.getLongitude() != 0.0){
                     //在这里把坐标转化为地点
                     //
-                    map.put("place","纽约ABC大街123号");
                 }
+                rows[i].put("place","纽约ABC大街123号");
                 //如果有图片
-                TJyquestionsimage jyquestionsimage = jyQuestionsImageService.getByQuestionID((int) jyQuestion.getId());
-                if(jyquestionsimage != null)
-                    map.put("imagePack", jyquestionsimage.getImagePack());
+                List<TJyquestionsimage> listJyquestionsimage = jyQuestionsImageService.getByQuestionID( jyQuestion.getId(),0);
+                if(listJyquestionsimage.size() != 0)
+                    rows[i].put("imagePack", listJyquestionsimage.get(0).getImagePack());
                 //基本信息
-                map.put("creatTime", jyQuestion.getCreateTime());
-                map.put("reward", jyQuestion.getReward());
-                map.put("content", jyQuestion.getContent());
+                rows[i].put("id", jyQuestion.getId());
+                rows[i].put("creatTime", new SimpleDateFormat("MM月dd日 HH:mm").format(jyQuestion.getCreateTime()));
+                rows[i].put("reward", jyQuestion.getReward());
+                rows[i].put("content", jyQuestion.getContent());
+                map.put("data",rows);
             }
             map.put("return","success");
         }
@@ -96,7 +116,7 @@ public class TJiyingController extends BaseController {
                 map.put("place","纽约ABC大街123号");
             }
             //如果有图片
-            List<TJyquestionsimage> listJyquestionsimage = jyQuestionsImageService.getAllByQuestionID((int) jyQuestion.getId());
+            List<TJyquestionsimage> listJyquestionsimage = jyQuestionsImageService.getByQuestionID((int) jyQuestion.getId(),1);
             if(listJyquestionsimage.size() != 0)
                 map.put("imagePack", listJyquestionsimage.toArray());
             //基本信息
@@ -234,9 +254,9 @@ public class TJiyingController extends BaseController {
                     map.put("place","纽约ABC大街123号");
                 }
                 //如果有图片
-                List<TJyquestionsimage> listJyquestionsimage = jyQuestionsImageService.getAllByQuestionID((int) jyQuestion.getId());
+                List<TJyquestionsimage> listJyquestionsimage = jyQuestionsImageService.getByQuestionID( jyQuestion.getId(),0);
                 if(listJyquestionsimage.size() != 0)
-                    map.put("imagePack", listJyquestionsimage.toArray());
+                    map.put("imagePack", listJyquestionsimage.get(0).getImagePack());
                 //基本信息
                 map.put("creatTime", jyQuestion.getCreateTime());
                 map.put("reward", jyQuestion.getReward());

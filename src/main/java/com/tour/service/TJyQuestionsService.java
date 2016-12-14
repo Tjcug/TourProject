@@ -5,6 +5,10 @@ import com.tour.model.TJyquestions;
 import java.util.List;
 
 public interface TJyQuestionsService extends BaseService<TJyquestions>{
+
+    //获取提问及应数量
+    public int getCount();
+
     //获取从lastID后一个ID开始后面count个及应提问（按创建时间排序）
     public List<TJyquestions> getCountJy(int lastID,int count);
 

@@ -80,17 +80,33 @@ $(function () {
 
 //在主页的page（及应列表）
     $(document).on("pageInit", "#page-jy", function () {
+
+        var maxItems = 5;
+        $.ajax({
+            url: "/tjiying/getJyQuestionsCount",
+            data: JSON,
+            async: false,
+            success: function (data) {
+                // 最多可加载的及应数量
+                maxItems = data;
+                if(data == 0)
+                    $.toast("加载失败!");
+            },
+            error:function (data) {
+                $.toast("加载失败!");
+            }
+        });
+
         //是否正在加载
         var loading = false;
         // 每次加载添加多少条及应
-        var itemsPerLoad = 2;
+        var itemsPerLoad = 3;
         //第一次加载的数量
         var firstItems = 5;
-        // 最多可加载的及应数量
-        var maxItems = 20;
         //上次加载的数量
         var lastIndex = $(".card").length;
         // 判断是否停止加载事件
+        var lastID = 0;
         function del() {
             if (lastIndex >= maxItems) {
                 // 加载完毕，则注销无限加载事件，以防不必要的加载
@@ -108,25 +124,53 @@ $(function () {
         //添加新的及应,type为true则覆盖原数据，false则在原数据添加新数据
         function addItems(tempLastIndex, itemsPerLoad, type) {
             var html = '';
-            for (var i = tempLastIndex + 1; i <= tempLastIndex + itemsPerLoad; i++) {
-                //在这里插入数据(悬赏金额、内容、时间等等),最好用ajax更新，更新一次取出少量数据
-                html += '<div class="card facebook-card"><div class="card-header no-border"><div class="facebook-avatar">' +
-                    '<img class="img-head" src="/images/' + i + '.jpg" width="34" height="34"></div><div class="facebook-name">食长' +
-                    '</div><div class="facebook-date">纽约ABC大街111号 1月15日 15:47</div></div><div class="card-content img-padded">' +
-                    '<img src="/images/' + i + '.jpg" width="100%"></div><div class="card-content"><div class="card-content-inner">' +
-                    '<p class="color-gray">悬赏20$</p><p>迷路了，求接送回凯宁宾馆（ACX大街666号）' +
-                    '</p></div></div><div class="card-footer no-border"><a href="/wechat/jy_reply" class="link confirm-ok">' +
-                    '解答</a> <a href="/wechat/jy_detail" class="link">更多</a></div></div>';
-            }
-            // 添加新条目
-            if (type)
-                $(".jy-list").html(html);
-            else
-                $(".jy-list").append(html);
-            lastIndex = $(".card").length;
-            if (del()) {
-                $.toast("加载完毕！");
-            }
+            $.ajax({
+                url: "/tjiying/getJyQuestions?lastID="+lastID+"&count="+itemsPerLoad,
+                type: "POST",
+                data: JSON,
+                async: false,
+                success: function (data) {
+                    var result = eval(data);
+                    if (result.return == "success") {
+                        var rows = result.data;
+                        for (var i = 0; i < rows.length; i++) {
+                            //在这里插入数据(悬赏金额、内容、时间等等),用ajax更新，更新一次取出少量数据
+                            html += '<div class="card facebook-card"><div class="card-header no-border"><div class="facebook-avatar">';
+                            //判断用户是否有头像，没有则使用默认头像
+                            if(rows[i].headImage != null)
+                                html += '<img class="img-head" src="' + rows[i].headImage + '" width="34" height="34">';
+                            else
+                                html += '<img class="img-head" src="/images/1.jpg" width="34" height="34">';
+                            html += '</div><div class="facebook-name">' + rows[i].userName + '</div><div class="facebook-date">' +
+                                rows[i].place + " " + rows[i].creatTime + '</div></div><div class="card-content img-padded">';
+                            //判断及应是否有图片
+                            if(rows[i].imagePack != null)
+                                html += '<img src="' + rows[i].imagePack + '" width="100%"></div>';
+                            else
+                                html += '<img src="/images/1.jpg" width="100%"></div>';
+                            html += '<div class="card-content"><div class="card-content-inner">' +
+                                '<p class="color-gray">悬赏'+ rows[i].reward+ '</p><p>' +  rows[i].content +
+                                '</p></div></div><div class="card-footer no-border"><a href="/wechat/jy_reply" class="link confirm-ok">' +
+                                '解答</a> <a href="/wechat/jy_detail" class="link">更多</a></div></div>';
+                        }
+                        //标记最后一个及应的id
+                        lastID = rows[rows.length-1].id;
+                        // 添加新条目
+                        if (type)
+                            $(".jy-list").html(html);
+                        else
+                            $(".jy-list").append(html);
+                        lastIndex = $(".card").length;
+                        if (del()) {
+                            $.toast("加载完毕！");
+                        }
+                    }
+                    else {
+                        del();
+                        $.toast("加载完毕！");
+                    }
+                }
+            });
         }
 
         //向下滚动时调用
@@ -142,15 +186,16 @@ $(function () {
             setTimeout(function () {
                 addItems(lastIndex, itemsPerLoad, false);
                 loading = false;
-            }, 1000);
+            }, 500);
         });
 
         //下拉刷新时调用
         $(document).on("refresh", ".pull-to-refresh-content", function () {
             setTimeout(function () {
+                lastID = 0;
                 addItems(0, firstItems, true);
                 $.pullToRefreshDone(".pull-to-refresh-content");
-            }, 1000);
+            }, 500);
         });
         //预先加载5条
         addItems(0, firstItems, true);
