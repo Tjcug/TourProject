@@ -1,9 +1,7 @@
 package com.tour.service.impl;
 
-import com.tour.model.TJyquestions;
 import com.tour.model.TJyquestionsimage;
 import com.tour.service.TJyQuestionsImageService;
-import com.tour.service.TJyQuestionsService;
 import com.tour.util.JsonUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -65,7 +63,7 @@ public class TJyQuestionsImageServiceImpl extends BaseServiceImpl implements TJy
 	 */
 	@Override
 	public List<TJyquestionsimage> getByQuestionID(long id,int type){
-		List<TJyquestionsimage> listJyquestionsimages = tJyquestionsimageDAO.findByProperty("TJyquestions",tUserDAO.getById(id));
+		List<TJyquestionsimage> listJyquestionsimages = tJyquestionsimageDAO.findByProperty("TJyquestions",tJyquestionsDAO.getById(id));
 		if(type == 0 && listJyquestionsimages.size()>0) {
 			List<TJyquestionsimage> jyquestionsimages = new ArrayList<>();
 			jyquestionsimages.add(listJyquestionsimages.get(0));
