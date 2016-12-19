@@ -65,7 +65,7 @@ public class TJyQuestionsImageServiceImpl extends BaseServiceImpl implements TJy
 	 */
 	@Override
 	public List<TJyquestionsimage> getByQuestionID(long id,int type){
-		List<TJyquestionsimage> listJyquestionsimages = tJyquestionsimageDAO.findByProperty("TJyquestions",tUserDAO.getById(id));
+		List<TJyquestionsimage> listJyquestionsimages = tJyquestionsimageDAO.findByProperty("TJyquestions",tJyquestionsDAO.getById(id));
 		if(type == 0 && listJyquestionsimages.size()>0) {
 			List<TJyquestionsimage> jyquestionsimages = new ArrayList<>();
 			jyquestionsimages.add(listJyquestionsimages.get(0));
