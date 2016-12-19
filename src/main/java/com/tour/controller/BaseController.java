@@ -46,6 +46,11 @@ public class BaseController {
     protected TUserService userService;
     @Autowired
     protected TAdministratorService tAdministratorService;
+    @Autowired
+    protected TJyQuestionsService jyQuestionsService;
+    @Autowired
+    protected TJyQuestionsImageService jyQuestionsImageService;
+
 
     @Autowired
     protected GeomUtil geomUtil;
