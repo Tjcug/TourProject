@@ -14,4 +14,7 @@ public interface TJyQuestionsService extends BaseService<TJyquestions>{
 
     //获取指定用户的已解决的提问及应或者回答及应
     public List<TJyquestions> getUserJy(int userID,int type,int index,int count);
+
+    //该问题成功被解决
+    public void successSolveProblem(int questionID);
 }

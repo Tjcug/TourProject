@@ -1,11 +1,8 @@
 package com.tour.service.impl;
 
-import com.tour.dao.TJyquestionsDAO;
 import com.tour.model.TJyquestions;
-import com.tour.model.TUser;
 import com.tour.service.TJyQuestionsService;
 import com.tour.util.JsonUtil;
-import org.hibernate.metamodel.relational.Size;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -123,7 +120,12 @@ public class TJyQuestionsServiceImpl extends BaseServiceImpl implements TJyQuest
 
 	}
 
-
+	@Override
+	public void successSolveProblem(int questionID) {
+		TJyquestions tJyquestions = tJyquestionsDAO.findById(Long.valueOf(questionID));
+		tJyquestions.setState(true);
+		tJyquestionsDAO.update(tJyquestions);
+	}
 
 
 }

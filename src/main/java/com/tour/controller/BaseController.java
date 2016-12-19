@@ -50,7 +50,10 @@ public class BaseController {
     protected TJyQuestionsService jyQuestionsService;
     @Autowired
     protected TJyQuestionsImageService jyQuestionsImageService;
-
+    @Autowired
+    protected TJyAnswersService jyAnswersService;
+    @Autowired
+    protected TJyAnswersContentService jyAnswersContentService;
 
     @Autowired
     protected GeomUtil geomUtil;
@@ -60,6 +63,8 @@ public class BaseController {
     protected FreeMarkerUtil freeMarkerUtil;
     @Autowired
     protected GsonUtil gsonUtil;
+    @Autowired
+    protected ImageUtil imageUtil;
     @Autowired
     protected MessageUtil messageUtil;
 }

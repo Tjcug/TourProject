@@ -1,9 +1,9 @@
 package com.tour.controller;
 
+import com.tour.model.TJyanswers;
+import com.tour.model.TJyanswerscontent;
 import com.tour.model.TJyquestions;
 import com.tour.model.TJyquestionsimage;
-
-import com.tour.model.TUser;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -147,7 +145,7 @@ public class TJiyingController extends BaseController {
                                 @RequestParam("reward") int reward,
                                 @RequestParam("latitude") double latitude,
                                 @RequestParam("longitude") double longitude,
-                                @RequestParam("images")MultipartFile images[]){
+                                @RequestParam(value = "images" , required = false)MultipartFile images[]){
 
         TJyquestions jyquestions = new TJyquestions();
         //从cookie中获取用户信息
@@ -170,47 +168,21 @@ public class TJiyingController extends BaseController {
             String data1 = (new SimpleDateFormat("yyyyMMdd")).format(new Date());
             String data2 = (new SimpleDateFormat("HHmmss")).format(new Date());
             String imagePack = "/uploads/images/1/"+data1+'/'+data2;
-            for (int i = 0;i<images.length;i++) {
-                //储存图片
-                //获取图片名称的后缀
-                String imageName = images[i].getName();
-                String imageFix = imageName.substring(imageName.lastIndexOf('.')+1);
-                try {
-                    images[i].transferTo(new File(imagePack+"-"+i+imageFix));
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                //数据储存图片的记录
-                TJyquestionsimage jyquestionsimage = new TJyquestionsimage();
-                jyquestionsimage.setTJyquestions(jyquestions);
-                jyquestionsimage.setImagePack(imagePack+"-"+i);
-                jyquestionsimage.setCreateTime(new Date());
-                jyQuestionsImageService.save(jyquestionsimage);
-            }
+            imageUtil.uploadMultipartFilesJyquestions(images,imagePack,jyquestions);
+
             return true;
         }
         return false;
     }
 
-    /**
-     * 回答指定id的及应问题
-     * http://localhost:8080/tjiying/answerJyQuestion?id=1
-     * @param id 回答及应提问的id
-     * @return 返回json对象
-     */
-    @RequestMapping(value = "/answerJyQuestion",
-            produces = "application/json;charset=UTF-8")
-    @ResponseBody
-    public boolean answerJyQuestion(@RequestParam("id") int id){
-
-        return false;
-    }
 
     /**
      * 添加回答内容（或追问内容）到指定id的及应回答
-     * http://localhost:8080/tjiying/addJyAnserContent?id=1&type=1&content="再多点两份菜，又多来了一小伙伴"
+     * http://localhost:8080/tjiying/addJyAnserContent?id=1&type=false&content="再多点两份菜，又多来了一小伙伴"&userid=31
+     * http://localhost:8080/tjiying/addJyAnserContent?id=1&type=false&content=又多来了两个小伙伴&userid=58
      * @param id 及应回答的id
-     * @param type 0为回答，1为追问
+     * @param userid 回答问题的用户id 可能是回答问题者 也可能是问问题的人
+     * @param type 0(false)为回答，1(true)为追问
      * @param content 回答内容（或追问内容）
      * @return 返回json对象
      */
@@ -218,9 +190,116 @@ public class TJiyingController extends BaseController {
             produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String addJyAnserContent(@RequestParam("id") int id,
-                                    @RequestParam("type") int type,
-                                    @RequestParam("content") String content){
+                                    @RequestParam("userid") int userid,
+                                    @RequestParam("type") boolean type,
+                                    @RequestParam("content") String content,
+                                    @RequestParam(value = "images" , required = false)MultipartFile images[]){
         Map map=new HashMap<>();
+
+        try {
+            TJyanswers tJyanswers = new TJyanswers();
+            //判断userid和questionid组成的键值对 数据库中是否有记录 反正添加重复记录
+            boolean bool = jyAnswersService.isAnswersByUseridAndQuestionsid(userid, id);
+            if(bool!=true) {
+                //如果没有记录 就先放入一条新的纪录
+                //存储回答问题的记录
+                tJyanswers.setTUser(userService.get(userid));
+                tJyanswers.setFromuserscore(0);
+                tJyanswers.setTouserscore(0);
+                tJyanswers.setCreateTime(new Date());
+                tJyanswers.setState(false);
+                tJyanswers.setTJyquestions(jyQuestionsService.get(id));
+                jyAnswersService.save(tJyanswers);
+            }
+            //存储回答问题内容的记录
+            TJyanswerscontent jyanswerscontent=new TJyanswerscontent();
+            jyanswerscontent.setCreateTime(new Date());
+            jyanswerscontent.setContent(content);
+            jyanswerscontent.setTUser(userService.get(userid));
+            jyanswerscontent.setType(type);
+
+            if(bool!=true)
+                jyanswerscontent.setTJyanswers(tJyanswers);
+            else
+                jyanswerscontent.setTJyanswers(jyAnswersService.findAnswerByUseridAndQuestionid(userid,id));
+
+            jyAnswersContentService.save(jyanswerscontent);
+
+            //如果上传了图片
+            if(images.length != 0){
+                String data1 = (new SimpleDateFormat("yyyyMMdd")).format(new Date());
+                String data2 = (new SimpleDateFormat("HHmmss")).format(new Date());
+                String imagePack = "/uploads/images/2/"+data1+'/'+data2;
+                imageUtil.uploadMultipartFilesJyAnswerContent(images,imagePack,jyanswerscontent);
+            }
+            map.put("success",true);
+        } catch (Exception e) {
+            map.put("errorMsg",e.getMessage());
+            e.printStackTrace();
+        }
+        return gson.toJson(map);
+    }
+
+    /**
+     *  即应 给相互两位用户来评分
+     * http://localhost:8080/tjiying/markScoreToUser?answerid=3&userid=31&score=3.8
+     * http://localhost:8080/tjiying/markScoreToUser?answerid=3&userid=58&score=4.6
+     * @param answerid 回答问题id
+     * @param userid 被评分的用户id
+     * @return 返回json对象
+     */
+    @RequestMapping(value = "/markScoreToUser",
+            produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public String markScoreToUser(@RequestParam("answerid") int answerid,
+                                  @RequestParam("userid") int userid,
+                                  @RequestParam("score") double score) {
+        Map map=new HashMap<>();
+
+        try {
+            TJyanswers tJyanswers = jyAnswersService.get(answerid);
+            TJyquestions tJyquestions=tJyanswers.getTJyquestions();
+            long questionsUserid= tJyquestions.getTUser().getId();
+            if(questionsUserid==userid){
+                //如果是说明是提出问题的人给回答这个answer的用户评分
+                tJyanswers.setFromuserscore(score);
+            }else{
+                //如果不是说明是回答这个answer的用户给提出问题的人评分
+                tJyanswers.setTouserscore(score);
+            }
+            jyAnswersService.update(tJyanswers);
+            map.put("success",true);
+        } catch (Exception e) {
+            map.put("errorMsg",e.getMessage());
+            e.printStackTrace();
+        }
+
+        return gson.toJson(map);
+    }
+
+    /**
+     *  用户觉得成功解决问题
+     *  http://localhost:8080/tjiying/successSolveProblem?answerid=3&questionid=1
+     * @param answerid 回答问题的id
+     * @param questionid 问题的id
+     * @return 返回json对象
+     */
+    @RequestMapping(value = "/successSolveProblem",
+            produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public String successSolveProblem(@RequestParam("answerid") int answerid,
+                                      @RequestParam("questionid") int questionid){
+        Map map=new HashMap<>();
+
+        try {
+            jyAnswersService.successSolveProblem(answerid);
+            jyQuestionsService.successSolveProblem(questionid);
+            map.put("success",true);
+        } catch (Exception e) {
+            map.put("errorMsg",e.getMessage());
+            e.printStackTrace();
+        }
+
         return gson.toJson(map);
     }
 

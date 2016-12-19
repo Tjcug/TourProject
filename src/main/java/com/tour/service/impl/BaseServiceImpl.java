@@ -31,5 +31,13 @@ public class BaseServiceImpl {
 
 	@Resource
 	protected TJyquestionsimageDAO tJyquestionsimageDAO;
-	
+
+	@Resource
+	protected TJyanswersDAO tJyanswersDAO;
+
+	@Resource
+	protected TJyanswerscontentDAO tJyanswerscontentDAO;
+
+	@Resource
+	protected TJyanswerscontentimageDAO tJyanswerscontentimageDAO;
 }
