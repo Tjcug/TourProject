@@ -92,4 +92,17 @@ public class TUserServiceImpl extends BaseServiceImpl implements TUserService{
         else
             return false;
     }
+
+	/**
+	 * 测试登录
+	 * @param telephone
+	 * @return
+	 */
+	@Override
+	public TUser loginTest(String telephone) {
+		final List userList = tUserDAO.findByProperty("telephone", telephone);
+		if(userList.size()!=0)
+			return (TUser) userList.get(0);
+		return null;
+	}
 }

@@ -29,6 +29,7 @@
             <div class="preloader"></div>
         </div>
     </div>
+    <a id="add-jy" href="/wechat/send_jy"></a>
 </div>
 <!-- popup, panel 等放在这里 -->
 <#include "common/panel.ftl">

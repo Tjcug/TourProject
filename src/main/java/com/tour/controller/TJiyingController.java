@@ -200,7 +200,7 @@ public class TJiyingController extends BaseController {
             TJyanswers tJyanswers = new TJyanswers();
             //判断userid和questionid组成的键值对 数据库中是否有记录 反正添加重复记录
             boolean bool = jyAnswersService.isAnswersByUseridAndQuestionsid(userid, id);
-            if(bool!=true) {
+            if(!bool) {
                 //如果没有记录 就先放入一条新的纪录
                 //存储回答问题的记录
                 tJyanswers.setTUser(userService.get(userid));
@@ -218,7 +218,7 @@ public class TJiyingController extends BaseController {
             jyanswerscontent.setTUser(userService.get(userid));
             jyanswerscontent.setType(type);
 
-            if(bool!=true)
+            if(!bool)
                 jyanswerscontent.setTJyanswers(tJyanswers);
             else
                 jyanswerscontent.setTJyanswers(jyAnswersService.findAnswerByUseridAndQuestionid(userid,id));

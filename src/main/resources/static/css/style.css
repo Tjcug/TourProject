@@ -43,3 +43,12 @@
     color: #2B2342;
     font-family: "Open Sans", Helvetica, Arial, sans-serif;
 }
+
+#add-jy{
+    background-image: url("/images/add.png");
+    position: absolute;
+    bottom: 6px;
+    left: auto;
+    height: 48px;
+    width: 48px;
+}

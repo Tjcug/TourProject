@@ -9,6 +9,5 @@
 <#assign tour="${BasePath}">
 <#--light7样式-->
 <link rel="stylesheet" href="${tour}/css/light7.min.css">
-
-
+<link rel="stylesheet" href="${tour}/css/style.css"/>
 <title>及应</title>

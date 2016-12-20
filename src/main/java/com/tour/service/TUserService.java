@@ -9,4 +9,6 @@ public interface TUserService extends BaseService<TUser>{
     public boolean isLoginByUserName(String username);
 
     public boolean isLoginByUserTelehoneNumber(String telephpneNumber);
+
+    public TUser loginTest(String username);
 }

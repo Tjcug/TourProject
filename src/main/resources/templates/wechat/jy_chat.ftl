@@ -7,7 +7,6 @@
 
 <body>
 <div class="page" id="page-jy-chat">
-    <link rel="stylesheet" href="/css/style.css"/>
     <header class="bar bar-nav">
         <a class="button button-link button-nav pull-left back">
             <span class="icon icon-left"></span>返回

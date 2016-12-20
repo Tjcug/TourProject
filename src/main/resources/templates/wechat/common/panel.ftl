@@ -5,8 +5,8 @@
     <div class="content">
         <a class="close-panel" href="/wechat/settings/user">
             <div class="content-block">
-                <img alt="头像" src="/images/head.jpg">
-                <p>潘俊冰</p>
+                <img id="avatar" alt="头像" src="/images/head.jpg">
+                <p id="userName">用户名</p>
             </div>
         </a>
         <div class="list-block">
@@ -60,4 +60,8 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+
+
+</script>
 

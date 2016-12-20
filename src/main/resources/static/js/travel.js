@@ -5,6 +5,26 @@
 $(function () {
     "use strict";
 
+    //测试登录使用
+    $(document).on("pageInit", "#page-login-test", function () {
+        //登录按钮
+        $('#login').on('click', function () {
+            $.ajax({
+                    url: "/tuser/loginTest",
+                    type: "post",
+                    data: $('#form').serialize(),
+                    async:false,
+                    success: function (data) {
+                        if (data)
+                            $.router.loadPage("/wechat/index");
+                        else
+                            $.toast("error");
+                    }
+                }
+            )
+        });
+    });
+
     //注册页的page
     $(document).on("pageInit", "#page-register", function () {
 
@@ -80,6 +100,30 @@ $(function () {
 
 //在主页的page（及应列表）
     $(document).on("pageInit", "#page-jy", function () {
+
+        $.ajax({
+            url: "/tuser/getUser",
+            data: JSON,
+            async: false,
+            success: function (data) {
+                var result = eval(data);
+                if(result.return){
+                    $("#userName").html(result.userName);
+                    if(result.avatar != null )
+                        $("#avatar").attr("src",result.avatar);
+                }
+                else
+                    $.toast("获取用户信息失败");
+
+            },
+            error:function (data) {
+                $.toast("获取用户信息失败!");
+            }
+        });
+
+
+        var $add = $('#add-jy');
+        $add.css("left",$("#page-jy").width()/2-$add.width/2);
 
         var maxItems = 5;
         $.ajax({

@@ -1,6 +1,9 @@
 package com.tour.controller;
 
+import com.google.gson.Gson;
 import com.tour.model.TUser;
+import org.omg.CORBA.Object;
+import org.omg.CORBA.Request;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -9,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -258,5 +263,47 @@ public class TUserController extends BaseController{
         }
         return gson.toJson(map);
 
+    }
+
+    /**
+     * 测试登录
+     * http://localhost:8080/tuser/loginTest?telephoneNumber=13072783289
+     * @param telephoneNumber 手机号码
+     * @return 返回json对象
+     */
+    @RequestMapping(value = "/loginTest",
+            produces = "application/json;charset=UTF-8")
+    @ResponseBody public boolean loginTest(@RequestParam("telephoneNumber") String telephoneNumber,HttpServletRequest request){
+
+        HttpSession session = request.getSession();
+        Map map=new HashMap<>();
+        TUser user = userService.loginTest(telephoneNumber);
+        if(user != null) {
+            session.setAttribute("userID",user.getId());
+            return true;
+        }
+            return false;
+    }
+
+    /**
+     * 从session获取用户信息
+     * http://localhost:8080/tuser/getUser
+     * @return 返回json对象
+     */
+    @RequestMapping(value = "/getUser",
+            produces = "application/json;charset=UTF-8")
+    @ResponseBody public String loginTest(HttpServletRequest request){
+        Map map=new HashMap<>();
+        HttpSession session = request.getSession();
+        java.lang.Object userID = session.getAttribute("userID");
+        if(userID != null) {
+            TUser user = userService.get(Integer.parseInt(userID.toString()));
+            map.put("userName", user.getUserName());
+            map.put("avatar", user.getPicture());
+            map.put("return",true);
+        }
+        else
+            map.put("return",false);
+        return gson.toJson(map);
     }
 }
