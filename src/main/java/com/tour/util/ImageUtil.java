@@ -78,7 +78,7 @@ public class ImageUtil {
         for (int i = 0;i<images.length;i++) {
             //储存图片
             //获取图片名称的后缀
-            String imageName = images[i].getName();
+            String imageName = images[i].getOriginalFilename();
             String imageFix = imageName.substring(imageName.lastIndexOf('.')+1);
             try {
                 //图片储存
