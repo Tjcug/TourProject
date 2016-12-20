@@ -165,10 +165,8 @@ public class TJiyingController extends BaseController {
         jyQuestionsService.save(jyquestions);
         //如果上传了图片
         if(images.length != 0){
-            String data1 = (new SimpleDateFormat("yyyyMMdd")).format(new Date());
-            String data2 = (new SimpleDateFormat("HHmmss")).format(new Date());
-            String imagePack = "/uploads/images/1/"+data1+'/'+data2;
-            imageUtil.uploadMultipartFilesJyquestions(images,imagePack,jyquestions);
+
+            imageUtil.uploadMultipartFilesJyquestions(images,jyquestions);
 
             return true;
         }
