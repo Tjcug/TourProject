@@ -13,7 +13,7 @@ $(function () {
                     url: "/tuser/loginTest",
                     type: "post",
                     data: $('#form').serialize(),
-                    async:false,
+                    async: false,
                     success: function (data) {
                         if (data)
                             $.router.loadPage("/wechat/index");
@@ -50,7 +50,7 @@ $(function () {
         }
 
         $getCheckNum.on('click', function () {
-            if(!getCheckNumState)
+            if (!getCheckNumState)
                 return;
             var telephoneNumber = $('#telephoneNumber').val();
             if (telephoneNumber == "") {
@@ -63,7 +63,7 @@ $(function () {
                 data: "json",
                 success: function (data) {
                     var result = eval(data);
-                    if (result.success == true){
+                    if (result.success == true) {
                         //倒计时
                         settime();
                     }
@@ -85,7 +85,7 @@ $(function () {
                     url: "/tuser/registerUserByCheckNum",
                     type: "post",
                     data: $('#form').serialize(),
-                    async:false,
+                    async: false,
                     success: function (data) {
                         var result = eval(data);
                         if (result.success == true)
@@ -107,23 +107,24 @@ $(function () {
             async: false,
             success: function (data) {
                 var result = eval(data);
-                if(result.return){
+                if (result.return) {
                     $("#userName").html(result.userName);
-                    if(result.avatar != null )
-                        $("#avatar").attr("src",result.avatar);
+                    if (result.avatar != null)
+                        $("#avatar").attr("src", result.avatar);
                 }
                 else
                     $.toast("获取用户信息失败");
 
             },
-            error:function (data) {
+            error: function (data) {
                 $.toast("获取用户信息失败!");
             }
         });
 
-
+        // 使添加及应图标居中
         var $add = $('#add-jy');
-        $add.css("left",$("#page-jy").width()/2-$add.width/2);
+        var width = $("#page-jy").width() / 2 - $add.width() / 2;
+        $add.css("left", width);
 
         var maxItems = 5;
         $.ajax({
@@ -133,10 +134,10 @@ $(function () {
             success: function (data) {
                 // 最多可加载的及应数量
                 maxItems = data;
-                if(data == 0)
+                if (data == 0)
                     $.toast("加载失败!");
             },
-            error:function (data) {
+            error: function (data) {
                 $.toast("加载失败!");
             }
         });
@@ -151,6 +152,7 @@ $(function () {
         var lastIndex = $(".card").length;
         // 判断是否停止加载事件
         var lastID = 0;
+
         function del() {
             if (lastIndex >= maxItems) {
                 // 加载完毕，则注销无限加载事件，以防不必要的加载
@@ -169,7 +171,7 @@ $(function () {
         function addItems(tempLastIndex, itemsPerLoad, type) {
             var html = '';
             $.ajax({
-                url: "/tjiying/getJyQuestions?lastID="+lastID+"&count="+itemsPerLoad,
+                url: "/tjiying/getJyQuestions?lastID=" + lastID + "&count=" + itemsPerLoad,
                 type: "POST",
                 data: JSON,
                 async: false,
@@ -181,24 +183,24 @@ $(function () {
                             //在这里插入数据(悬赏金额、内容、时间等等),用ajax更新，更新一次取出少量数据
                             html += '<div class="card facebook-card"><div class="card-header no-border"><div class="facebook-avatar">';
                             //判断用户是否有头像，没有则使用默认头像
-                            if(rows[i].headImage != null)
+                            if (rows[i].headImage != null)
                                 html += '<img class="img-head" src="' + rows[i].headImage + '" width="34" height="34">';
                             else
                                 html += '<img class="img-head" src="/images/1.jpg" width="34" height="34">';
                             html += '</div><div class="facebook-name">' + rows[i].userName + '</div><div class="facebook-date">' +
                                 rows[i].place + " " + rows[i].creatTime + '</div></div><div class="card-content img-padded">';
                             //判断及应是否有图片
-                            if(rows[i].imagePack != null)
+                            if (rows[i].imagePack != null)
                                 html += '<img src="' + rows[i].imagePack + '" width="100%"></div>';
                             else
                                 html += '<img src="/images/1.jpg" width="100%"></div>';
                             html += '<div class="card-content"><div class="card-content-inner">' +
-                                '<p class="color-gray">悬赏'+ rows[i].reward+ '</p><p>' +  rows[i].content +
+                                '<p class="color-gray">悬赏' + rows[i].reward + '</p><p>' + rows[i].content +
                                 '</p></div></div><div class="card-footer no-border"><a href="/wechat/jy_reply" class="link confirm-ok">' +
                                 '解答</a> <a href="/wechat/jy_detail" class="link">更多</a></div></div>';
                         }
                         //标记最后一个及应的id
-                        lastID = rows[rows.length-1].id;
+                        lastID = rows[rows.length - 1].id;
                         // 添加新条目
                         if (type)
                             $(".jy-list").html(html);
@@ -322,38 +324,32 @@ $(function () {
                 for (var i = 0, j = filesArray.length; i < j; ++i) {
                     fd.append("images", filesArray[i]);
                 }
+                fd.append("latitude", 0.0);
+                fd.append("longitude", 0.0);
                 //由于FileList是只读属性无法修改，所以需要把自定义的filesArray传到后台，不能用form提交，需要用ajax
-                /*                $.ajax({
-                 url: "InteractHuiUpload",
-                 type: "POST",
-                 data: fd,
-                 processData: false, // 告诉jQuery不要去处理发送的数据
-                 contentType: false, // 告诉jQuery不要去设置Content-Type请求头
-                 async: false,
-                 success: function (data) {
-                 if (data) {
-                 $.toast("发布成功");
-                 setTimeout(function () {
-                 history.back();
-                 $.hidePreloader();
-                 }, 500);
-                 }
-                 else {
-                 $.toast("上传失败");
-                 }
-                 }
-                 else {
-                 $("#loadingToastText").html("请登录后再提交");
-                 setTimeout(function () {
-                 $("#loadingToast").fadeOut(100);
-                 }, 1000);
-                 }
-                 },
-                 error: function () {
-                 $.toast("上传失败");
-                 }
-
-                 });*/
+                $.ajax({
+                    url: "/tjiying/addJyQuestion",
+                    type: "POST",
+                    data: fd,
+                    processData: false, // 告诉jQuery不要去处理发送的数据
+                    contentType: false, // 告诉jQuery不要去设置Content-Type请求头
+                    async: false,
+                    success: function (data) {
+                        if (data) {
+                            $.toast("发布成功");
+                            setTimeout(function () {
+                                history.back();
+                                $.hidePreloader();
+                            }, 500);
+                        }
+                        else {
+                            $.toast("上传失败");
+                        }
+                    },
+                    error: function () {
+                        $.toast("上传失败");
+                    }
+                });
             });
         });
     });

@@ -46,7 +46,7 @@
                         <div class="item-content">
                             <div class="item-inner">
                                 <div class="item-input">
-                                    <input type="text" name="money" placeholder="请输入悬赏金额($)">
+                                    <input type="text" name="reward" placeholder="请输入悬赏金额($)">
                                 </div>
                             </div>
                         </div>
