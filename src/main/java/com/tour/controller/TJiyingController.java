@@ -225,10 +225,7 @@ public class TJiyingController extends BaseController {
 
             //如果上传了图片
             if(images.length != 0){
-                String data1 = (new SimpleDateFormat("yyyyMMdd")).format(new Date());
-                String data2 = (new SimpleDateFormat("HHmmss")).format(new Date());
-                String imagePack = "/uploads/images/2/"+data1+'/'+data2;
-                imageUtil.uploadMultipartFilesJyAnswerContent(images,imagePack,jyanswerscontent);
+                imageUtil.uploadMultipartFilesJyAnswerContent(images,jyanswerscontent);
             }
             map.put("success",true);
         } catch (Exception e) {
