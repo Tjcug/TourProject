@@ -234,11 +234,11 @@ public class TUserController extends BaseController{
     @RequestMapping(value = "/registerUserByCheckNum",
             produces = "application/json;charset=UTF-8")
     @ResponseBody public String registerUserByCheckNum(@RequestParam("telephoneNumber") String telephoneNumber,
-                                                    @RequestParam("checknum") String checknum){
+                                                    @RequestParam("checknum") String checknum,HttpServletRequest request){
         log.info(telephoneNumber+" "+checknum);
         Map map=new HashMap<>();
+        HttpSession session = request.getSession();
         if(userService.isLoginByUserTelehoneNumber(telephoneNumber)){
-            //
             map.put("errorMsg","该手机号已注册");
             return gson.toJson(map);
         }
@@ -252,6 +252,7 @@ public class TUserController extends BaseController{
                 userService.save(user);
                 map.put("success",true);
                 registerCheck.remove(telephoneNumber);
+                session.setAttribute("userID",user.getId());
             }catch (Exception e) {
                 map.put("errorMsg", e.getMessage());
                 e.printStackTrace();
