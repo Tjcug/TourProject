@@ -17,4 +17,10 @@ public interface TJyQuestionsService extends BaseService<TJyquestions>{
 
     //该问题成功被解决
     public void successSolveProblem(int questionID);
+
+    //该问题正在被解决
+    public void nowSolveProblem(int questionID);
+
+    //该问题没有被解决
+    public void failSolveProblem(int questionID);
 }

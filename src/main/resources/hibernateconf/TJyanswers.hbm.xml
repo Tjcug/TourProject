@@ -20,7 +20,7 @@
                 <comment>回答的问题id</comment>
             </column>
         </many-to-one>
-        <property name="state" type="boolean">
+        <property name="state" type="byte">
             <column name="state">
                 <comment>解决/未解决</comment>
             </column>

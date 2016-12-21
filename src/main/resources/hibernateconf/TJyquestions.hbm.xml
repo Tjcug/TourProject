@@ -20,7 +20,7 @@
                 <comment>内容</comment>
             </column>
         </property>
-        <property name="state" type="boolean">
+        <property name="state" type="byte">
             <column name="state" not-null="true">
                 <comment>0为未解决，1为解决</comment>
             </column>

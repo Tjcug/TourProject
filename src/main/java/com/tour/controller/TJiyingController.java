@@ -154,7 +154,8 @@ public class TJiyingController extends BaseController {
         jyquestions.setContent(content);
         jyquestions.setReward(reward);
         jyquestions.setCreateTime(new Date());
-        jyquestions.setState(false);
+        byte state=0;
+        jyquestions.setState(state);
         jyquestions.setLatitude(0.0);
         jyquestions.setLongitude(0.0);
         //如果上传了位置
@@ -205,7 +206,8 @@ public class TJiyingController extends BaseController {
                 tJyanswers.setFromuserscore(0);
                 tJyanswers.setTouserscore(0);
                 tJyanswers.setCreateTime(new Date());
-                tJyanswers.setState(false);
+                byte state=0;
+                tJyanswers.setState(state);
                 tJyanswers.setTJyquestions(jyQuestionsService.get(id));
                 jyAnswersService.save(tJyanswers);
             }
@@ -297,6 +299,58 @@ public class TJiyingController extends BaseController {
         return gson.toJson(map);
     }
 
+
+    /**
+     *  正在解决问题
+     *  http://localhost:8080/tjiying/nowSolveProblem?answerid=3&questionid=1
+     * @param answerid 回答问题的id
+     * @param questionid 问题的id
+     * @return 返回json对象
+     */
+    @RequestMapping(value = "/nowSolveProblem",
+            produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public String nowSolveProblem(@RequestParam("answerid") int answerid,
+                                      @RequestParam("questionid") int questionid){
+        Map map=new HashMap<>();
+
+        try {
+            jyAnswersService.nowSolveProblem(answerid);
+            jyQuestionsService.nowSolveProblem(questionid);
+            map.put("success",true);
+        } catch (Exception e) {
+            map.put("errorMsg",e.getMessage());
+            e.printStackTrace();
+        }
+
+        return gson.toJson(map);
+    }
+
+    /**
+     *  用户觉得没有成功解决问题
+     *  http://localhost:8080/tjiying/failSolveProblem?answerid=3&questionid=1
+     * @param answerid 回答问题的id
+     * @param questionid 问题的id
+     * @return 返回json对象
+     */
+    @RequestMapping(value = "/failSolveProblem",
+            produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public String failSolveProblem(@RequestParam("answerid") int answerid,
+                                      @RequestParam("questionid") int questionid){
+        Map map=new HashMap<>();
+
+        try {
+            jyAnswersService.failSolveProblem(answerid);
+            jyQuestionsService.failSolveProblem(questionid);
+            map.put("success",true);
+        } catch (Exception e) {
+            map.put("errorMsg",e.getMessage());
+            e.printStackTrace();
+        }
+
+        return gson.toJson(map);
+    }
     /**
      * 获取已解决的及应
      * http://localhost:8080/tjiying/getSettlementJyQuestions

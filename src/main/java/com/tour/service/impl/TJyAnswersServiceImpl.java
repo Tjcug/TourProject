@@ -42,7 +42,24 @@ public class TJyAnswersServiceImpl extends BaseServiceImpl implements TJyAnswers
     @Override
     public void successSolveProblem(int answerid) {
         TJyanswers tJyanswers = tJyanswersDAO.findById(Long.valueOf(answerid));
-        tJyanswers.setState(true);
+        byte state = 2;//表示成功解决问题
+        tJyanswers.setState(state);
+        tJyanswersDAO.update(tJyanswers);
+    }
+
+    @Override
+    public void nowSolveProblem(int answerid) {
+        TJyanswers tJyanswers = tJyanswersDAO.findById(Long.valueOf(answerid));
+        byte state = 1;//表示正在解决问题
+        tJyanswers.setState(state);
+        tJyanswersDAO.update(tJyanswers);
+    }
+
+    @Override
+    public void failSolveProblem(int answerid) {
+        TJyanswers tJyanswers = tJyanswersDAO.findById(Long.valueOf(answerid));
+        byte state = 0;//表示失败解决问题
+        tJyanswers.setState(state);
         tJyanswersDAO.update(tJyanswers);
     }
 

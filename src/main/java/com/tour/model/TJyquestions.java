@@ -15,7 +15,7 @@ public class TJyquestions implements java.io.Serializable {
 	private long id;
 	private TUser TUser;
 	private String content;
-	private boolean state;
+	private byte state;
 	private double reward;
 	private Date createTime;
 	private double longitude;
@@ -31,7 +31,7 @@ public class TJyquestions implements java.io.Serializable {
 	}
 
 	/** minimal constructor */
-	public TJyquestions(TUser TUser, String content, boolean state,
+	public TJyquestions(TUser TUser, String content, byte state,
 			double reward, Date createTime) {
 		this.TUser = TUser;
 		this.content = content;
@@ -41,7 +41,7 @@ public class TJyquestions implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public TJyquestions(TUser TUser, String content, boolean state,
+	public TJyquestions(TUser TUser, String content, byte state,
 			double reward, Date createTime, double longitude, double latitude,
 			Set TJyanswerses, Set TJyquestionsimages, Set TOrders) {
 		this.TUser = TUser;
@@ -82,11 +82,11 @@ public class TJyquestions implements java.io.Serializable {
 		this.content = content;
 	}
 
-	public boolean getState() {
+	public byte getState() {
 		return this.state;
 	}
 
-	public void setState(boolean state) {
+	public void setState(byte state) {
 		this.state = state;
 	}
 

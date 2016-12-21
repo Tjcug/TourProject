@@ -15,4 +15,10 @@ public interface TJyAnswersService extends BaseService<TJyanswers> {
 
     //该答案成功解决了问题
     public void successSolveProblem(int answerid);
+
+    //该答案正在解决问题
+    public void nowSolveProblem(int answerid);
+
+    //该答案没有解决问题
+    public void failSolveProblem(int answerid);
 }

@@ -123,7 +123,24 @@ public class TJyQuestionsServiceImpl extends BaseServiceImpl implements TJyQuest
 	@Override
 	public void successSolveProblem(int questionID) {
 		TJyquestions tJyquestions = tJyquestionsDAO.findById(Long.valueOf(questionID));
-		tJyquestions.setState(true);
+		byte state=2;//表示成功解决问题
+		tJyquestions.setState(state);
+		tJyquestionsDAO.update(tJyquestions);
+	}
+
+	@Override
+	public void nowSolveProblem(int questionID) {
+		TJyquestions tJyquestions = tJyquestionsDAO.findById(Long.valueOf(questionID));
+		byte state=1;//表示正在解决问题
+		tJyquestions.setState(state);
+		tJyquestionsDAO.update(tJyquestions);
+	}
+
+	@Override
+	public void failSolveProblem(int questionID) {
+		TJyquestions tJyquestions = tJyquestionsDAO.findById(Long.valueOf(questionID));
+		byte state=0;//表示没有解决问题
+		tJyquestions.setState(state);
 		tJyquestionsDAO.update(tJyquestions);
 	}
 

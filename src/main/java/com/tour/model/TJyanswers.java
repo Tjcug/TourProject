@@ -15,7 +15,7 @@ public class TJyanswers implements java.io.Serializable {
 	private long id;
 	private TUser TUser;
 	private TJyquestions TJyquestions;
-	private boolean state;
+	private byte state;
 	private double fromuserscore;
 	private double touserscore;
 	private Date createTime;
@@ -34,7 +34,7 @@ public class TJyanswers implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public TJyanswers(TUser TUser, TJyquestions TJyquestions, boolean state,
+	public TJyanswers(TUser TUser, TJyquestions TJyquestions, byte state,
 			double fromuserscore, double touserscore, Date createTime,
 			Set TJyanswerscontents) {
 		this.TUser = TUser;
@@ -72,11 +72,11 @@ public class TJyanswers implements java.io.Serializable {
 		this.TJyquestions = TJyquestions;
 	}
 
-	public boolean getState() {
+	public byte getState() {
 		return this.state;
 	}
 
-	public void setState(boolean state) {
+	public void setState(byte state) {
 		this.state = state;
 	}
 
