@@ -43,7 +43,7 @@ public class ImageUtil {
         String data1 = (new SimpleDateFormat("yyyyMMdd")).format(new Date());
         String data2 = (new SimpleDateFormat("HHmmss")).format(new Date());
         String imagePack =filePath+"/1/"+data1+'/'+data2;
-        String ipdressImagepack=ipaddress+"/1/"+data1+'/'+data2;
+        String ipdressImagepack=ipaddress+"/uploads/images"+"/1/"+data1+'/'+data2;
         for (int i = 0;i<images.length;i++) {
             //获取图片名称的后缀
             String imageName = images[i].getOriginalFilename();
@@ -75,7 +75,7 @@ public class ImageUtil {
         String data1 = (new SimpleDateFormat("yyyyMMdd")).format(new Date());
         String data2 = (new SimpleDateFormat("HHmmss")).format(new Date());
         String imagePack =filePath+"/2/"+data1+'/'+data2;
-        String ipdressImagepack=ipaddress+"/2/"+data1+'/'+data2;
+        String ipdressImagepack=ipaddress+"/uploads/images"+"/2/"+data1+'/'+data2;
         for (int i = 0;i<images.length;i++) {
             //储存图片
             //获取图片名称的后缀
