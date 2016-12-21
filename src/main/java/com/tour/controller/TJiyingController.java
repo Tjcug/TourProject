@@ -164,7 +164,7 @@ public class TJiyingController extends BaseController {
         }
         jyQuestionsService.save(jyquestions);
         //如果上传了图片
-        if(images.length != 0){
+        if(images != null){
 
             imageUtil.uploadMultipartFilesJyquestions(images,jyquestions);
 
@@ -220,7 +220,6 @@ public class TJiyingController extends BaseController {
                 jyanswerscontent.setTJyanswers(tJyanswers);
             else
                 jyanswerscontent.setTJyanswers(jyAnswersService.findAnswerByUseridAndQuestionid(userid,id));
-
             jyAnswersContentService.save(jyanswerscontent);
 
             //如果上传了图片
