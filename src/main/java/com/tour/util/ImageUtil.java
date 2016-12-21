@@ -50,13 +50,13 @@ public class ImageUtil {
             String imageFix = imageName.substring(imageName.lastIndexOf('.')+1);
             try {
                 //图片存储
-                String fileName=imagePack+"/"+i+"."+imageFix;
+                String fileName=ipdressImagepack+"/"+i+"."+imageFix;
                 uploadFile(images[i],imagePack,i+"."+imageFix);
 
                 //数据储存图片的记录
                 TJyquestionsimage jyquestionsimage = new TJyquestionsimage();
                 jyquestionsimage.setTJyquestions(jyquestions);
-                jyquestionsimage.setImagePack(ipdressImagepack);
+                jyquestionsimage.setImagePack(fileName);
                 jyquestionsimage.setCreateTime(new Date());
                 jyQuestionsImageService.save(jyquestionsimage);
             } catch (IOException e) {
@@ -83,12 +83,12 @@ public class ImageUtil {
             String imageFix = imageName.substring(imageName.lastIndexOf('.')+1);
             try {
                 //图片存储
-                String fileName=imagePack+"/"+i+"."+imageFix;
+                String fileName=ipdressImagepack+"/"+i+"."+imageFix;
                 uploadFile(images[i],imagePack,i+"."+imageFix);
 
                 //数据储存图片的记录
                 TJyanswerscontentimage tJyanswerscontentimage=new TJyanswerscontentimage();
-                tJyanswerscontentimage.setImagePack(ipdressImagepack);
+                tJyanswerscontentimage.setImagePack(fileName);
                 tJyanswerscontentimage.setCreateTime(new Date());
                 tJyanswerscontentimage.setTJyanswerscontent(jyanswerscontent);
                 tJyAnswersImageService.save(tJyanswerscontentimage);
