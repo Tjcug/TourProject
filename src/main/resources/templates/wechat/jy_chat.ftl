@@ -28,7 +28,10 @@
             </div>
         </div>
     </div>
-    <input type="text" class="chat__input" placeholder="Your message">
+    <div type="text" class="chat__input">
+        <input id="text" type="text">
+        <img id="photo" src="/images/photo.png" alt="照片">
+    </div>
 
 </div>
 

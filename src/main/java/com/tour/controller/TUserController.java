@@ -252,7 +252,7 @@ public class TUserController extends BaseController{
                 userService.save(user);
                 map.put("success",true);
                 registerCheck.remove(telephoneNumber);
-                session.setAttribute("userID",user.getId());
+                session.setAttribute("user",user);
             }catch (Exception e) {
                 map.put("errorMsg", e.getMessage());
                 e.printStackTrace();
@@ -280,7 +280,7 @@ public class TUserController extends BaseController{
         Map map=new HashMap<>();
         TUser user = userService.loginTest(telephoneNumber);
         if(user != null) {
-            session.setAttribute("userID",user.getId());
+            session.setAttribute("user",user);
             return true;
         }
             return false;
@@ -296,9 +296,8 @@ public class TUserController extends BaseController{
     @ResponseBody public String loginTest(HttpServletRequest request){
         Map map=new HashMap<>();
         HttpSession session = request.getSession();
-        java.lang.Object userID = session.getAttribute("userID");
-        if(userID != null) {
-            TUser user = userService.get(Integer.parseInt(userID.toString()));
+        TUser user = (TUser) session.getAttribute("user");
+        if(user != null) {
             map.put("userName", user.getUserName());
             map.put("avatar", user.getPicture());
             map.put("return",true);
