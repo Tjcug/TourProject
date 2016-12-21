@@ -157,10 +157,10 @@ public class TJiyingController extends BaseController {
         byte state=0;
         jyquestions.setState(state);
         jyquestions.setLatitude(0.0);
-        jyquestions.setLongitude(0.0);
-        //如果上传了位置
-        if(latitude != 0.0 && longitude != 0.0){
-            jyquestions.setLatitude(latitude);
+            jyquestions.setLongitude(0.0);
+            //如果上传了位置
+            if(latitude != 0.0 && longitude != 0.0){
+                jyquestions.setLatitude(latitude);
             jyquestions.setLongitude(longitude);
         }
         jyQuestionsService.save(jyquestions);
@@ -174,6 +174,34 @@ public class TJiyingController extends BaseController {
         return true;
     }
 
+    /**
+     *  http://localhost:8080/tjiying/addJyAnswer?id=1&userid=58
+     * 添加即应Answer表让回答问题用户和问问题用户建立联系
+     * @param id    问题的id
+     * @param userid 回答问题用户的id
+     * @return 返回json对象
+     */
+    @RequestMapping(value = "/addJyAnswer",
+            produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public String addJyAnswer(@RequestParam("id") int id,
+                              @RequestParam("userid") int userid){
+        Map map=new HashMap<>();
+
+        try {
+            jyAnswersService.addJyAnswerByQuestionsidAndUserId(id,userid);
+
+            //更新问题表改变问题状态
+            jyQuestionsService.nowSolveProblem(id);
+
+            map.put("success",true);
+        } catch (Exception e) {
+            map.put("errorMsg",e.getMessage());
+            e.printStackTrace();
+        }
+
+        return gson.toJson(map);
+    }
 
     /**
      * 添加回答内容（或追问内容）到指定id的及应回答
@@ -202,14 +230,7 @@ public class TJiyingController extends BaseController {
             if(!bool) {
                 //如果没有记录 就先放入一条新的纪录
                 //存储回答问题的记录
-                tJyanswers.setTUser(userService.get(userid));
-                tJyanswers.setFromuserscore(0);
-                tJyanswers.setTouserscore(0);
-                tJyanswers.setCreateTime(new Date());
-                byte state=0;
-                tJyanswers.setState(state);
-                tJyanswers.setTJyquestions(jyQuestionsService.get(id));
-                jyAnswersService.save(tJyanswers);
+                jyAnswersService.addJyAnswerByQuestionsidAndUserId(id,userid);
             }
             //存储回答问题内容的记录
             TJyanswerscontent jyanswerscontent=new TJyanswerscontent();

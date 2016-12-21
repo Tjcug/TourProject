@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -37,6 +38,20 @@ public class TJyAnswersServiceImpl extends BaseServiceImpl implements TJyAnswers
         return tJyanswerses.get(0);
         else
             return null;
+    }
+
+    @Override
+    public void addJyAnswerByQuestionsidAndUserId(int questionsid, int userid) {
+        TJyanswers tJyanswers = new TJyanswers();
+        //存储回答问题的记录
+        tJyanswers.setTUser(tUserDAO.findById(Long.valueOf(userid)));
+        tJyanswers.setFromuserscore(0);
+        tJyanswers.setTouserscore(0);
+        tJyanswers.setCreateTime(new Date());
+        byte state=1;//正在解决问题
+        tJyanswers.setState(state);
+        tJyanswers.setTJyquestions(tJyquestionsDAO.findById(Long.valueOf(questionsid)));
+        tJyanswersDAO.save(tJyanswers);
     }
 
     @Override
