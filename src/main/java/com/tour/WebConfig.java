@@ -1,6 +1,7 @@
 package com.tour;
 
 import com.tour.interceptor.AdminSecurityInterceptor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.embedded.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -20,6 +21,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @EnableWebMvc
 public class WebConfig extends WebMvcConfigurerAdapter {
 
+    @Value("#{prop.uploadFile}")
+    private String imagePath;
+
     /**
      * 注册静态资源
      * @param registry
@@ -32,6 +36,13 @@ public class WebConfig extends WebMvcConfigurerAdapter {
                 .addResourceLocations("classpath:/static/js/");
         registry.addResourceHandler("/images/**")
                 .addResourceLocations("classpath:/static/images/");
+        //windows环境下配置
+        registry.addResourceHandler("/uploads/images/**")
+                .addResourceLocations("file:///"+imagePath+"/");
+        //linux环境下配置
+        //注意widnows环境下最后必须要/
+//        registry.addResourceHandler("/uploads/images/**")
+//                .addResourceLocations("file:///var/spring/uploaded_files");
     }
 
     /**

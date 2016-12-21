@@ -25,6 +25,9 @@ public class ImageUtil {
     @Value("#{prop.uploadFile}")
     private String filePath;
 
+    @Value("#{prop.ipaddress}")
+    private String ipaddress;
+
     @Autowired
     protected TJyQuestionsImageService jyQuestionsImageService;
 
@@ -40,23 +43,20 @@ public class ImageUtil {
         String data1 = (new SimpleDateFormat("yyyyMMdd")).format(new Date());
         String data2 = (new SimpleDateFormat("HHmmss")).format(new Date());
         String imagePack =filePath+"/1/"+data1+'/'+data2;
+        String ipdressImagepack=ipaddress+"/1/"+data1+'/'+data2;
         for (int i = 0;i<images.length;i++) {
             //获取图片名称的后缀
             String imageName = images[i].getOriginalFilename();
             String imageFix = imageName.substring(imageName.lastIndexOf('.')+1);
             try {
-                //图片储存
-                File file= new File(imagePack);
-                //如果目录不存在就创建目录
-                if (!file.exists())
-                    file.mkdirs();
+                //图片存储
                 String fileName=imagePack+"/"+i+"."+imageFix;
-                images[i].transferTo(new File(fileName));
-                //File dir = new File(fileDir);
+                uploadFile(images[i],imagePack,i+"."+imageFix);
+
                 //数据储存图片的记录
                 TJyquestionsimage jyquestionsimage = new TJyquestionsimage();
                 jyquestionsimage.setTJyquestions(jyquestions);
-                jyquestionsimage.setImagePack(fileName);
+                jyquestionsimage.setImagePack(ipdressImagepack);
                 jyquestionsimage.setCreateTime(new Date());
                 jyQuestionsImageService.save(jyquestionsimage);
             } catch (IOException e) {
@@ -75,23 +75,20 @@ public class ImageUtil {
         String data1 = (new SimpleDateFormat("yyyyMMdd")).format(new Date());
         String data2 = (new SimpleDateFormat("HHmmss")).format(new Date());
         String imagePack =filePath+"/2/"+data1+'/'+data2;
+        String ipdressImagepack=ipaddress+"/2/"+data1+'/'+data2;
         for (int i = 0;i<images.length;i++) {
             //储存图片
             //获取图片名称的后缀
             String imageName = images[i].getOriginalFilename();
             String imageFix = imageName.substring(imageName.lastIndexOf('.')+1);
             try {
-                //图片储存
-                File file= new File(imagePack);
-                //如果目录不存在就创建目录
-                if (!file.exists())
-                    file.mkdirs();
+                //图片存储
                 String fileName=imagePack+"/"+i+"."+imageFix;
-                images[i].transferTo(new File(fileName));
+                uploadFile(images[i],imagePack,i+"."+imageFix);
 
                 //数据储存图片的记录
                 TJyanswerscontentimage tJyanswerscontentimage=new TJyanswerscontentimage();
-                tJyanswerscontentimage.setImagePack(fileName);
+                tJyanswerscontentimage.setImagePack(ipdressImagepack);
                 tJyanswerscontentimage.setCreateTime(new Date());
                 tJyanswerscontentimage.setTJyanswerscontent(jyanswerscontent);
                 tJyAnswersImageService.save(tJyanswerscontentimage);
@@ -99,5 +96,15 @@ public class ImageUtil {
                 e.printStackTrace();
             }
         }
+    }
+
+    void uploadFile(MultipartFile image,String fileDir,String fileName) throws IOException {
+        //图片储存
+        File file= new File(fileDir);
+        //如果目录不存在就创建目录
+        if (!file.exists())
+            file.mkdirs();
+        String imagePack=fileDir+"/"+fileName;
+        image.transferTo(new File(imagePack));
     }
 }
