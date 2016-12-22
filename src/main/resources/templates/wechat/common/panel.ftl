@@ -5,7 +5,7 @@
     <div class="content">
         <a class="close-panel" href="/wechat/settings/user">
             <div class="content-block">
-                <img id="avatar" alt="头像" src="/images/head.jpg">
+                <img id="avatar" alt="头像" src="/images/head.png">
                 <p id="userName">用户名</p>
             </div>
         </a>

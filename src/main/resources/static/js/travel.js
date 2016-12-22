@@ -19,6 +19,9 @@ $(function () {
                             $.router.loadPage("/wechat/index");
                         else
                             $.toast("error");
+                    },
+                    error: function () {
+                        ajaxError();
                     }
                 }
             )
@@ -114,10 +117,9 @@ $(function () {
                 }
                 else
                     $.toast("获取用户信息失败");
-
             },
             error: function (data) {
-                $.toast("获取用户信息失败!");
+                ajaxError();
             }
         });
 
@@ -138,7 +140,7 @@ $(function () {
                     $.toast("加载失败!");
             },
             error: function (data) {
-                $.toast("加载失败!");
+                ajaxError();
             }
         });
 
@@ -183,21 +185,19 @@ $(function () {
                             //在这里插入数据(悬赏金额、内容、时间等等),用ajax更新，更新一次取出少量数据
                             html += '<div class="card facebook-card"><div class="card-header no-border"><div class="facebook-avatar">';
                             //判断用户是否有头像，没有则使用默认头像
-                            if (rows[i].headImage != null)
-                                html += '<img class="img-head" src="' + rows[i].headImage + '" width="34" height="34">';
+                            if (rows[i].avatar != null)
+                                html += '<img class="img-head" src="' + rows[i].avatar + '" width="34" height="34">';
                             else
-                                html += '<img class="img-head" src="/images/1.jpg" width="34" height="34">';
+                                html += '<img class="img-head" src="/images/head.png" width="34" height="34">';
                             html += '</div><div class="facebook-name">' + rows[i].userName + '</div><div class="facebook-date">' +
                                 rows[i].place + " " + rows[i].creatTime + '</div></div><div class="card-content img-padded">';
                             //判断及应是否有图片
                             if (rows[i].imagePack != null)
-                                html += '<img src="' + rows[i].imagePack + '" width="100%"></div>';
-                            else
-                                html += '<img src="/images/1.jpg" width="100%"></div>';
-                            html += '<div class="card-content"><div class="card-content-inner">' +
+                                html += '<img src="' + rows[i].imagePack + '" width="100%">';
+                            html += '</div><div class="card-content"><div class="card-content-inner">' +
                                 '<p class="color-gray">悬赏' + rows[i].reward + '</p><p>' + rows[i].content +
-                                '</p></div></div><div class="card-footer no-border"><a href="/wechat/jy_reply" class="link confirm-ok">' +
-                                '解答</a> <a href="/wechat/jy_detail" class="link">更多</a></div></div>';
+                                '</p></div></div><div class="card-footer no-border"><a href="/tjiying/getJyQuestion?id=' + rows[i].id +
+                                '" class="link confirm-ok">解答</a> <a href="/tjiying/getJyQuestion?id=' + rows[i].id + '" class="link">更多</a></div></div>';
                         }
                         //标记最后一个及应的id
                         lastID = rows[rows.length - 1].id;
@@ -347,36 +347,114 @@ $(function () {
                         }
                     },
                     error: function () {
-                        $.toast("上传失败");
+                        ajaxError();
                     }
                 });
             });
         });
     });
 
-//及应详细page
+    //及应详细page
     $(document).on("pageInit", "#page-jy-detail", function () {
-        //图片高度自适应
-        var $img = $('.img');
-        $img.css('height', $img.css('width'));
-        var $gallery = $("#gallery");
-        //点击图片时，进入gallery显示图片
-        $img.on("click", function () {
-            $("#galleryImg").attr("style", "background-image:url(" + this.getAttribute("src") + ")");
-            $gallery.fadeIn(100);
+
+        //获取图片
+        $.ajax({
+            url: "getJyQuestionImages?id=" + id,
+            success: function (data) {
+                var result = eval(data);
+                var images = result.images;
+                var imageCount = images.length;
+                if (imageCount != 0) {
+                    //插入图片
+                    for (var i = 0; i < imageCount; i++) {
+                        var html = '<a href="javascript:;" class="weui-grid weui-grid-img"><img width="100%" ' +
+                            'class="img" id="img1" src=' + images[i].imagePack + ' alt="及应图片"></a>'
+                        $(".weui-grids").append(html);
+                    }
+                    //初始化图片
+                    if (imageCount == 1)
+                        $(".weui-grid").width("100%");
+                    if (imageCount > 1 && imageCount < 5)
+                        $(".weui-grid").width("50%");
+                    if (imageCount > 4)
+                        $(".weui-grid").width("33.33333333%");
+                    //图片高度自适应
+                    var $img = $('.img');
+                    $img.css('height', $img.css('width'));
+                    var $gallery = $("#gallery");
+                    //点击图片时，进入gallery显示图片
+                    $img.on("click", function () {
+                        $("#galleryImg").attr("style", "background-image:url(" + this.getAttribute("src") + ")");
+                        $gallery.fadeIn(100);
+                    });
+                    //点击gallery时返回选择图片界面
+                    $gallery.on("click", function () {
+                        $gallery.fadeOut(100);
+                    });
+                }
+                else
+                    $.toast(result.errorMsg);
+            },
+            error: function () {
+                $.toast("错误")
+            }
         });
-        //点击gallery时返回选择图片界面
-        $gallery.on("click", function () {
-            $gallery.fadeOut(100);
+
+        //及应按钮
+        var $jy = $("#jy");
+        //0为及应按钮，1为放弃解答按钮
+        var type = 0;
+        //回答id
+        var answerID = 0;
+        //及应或放弃解答按钮响应事件
+        $jy.on("click", function () {
+            //及应按钮响应事件
+            if (type == 0) {
+                $.confirm('确定要解答么?', function () {
+                    $.ajax({
+                        url: "/tjiying/addJyAnswer?id=" + id + "&userid=" + userID,
+                        success: function (data) {
+                            var result = eval(data);
+                            if (result.success == true) {
+                                $.toast("请开始解答");
+                                $(".bar-nav").append("<h1 class='title'>正在解答...</h1>");
+                                $("#answer-text").css("display", "block");
+                                $("#answer-div").css("display", "block");
+                                answerID = result.answerID;
+                                $jy.html("放弃解答")
+                                type = 1;
+                            }
+                            else
+                                $.toast(result.errorMsg);
+                        },
+                        error: function () {
+                            ajaxError();
+                        }
+                    });
+                });
+            }
+            //放弃解答响应时间
+            else {
+                $.confirm('确定要放弃解答么?', function () {
+                    $.ajax({
+                        url: "/tjiying/failSolveProblem?answerid=" + answerID + "&questionid=" + id,
+                        success: function (data) {
+                            var result = eval(data);
+                            if (result.success == true) {
+                                history.back();
+                            }
+                            else
+                                $.toast(result.errorMsg);
+                        },
+                        error: function () {
+                            ajaxError();
+                        }
+                    });
+                });
+            }
         });
     });
 
-//及应解答page
-    $(document).on("pageInit", "#page-jy-reply", function () {
-        //图片高度自适应
-        var $img = $('.img');
-        $img.css('height', $img.css('width'));
-    });
 
 //及应等待解答page
     $(document).on("pageInit", "#page-jy-wait", function () {
@@ -397,7 +475,6 @@ $(function () {
         var tab = "1";
         //上次加载的数量
         var lastIndex = $("#tab" + tab).find(".card").length;
-
 
         // 判断是否停止加载事件
         function del() {
@@ -421,34 +498,46 @@ $(function () {
             tab = "2";
         });
 
-
         //添加新的及应,tab为当前tab数
         function addItems(itemsPerLoad, tab) {
             var html = '';
-            for (var i = lastIndex + 1; i <= lastIndex + itemsPerLoad; i++) {
-                //在这里插入数据(悬赏金额、内容、时间等等),最好用ajax更新，更新一次取出少量数据
-                html += '<div class="card"><div class="card-header"><div class="item-title">';
-                if (tab == 1) {
-                    html += '支出'
+            $.ajax({
+                url: "/tjiying/getSettlementJyQuestions?type=" + tab + "&index=" + lastIndex + "&count=" + itemsPerLoad,
+                type: "POST",
+                data: JSON,
+                async: false,
+                success: function (data) {
+                    var result = eval(data);
+                    if (result.return == "success") {
+                        var rows = result.data;
+                        for (var i = 0; i < rows.length; i++) {
+                            //在这里插入数据(悬赏金额、内容、时间等等),最好用ajax更新，更新一次取出少量数据
+                            html += '<div class="card"><div class="card-header"><div class="item-title">';
+                            if (tab == 1) {
+                                html += '支出'
+                            }
+                            else {
+                                html += '收入'
+                            }
+                            html += '</div><div class="item-after">' + rows[i].reward + '</div></div><div class="card-content">' +
+                                '<div class="list-block media-list"><ul><li class="item-content"><div class="item-inner">' +
+                                '<div class="item-title-row"><div class="item-title">' + rows[i].userName + '</div></div>' +
+                                '<div class="item-subtitle">' + rows[i].content + '</div></div></li></ul></div></div>' +
+                                '<div class="card-footer"><span>' + rows[i].creatTime + '</span> <a href="/wechat/settings/bill_detail">' +
+                                '查看更多信息</a></div></div>';
+                        }
+                        // 添加新条目
+                        var $tab = $('#tab' + tab);
+                        $tab.find(".list-bill").append(html);
+                        lastIndex = $tab.find(".card").length;
+                        if (del()) {
+                            $.toast("加载完毕！");
+                        }
+                    }
                 }
-                else {
-                    html += '收入'
-                }
-                html += '</div><div class="item-after">5$</div></div><div class="card-content">' +
-                    '<div class="list-block media-list"><ul><li class="item-content"><div class="item-inner">' +
-                    '<div class="item-title-row"><div class="item-title">潘俊冰</div></div>' +
-                    '<div class="item-subtitle">迷路了，求接送回凯宁宾馆（ACX大街666号）</div></div></li></ul></div></div>' +
-                    '<div class="card-footer"><span>2015/01/15</span> <a href="/wechat/settings/bill_detail">' +
-                    '查看更多信息</a></div></div>';
-            }
-            // 添加新条目
-            var $tab = $('#tab' + tab);
-            $tab.find(".list-bill").append(html);
-            lastIndex = $tab.find(".card").length;
-            if (del()) {
-                $.toast("加载完毕！");
-            }
+            });
         }
+
 
         //滚动事件
         $(document).on("infinite", ".infinite-scroll", function () {
@@ -485,5 +574,12 @@ $(function () {
     });
 
     $.init();
-})
-;
+
+    //错误提示
+    function ajaxError() {
+        $.toast("网络错误，请稍后再试");
+    }
+
+
+});
+

@@ -13,7 +13,7 @@ public interface TJyAnswersService extends BaseService<TJyanswers> {
     //通过用户id和问题id查找Answer
     public TJyanswers findAnswerByUseridAndQuestionid(int userid, int questionsid);
 
-    public void addJyAnswerByQuestionsidAndUserId(int questionsid, int userid);
+    public long addJyAnswerByQuestionsidAndUserId(int questionsid, int userid);
 
     //该答案成功解决了问题
     public void successSolveProblem(int answerid);

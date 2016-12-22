@@ -23,4 +23,7 @@ public interface TJyQuestionsService extends BaseService<TJyquestions>{
 
     //该问题没有被解决
     public void failSolveProblem(int questionID);
+
+    //判断该用户是否为该及应的发布者
+    public boolean isQuestionUser(int id,int userID);
 }

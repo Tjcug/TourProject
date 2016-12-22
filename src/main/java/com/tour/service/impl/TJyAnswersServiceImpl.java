@@ -41,7 +41,7 @@ public class TJyAnswersServiceImpl extends BaseServiceImpl implements TJyAnswers
     }
 
     @Override
-    public void addJyAnswerByQuestionsidAndUserId(int questionsid, int userid) {
+    public long addJyAnswerByQuestionsidAndUserId(int questionsid, int userid) {
         TJyanswers tJyanswers = new TJyanswers();
         //存储回答问题的记录
         tJyanswers.setTUser(tUserDAO.findById(Long.valueOf(userid)));
@@ -52,6 +52,7 @@ public class TJyAnswersServiceImpl extends BaseServiceImpl implements TJyAnswers
         tJyanswers.setState(state);
         tJyanswers.setTJyquestions(tJyquestionsDAO.findById(Long.valueOf(questionsid)));
         tJyanswersDAO.save(tJyanswers);
+        return tJyanswers.getId();
     }
 
     @Override

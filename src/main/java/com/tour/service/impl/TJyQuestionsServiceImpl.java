@@ -1,5 +1,6 @@
 package com.tour.service.impl;
 
+import com.tour.model.TJyanswers;
 import com.tour.model.TJyquestions;
 import com.tour.service.TJyQuestionsService;
 import com.tour.util.JsonUtil;
@@ -60,7 +61,7 @@ public class TJyQuestionsServiceImpl extends BaseServiceImpl implements TJyQuest
 	@Override
 	public int getCount() {
 		//String hql = "select count(j) from TJyquestions j";
-		return tJyquestionsDAO.findAll().size();
+		return tJyquestionsDAO.findByProperty("state",(byte)0).size();
 	}
 
 
@@ -101,13 +102,19 @@ public class TJyQuestionsServiceImpl extends BaseServiceImpl implements TJyQuest
 	/**
 	 * 获取指定用户的已解决的提问及应或者回答及应
 	 * @param userID 用户id
-	 * @param type 1为回答的及应，0为提问的及应
+	 * @param type 0为回答的及应，1为提问的及应
 	 * @return 返回json对象
 	 */
 	@Override
 	public List<TJyquestions> getUserJy(int userID,int type,int index,int count){
-		//查出所有未解决的及应按时间倒序排序
-		final List<TJyquestions> jyQuestionList = tJyquestionsDAO.findList("select * from t_jyquestions where state="+type+" and user_id="+userID+" order by create_time desc");
+		String hql = null;
+		if(type == 1) {
+			//查出所有未解决的及应按时间倒序排序
+			hql = "select j from TJyquestions j inner join fetch j.TUser u where j.state=2 and j.TUser.id="+userID+" order by j.createTime desc";
+		}
+		else
+			hql = "select jq from TJyanswers ja TJyquestions jq inner join fetch ja.TUser u where ja.state=2 and ja.Tuser.id="+userID+" order by j.createTime desc";
+		final List<TJyquestions> jyQuestionList = tJyquestionsDAO.findList(hql);
 		final List<TJyquestions> jyQuestionList2 = null;
 		//判断是否取了过多的数据
 		int size = jyQuestionList.size();
@@ -143,6 +150,14 @@ public class TJyQuestionsServiceImpl extends BaseServiceImpl implements TJyQuest
 		tJyquestions.setState(state);
 		tJyquestionsDAO.update(tJyquestions);
 	}
+
+    @Override
+    public boolean isQuestionUser(int id, int userID) {
+		TJyquestions jyquestion = tJyquestionsDAO.findById(Long.valueOf(id));
+		if (jyquestion.getTUser().getId() == userID)
+			return true;
+        return false;
+    }
 
 
 }
